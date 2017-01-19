@@ -1,5 +1,22 @@
 <ion-view view-title="Bank Auth">
   <ion-content>
+    <body>
     <h1>bank auth page</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <p><strong>Bank Select</strong></p>
+                <button class="btn btn-success" ng-click="openPlaid()" >
+                    Link Account
+                </button>
+            </div>
+
+            <div class="col-md-6">
+                <h4>Public Token:</h4>
+                {{ token }}
+            </div>
+        </div>
+    </div>
+  </body>
   </ion-content>
 </ion-view>
