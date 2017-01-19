@@ -22,6 +22,7 @@ angular.module('app.pet', [])
   }
 
   $scope.healthBar = new ProgressBar.Line(healthBar, {
+
     strokeWidth: 4,
     easing: 'easeInOut',
     duration: 1400,

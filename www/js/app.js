@@ -46,6 +46,7 @@ angular.module('starter',['ionic',
       'menuContent': {
         templateUrl: 'templates/pet.html',
         controller: 'PetCtrl'
+<<<<<<< HEAD
       }
     }
   })
@@ -56,6 +57,8 @@ angular.module('starter',['ionic',
       'menuContent': {
         templateUrl: 'templates/firstPet.html',
         controller: 'FirstPetCtrl'
+=======
+>>>>>>> added to pet page: bear, touch animation, health
       }
     }
   })
