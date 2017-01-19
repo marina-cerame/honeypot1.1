@@ -1,13 +1,19 @@
 angular.module('auth', [])
 
-.controller('AuthController', function($scope, $location) {
+.controller('AuthController', function($scope, $location, $http, $rootScope) {
 
-  $scope.user = {};
+  $scope.user = {
+    grant_type: 'password'
+  };
 
   $scope.login = function() {
-    console.log($scope.user, ' user in login');
-    //UN, PW, grant_type: pw
-    
+    $http.post('http://localhost:3000/v1/access_tokens', $scope.user)
+      .then(function(res) {
+        $rootScope.user = res.data;
+        $location.path('/app/pet');
+      }, function(err) {
+        console.log(err);
+      });
   };
 
   $scope.goToSignup = function() {
@@ -15,7 +21,20 @@ angular.module('auth', [])
   };
 
   $scope.signup = function() {
-    console.log($scope.user, + ' user in signup');
+    $http.post('http://localhost:3000/users', $scope.user)
+      .then(function(res) {
+        $http.post('http://localhost:3000/v1/access_tokens', $scope.user)
+          .then(function(res) {
+            $rootScope.user = res.data;
+            $location.path('/app/pet');
+          }, function(err) {
+            console.log(err);
+          });
+      }, function(err) {
+        console.log(err);
+      });
   };
 
 })
+
+// $location.path('/app/pet')
