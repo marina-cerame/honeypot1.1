@@ -26,7 +26,7 @@ angular.module('auth', [])
         $http.post('http://localhost:3000/v1/access_tokens', $scope.user)
           .then(function(res) {
             $rootScope.user = res.data;
-            $location.path('/app/pet');
+            $location.path('/app/bankAuth');
           }, function(err) {
             console.log(err);
           });
