@@ -1,0 +1,24 @@
+angular.module('app.store', [])
+
+.controller('StoreCtrl', function($scope) {
+  console.log($scope, 'heres scope in app store ctrl')
+  $scope.test = 'Hello!'
+
+  $scope.food = [
+    { id: 1, name: 'Carrot', price: '5 Bear Cents', hunger: '10 pts', img: './img/carrot.png'},
+    { id: 2, name: 'Salmon', price: '15 Bear Cents', hunger: '20pts'},
+    { id: 3, name: 'Honey!', price: '25 Bear Cents', hunger: '30pts'}
+  ]
+
+  $scope.color = function() {
+    let color = '#';
+    let hexes = ['A', 'B', 'C', 'D', 'E', 'F', 'G', '1', '2', '3', '4', '5', '6']
+    for(let i = 0; i < 6;i++){
+      let string = hexes[Math.floor(Math.random() * hexes.length)];
+      console.log(string)
+      color += string;
+    }
+    return color;
+  }
+
+})
