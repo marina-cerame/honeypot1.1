@@ -4,7 +4,9 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'auth', 'app.bankAuth'])
+
+angular.module('starter', ['ionic', 'starter.controllers', 'auth', 'app.pet', 'app.bankAuth'])
+
 
 
 .run(function($ionicPlatform) {
@@ -37,7 +39,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'auth', 'app.bankAuth
     url: '/pet',
     views: {
       'menuContent': {
-        templateUrl: 'templates/pet.html'
+        templateUrl: 'templates/pet.html',
+        controller: 'PetCtrl'
       }
     }
   })
