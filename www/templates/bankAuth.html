@@ -1,5 +1,29 @@
 <ion-view view-title="Bank Auth">
   <ion-content>
-    <h1>bank auth page</h1>
+    <body>
+    <h1>Link your bank accounts</h1>
+    <div class="container">
+        <div>
+            <div>
+                <span>checking account:</span>
+                <button ng-click="openChecking()" >
+                    Link Account
+                </button>
+                <span>{{ checkingName }}</span>
+            </div>
+
+            <div>
+              <span>savings account:</span>
+              <button ng-click="openSavings()" >
+                  Link Account
+              </button>
+              <span>{{ savingsName }}</span>
+            </div>
+        </div>
+        <button class="button button-full button-energized" ng-click="goToFirstPet()">
+   Next
+</button>
+    </div>
+  </body>
   </ion-content>
 </ion-view>
