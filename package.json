@@ -1,0 +1,46 @@
+{
+  "name": "honeypot",
+  "author": "BearQuarium",
+  "version": "1.1.1",
+  "description": "honeypot: An Ionic project",
+  "dependencies": {
+    "gulp": "^3.5.6",
+    "gulp-sass": "^2.0.4",
+    "gulp-concat": "^2.2.0",
+    "gulp-minify-css": "^0.3.0",
+    "gulp-rename": "^1.2.0",
+    "plaid": "^1.1.1",
+    "progressbar.js": "^1.0.1",
+    "jquery": "^3.1.1",
+    "angular-plaid-link": "1.0.1",
+    "gsap": "1.19.1"
+  },
+  "devDependencies": {
+    "bower": "^1.3.3",
+    "gulp-util": "^2.2.14",
+    "shelljs": "^0.3.0",
+    "eslint": "^2.13.1",
+    "eslint-config-airbnb": "^9.0.1",
+    "eslint-plugin-import": "^1.10.0",
+    "eslint-plugin-jsx-a11y": "^1.5.3",
+    "eslint-plugin-react": "^5.2.2",
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0"
+  },
+  "cordovaPlugins": [
+    "cordova-plugin-console",
+    "cordova-plugin-statusbar",
+    "cordova-plugin-whitelist",
+    "cordova-plugin-device",
+    "cordova-plugin-splashscreen",
+    "ionic-plugin-keyboard"
+  ],
+  "cordovaPlatforms": [
+    "ios",
+    {
+      "platform": "ios",
+      "version": "",
+      "locator": "ios"
+    }
+  ]
+}
