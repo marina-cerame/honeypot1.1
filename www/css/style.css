@@ -1,1 +1,10 @@
 /* Empty. Add your own CSS if you like */
+/*#healthBar {
+  position: fixed;
+  bottom: 200;
+}*/
+
+.ground {
+  z-index: -1;
+  background-color: #008000;
+}
