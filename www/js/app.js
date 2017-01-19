@@ -83,7 +83,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'auth'])
     url: '/signup',
     views: {
       'menuContent': {
-        templateUrl: 'templates/signup.html'
+        templateUrl: 'templates/signup.html',
+        controller: 'AuthController'
       }
     }
   });
