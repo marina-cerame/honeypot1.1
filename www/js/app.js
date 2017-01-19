@@ -32,42 +32,61 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     controller: 'AppCtrl'
   })
 
-  .state('app.search', {
-    url: '/search',
+  .state('app.pet', {
+    url: '/pet',
     views: {
       'menuContent': {
-        templateUrl: 'templates/search.html'
+        templateUrl: 'templates/pet.html'
       }
     }
   })
 
-  .state('app.browse', {
-      url: '/browse',
+  .state('app.store', {
+      url: '/store',
       views: {
         'menuContent': {
-          templateUrl: 'templates/browse.html'
-        }
-      }
-    })
-    .state('app.playlists', {
-      url: '/playlists',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/playlists.html',
-          controller: 'PlaylistsCtrl'
+          templateUrl: 'templates/store.html'
         }
       }
     })
 
-  .state('app.single', {
-    url: '/playlists/:playlistId',
+    .state('app.account', {
+      url: '/account',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/account.html',
+          // controller: 'PlaylistsCtrl'
+        }
+      }
+    })
+
+  .state('app.login', {
+    url: '/login',
     views: {
       'menuContent': {
-        templateUrl: 'templates/playlist.html',
-        controller: 'PlaylistCtrl'
+        templateUrl: 'templates/login.html',
+        // controller: 'PlaylistCtrl'
+      }
+    }
+  })
+
+  .state('app.bankAuth', {
+    url: '/bankAuth',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/bankAuth.html'
+      }
+    }
+  })
+
+  .state('app.signup', {
+    url: '/signup',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/signup.html'
       }
     }
   });
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/playlists');
+  $urlRouterProvider.otherwise('/app/login');
 });
