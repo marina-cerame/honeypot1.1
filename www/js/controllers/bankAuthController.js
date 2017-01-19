@@ -37,6 +37,7 @@ angular.module('app.bankAuth', [
                     $scope.savingsName = metadata.account.name;
                     $scope.$apply();
                     console.log('savings token: ', token);
+
                 },
                 onExit: function() {
                     console.log('user closed');
