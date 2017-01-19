@@ -1,11 +1,9 @@
 angular.module('app.bankAuth', [
 ])
 
-    .controller('BankCtrl', [
-        '$scope',
-        '$location',
+    .controller('BankCtrl',
 
-        function($scope) {
+        function($scope, $location) {
             $scope.checkingName;
             $scope.savingsName;
             var checkingHandler = Plaid.create({
@@ -56,4 +54,4 @@ angular.module('app.bankAuth', [
                $location.path('/app/firstPet');
              };
         }
-    ]);
+    );
