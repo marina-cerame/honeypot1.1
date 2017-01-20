@@ -32,6 +32,24 @@
   text-align: center;
 }
 
+.food-item {
+  position: relative;
+  top: -95px;
+}
+.food-div {
+  margin-bottom: 0px;
+}
+/*.food-img {
+  position: fixed;
+  right: 10%;
+  top: 10%;
+}*/
+
+#bear-logo {
+  margin: auto;
+  text-align: center;
+}
+
 #goal {
   margin: auto;
   width: 100px;
