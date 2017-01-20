@@ -3,6 +3,12 @@ angular.module('app.firstPet', [])
   .controller('FirstPetCtrl', function($scope, $location, $http, $rootScope) {
     $scope.pet = {};
 
+    $scope.bearShrink = function() {
+      console.log('bearGrow')
+      TweenLite.to('.first-bear', 2, { scale: 0.75, x: '15%', y: '-40%'  })
+    }
+    $scope.bearShrink();
+
     $scope.makeFirstPet = function() {
 
       $scope.pet.pet_type_id = 1;

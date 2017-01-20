@@ -5,9 +5,9 @@ angular.module('app.store', [])
   $scope.test = 'Hello!'
 
   $scope.food = [
-    { id: 1, name: 'Carrot', price: '5 Bear Cents', hunger: '10 pts', img: './img/carrot.png'},
-    { id: 2, name: 'Salmon', price: '15 Bear Cents', hunger: '20pts'},
-    { id: 3, name: 'Honey!', price: '25 Bear Cents', hunger: '30pts'}
+    { id: 1, name: 'Carrot', price: '5 Bear Cents', hunger: '10 pts', img: './img/carrot_square_png.png'},
+    { id: 2, name: 'Salmon', price: '15 Bear Cents', hunger: '20pts', img: '/img/salmon.png'},
+    { id: 3, name: 'Honey!', price: '25 Bear Cents', hunger: '30pts', img: '/img/honey_pot.png'}
   ]
 
   $scope.color = function() {
