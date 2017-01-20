@@ -14,8 +14,8 @@ class V1LevelsController extends Nodal.Controller {
       .where(this.params.query)
       .end((err, models) => {
         // base state from creating pet
-        let happiness = 50;
-        let hunger = 50;
+        let happiness = 25;
+        let hunger = 25;
 
         // calculate previous state
         models.forEach(model => {
