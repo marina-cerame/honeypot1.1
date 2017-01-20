@@ -2,7 +2,14 @@ angular.module('app.account', [])
 
     .controller('accountController',
 
-        function($scope, $location, $http) {
+        function($scope, $location, $http, $rootScope) {
+            console.log($rootScope.user, 'THIS IS THE USER IN THE ROOT SCOPE')
+            $http.get(`http://localhost:3000/v1/totals/?user_id__is=${$rootScope.user}`)
+              .then(function(res){
+                console.log(res.data.data[0]);
+                $scope.total=res.data.data[0].total;
+              })
+            $scope.goal = $rootScope.pet.goal_name;
             $scope.checkingName;
             $scope.savingsName;
             var checkingHandler = Plaid.create({
