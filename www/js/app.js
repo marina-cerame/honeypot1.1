@@ -11,7 +11,8 @@ angular.module('starter',['ionic',
                           'app.pet',
                           'app.bankAuth',
                           'app.firstPet',
-                          'app.store'])
+                          'app.store',
+                          'app.account'])
 
 
 .run(function($ionicPlatform) {
@@ -75,7 +76,7 @@ angular.module('starter',['ionic',
       views: {
         'menuContent': {
           templateUrl: 'templates/account.html',
-          // controller: 'PlaylistsCtrl'
+          controller: 'accountController'
         }
       }
     })
