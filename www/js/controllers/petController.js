@@ -94,4 +94,6 @@ angular.module('app.pet', [])
   });
   $scope.bearGrow();
 
+  $scope.market = true;
+
 })
