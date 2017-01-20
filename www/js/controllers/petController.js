@@ -7,7 +7,7 @@ angular.module('app.pet', [])
       console.log('PET', pet);
       $rootScope.pet_id = pet.id;
       $scope.goal_amt = pet.goal_amt;
-      $scope.name = pet.name
+      $scope.petName = pet.name
       $http.get('http://localhost:3000/v1/totals/?pet_id__is=1')
         .then(function(data) {
           const spent = data.data.data[0].total
