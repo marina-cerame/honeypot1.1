@@ -1,6 +1,6 @@
 {
 
-  "migration_id": 2017011919412380,
+  "migration_id": 2017011922133638,
 
   "models": {
 
@@ -15,6 +15,21 @@
         {"name": "token_type", "type": "string", "properties": {}},
         {"name": "expires_at", "type": "datetime", "properties": {}},
         {"name": "ip_address", "type": "string", "properties": {}},
+        {"name": "created_at", "type": "datetime", "properties": {}},
+        {"name": "updated_at", "type": "datetime", "properties": {}}
+      ]
+
+    },
+
+    "BankToken": {
+
+      "table": "bank_tokens",
+
+      "columns": [
+        {"name": "id", "type": "serial", "properties": {"nullable":false,"primary_key":true,"auto_increment":true}},
+        {"name": "user_id", "type": "int", "properties": {}},
+        {"name": "type", "type": "string", "properties": {}},
+        {"name": "token", "type": "string", "properties": {}},
         {"name": "created_at", "type": "datetime", "properties": {}},
         {"name": "updated_at", "type": "datetime", "properties": {}}
       ]
