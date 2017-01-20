@@ -5,9 +5,13 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
 
-angular.module('starter', ['ionic', 'starter.controllers', 'auth', 'app.pet', 'app.bankAuth'])
-
-
+angular.module('starter',['ionic',
+                          'starter.controllers',
+                          'auth',
+                          'app.pet',
+                          'app.bankAuth',
+                          'app.firstPet',
+                          'app.store'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -45,11 +49,22 @@ angular.module('starter', ['ionic', 'starter.controllers', 'auth', 'app.pet', 'a
     }
   })
 
+  .state('app.firstPet', {
+    url: '/firstPet',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/firstPet.html',
+        controller: 'FirstPetCtrl'
+      }
+    }
+  })
+
   .state('app.store', {
       url: '/store',
       views: {
         'menuContent': {
-          templateUrl: 'templates/store.html'
+          templateUrl: 'templates/store.html',
+          controller: 'StoreCtrl'
         }
       }
     })

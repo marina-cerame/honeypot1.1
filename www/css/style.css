@@ -18,3 +18,17 @@
 #healthbar {
   position: fixed;
 }
+h1 {
+  text-align: center;
+  color: #ADD8E6;
+}
+
+#food-item {
+  /*color: 	#FF4500;*/
+  font-size: 25px;
+  font-weight: bolder;
+}
+
+#starter-pet-text {
+  opacity: 0.5;
+}

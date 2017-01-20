@@ -1,5 +1,24 @@
 <ion-view view-title="Store">
   <ion-content>
-    <h1>Store</h1>
+    <h1>Critter FoodMart</h1>
+    <ion-list>
+     <ion-item ng-repeat='food in food'>
+      <div id='food-item' ng-style='color:{{$scope.color()}}' style='strong'>{{ food.name }}</div>
+      <table border="10px">
+        <tr>
+          <td width="45%">
+            <strong>Cost:</strong> <br /> {{ food.price }} <br  />
+            <strong>Hunger increase:</strong><br  /> {{ food.hunger }}
+          </td>
+          <td ="30%">
+            <img src={{food.img}} align="right"/>
+          </td>
+        </tr>
+      </table>
+      <button class="button button-full button-stable">
+        Buy your pet a {{ food.name[0].toLowerCase() + food.name.slice(1) }}!
+      </button>
+     </ion-item>
+    </ion-list>
   </ion-content>
 </ion-view>
