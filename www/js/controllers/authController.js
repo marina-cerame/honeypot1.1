@@ -9,7 +9,7 @@ angular.module('auth', [])
   $scope.login = function() {
     $http.post('http://localhost:3000/v1/access_tokens', $scope.user)
       .then(function(res) {
-        $rootScope.user = res.data;
+        $rootScope.user = res.data.data[0].user_id;
         $location.path('/app/pet');
       }, function(err) {
         console.log(err);
@@ -25,7 +25,7 @@ angular.module('auth', [])
       .then(function(res) {
         $http.post('http://localhost:3000/v1/access_tokens', $scope.user)
           .then(function(res) {
-            $rootScope.user = res.data;
+            $rootScope.user = res.data.data[0].user_id;
             $location.path('/app/bankAuth');
           }, function(err) {
             console.log(err);

@@ -28,3 +28,7 @@ h1 {
   font-size: 25px;
   font-weight: bolder;
 }
+
+#starter-pet-text {
+  opacity: 0.5;
+}

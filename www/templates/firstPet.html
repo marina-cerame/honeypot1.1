@@ -8,25 +8,24 @@
       </label>
       <label class="item item-input">
         <span class="input-label">Choose a Species:</span>
-        <select>
-          <option>Emperor Penguin</option>
-          <option selected>Starter Bear</option>
-          <option>Vietnamese Potbelly Pig</option>
-        </select>
+        <text ng-model='pet.pet_type_id' id="starter-pet-text">Starter Bear</text>
       </label>
       <label class="item item-input">
-        <span class="input-label">What's your savings goal?</span>
-        <input type="text">
+        <span class="input-label">What goal are you saving for?</span>
+        <input ng-model='pet.goal_name' type="text">
       </label>
       <label class="item item-input">
         <span class="input-label">Choose Your Goal Amount</span>
-        <select>
+        <select ng-model='pet.goal_amt'>
           <option ng-repeat='goal in goal_amt'>${{goal}}</option>
         </select>
       </label>
   </div>
-  <button class="button button-full button-energized">
+  <button ng-click='makeFirstPet()' class="button button-full button-energized">
     Adopt this pet!
   </button>
+
+
+
   </ion-content>
 </ion-view>
