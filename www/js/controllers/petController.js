@@ -1,5 +1,31 @@
 angular.module('app.pet', [])
-.controller('PetCtrl', function($scope) {
+.controller('PetCtrl', function($scope, $rootScope, $http) {
+  // get pet info
+  $http.get('http://localhost:3000/v1/pets/1')
+    .then(function(data) {
+      const pet = data.data.data[0];
+      console.log(pet);
+      $rootScope.pet_id = pet.id;
+      $scope.goal_amt = pet.goal_amt;
+      $http.get('http://localhost:3000/v1/totals/?pet_id__is=1')
+        .then(function(data) {
+          const spent = data.data.data[0].total
+          console.log(spent);
+          ;
+
+          $scope.goal.animate(spent / $scope.goal_amt)
+        }, function(err) {console.log(err)})
+    }, function(err) {console.log(err)})
+    $http.get('http://localhost:3000/v1/levels/?pet_id__is=1')
+      .then(function(data) {
+        console.log(data.data.data[0])
+        const level = data.data.data[0].hunger / 100;
+        $scope.healthBar.animate(level);
+
+      }, function(err) { console.log(err) })
+
+
+
   console.log($scope, 'heres scope in pet ctrl')
   $scope.test = 'Hello!'
   $scope.food = [
@@ -74,9 +100,6 @@ angular.module('app.pet', [])
   //   // called asynchronously if an error occurs
   //   // or server returns response with an error status.
   // });
-
-  $scope.healthBar.animate(.5);
-  $scope.goal.animate(.9)
   $scope.bearGrow();
 
 })
