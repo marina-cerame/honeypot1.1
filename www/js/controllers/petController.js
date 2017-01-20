@@ -29,16 +29,23 @@ angular.module('app.pet', [])
   $scope.bearTouch = function() {
     const earUp = function() {
       TweenLite.to('.ears', .5, { y: -7, onComplete: earDown })
+      TweenLite.to('.leftArm', .5, {rotation:75, transformOrigin:"80% 50%"});
     }
     const earDown = function() {
       TweenLite.to('.ears', .5, { y: 7 })
+      TweenLite.to('.leftArm', .5, {rotation:0, transformOrigin:"80% 50%"});
     }
     earUp();
+  }
+  $scope.bearTilt = function() {
+    const left = function() { TweenLite.to('.bear', 1, { rotation: 2, transformOrigin: "50% 50%", onComplete: right }) };
+    const right = function() { TweenLite.to('.bear', 1, { rotation: -2, transformOrigin: "50% 50%", onComplete: left }) }
+    left();
   }
 
   $scope.bearGrow = function() {
     console.log('bearGrow')
-    TweenLite.to('.bear', .1, { scale: 1.5, x: '-25%' })
+    TweenLite.to('.bear', .1, { scale: 1.5 })
   }
 
   $scope.healthBar = new ProgressBar.Line(healthBar, {
@@ -86,12 +93,12 @@ angular.module('app.pet', [])
 
       var value = Math.round(circle.value() * 100);
       if (value === 0) {
-        circle.setText('0%');
+        circle.setText('Goal: 0%');
       } else {
         circle.setText('Goal: ' + value + '%');
       }
     }
   });
   $scope.bearGrow();
-
+  $scope.bearTilt();
 })
