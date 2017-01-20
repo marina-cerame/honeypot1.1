@@ -11,8 +11,6 @@ angular.module('app.pet', [])
         .then(function(data) {
           const spent = data.data.data[0].total
           console.log(spent);
-          ;
-
           $scope.goal.animate(spent / $scope.goal_amt)
         }, function(err) {console.log(err)})
     }, function(err) {console.log(err)})
@@ -29,8 +27,6 @@ angular.module('app.pet', [])
     { name: 'Carrot', price: '5 Bear Cents', hunger: '10 pts'}
   ]
   $scope.bearTouch = function() {
-    console.log('bearTouch');
-    console.log($rootScope.user);
     const earUp = function() {
       TweenLite.to('.ears', .5, { y: -7, onComplete: earDown })
     }
@@ -54,6 +50,9 @@ angular.module('app.pet', [])
     trailColor: '#eee',
     trailWidth: 1,
     svgStyle: {width: '100%', height: '100%'},
+    text: {
+      value: 'Health'
+    },
     from: {color: '#ff0000'},
     to: {color: '#32CD32'},
     step: (state, bar) => {
@@ -67,10 +66,16 @@ angular.module('app.pet', [])
     // prevent clipping
     strokeWidth: 4,
     trailWidth: 1,
+    svgStyle: {width: '120%', height: '120%'},
     easing: 'easeInOut',
     duration: 2000,
     text: {
-      autoStyleContainer: false
+      autoStyleContainer: false,
+      style: {
+        position: 'relative',
+        bottom: '75px',
+        right: '-27px'
+      }
     },
     from: { color: '#aaa', width: 1 },
     to: { color: '#333', width: 4 },
@@ -83,21 +88,10 @@ angular.module('app.pet', [])
       if (value === 0) {
         circle.setText('0%');
       } else {
-        circle.setText(value + '%');
+        circle.setText('Goal: ' + value + '%');
       }
     }
   });
-
-  // $http({
-  // method: 'GET',
-  // url: 'http://localhost:3000/v1/levels?pet_id__is={id}'
-  // }).then(function successCallback(response) {
-  //   // this callback will be called asynchronously
-  //   // when the response is available
-  // }, function errorCallback(response) {
-  //   // called asynchronously if an error occurs
-  //   // or server returns response with an error status.
-  // });
   $scope.bearGrow();
 
 })
