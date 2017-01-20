@@ -2,6 +2,10 @@
 <ion-view view-title="Log In">
   <ion-nav-bar class="bar-stable"></ion-nav-bar>
   <ion-content>
+    <div id="bear-logo">
+      <img src={{logo}} />
+    </div>
+    
     <form name="loginForm" ng-submit='login()'>
       <div class="list list-inset">
         <label class="item item-input">
@@ -18,5 +22,6 @@
   <button class="button button-full button-light" ng-click="goToSignup()">
     Create an Account
   </button>
+
   </ion-content>
 </ion-view>

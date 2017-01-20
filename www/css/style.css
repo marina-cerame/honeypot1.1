@@ -5,6 +5,27 @@
   position: relative;
 }
 
+.food-item {
+  position: relative;
+  top: -95px;
+}
+.food-div {
+  margin-bottom: 0px;
+}
+#food-item-text {
+  text-align: right;
+}
+/*.food-img {
+  position: fixed;
+  right: 10%;
+  top: 10%;
+}*/
+
+#bear-logo {
+  margin: auto;
+  text-align: center;
+}
+
 #goal {
   margin: auto;
   width: 100px;
@@ -23,7 +44,7 @@ h1 {
   color: #ADD8E6;
 }
 
-#food-item {
+#food-title {
   /*color: 	#FF4500;*/
   font-size: 25px;
   font-weight: bolder;
