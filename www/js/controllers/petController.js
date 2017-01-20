@@ -1,21 +1,20 @@
 angular.module('app.pet', [])
 .controller('PetCtrl', function($scope, $rootScope, $http) {
   // get pet info
-  $http.get('http://localhost:3000/v1/pets/1')
+  $http.get(`http://localhost:3000/v1/pets/${$rootScope.pet.id}`)
     .then(function(data) {
       const pet = data.data.data[0];
       console.log('PET', pet);
-      $rootScope.pet_id = pet.id;
       $scope.goal_amt = pet.goal_amt;
       $scope.petName = pet.name
-      $http.get('http://localhost:3000/v1/totals/?pet_id__is=1')
+      $http.get(`http://localhost:3000/v1/totals/?pet_id__is=${$rootScope.pet.id}`)
         .then(function(data) {
           const spent = data.data.data[0].total
           console.log(spent);
           $scope.goal.animate(spent / $scope.goal_amt)
         }, function(err) {console.log(err)})
     }, function(err) {console.log(err)})
-    $http.get('http://localhost:3000/v1/levels/?pet_id__is=1')
+    $http.get(`http://localhost:3000/v1/levels/?pet_id__is=${$rootScope.pet.id}`)
       .then(function(data) {
         console.log(data.data.data[0])
         const level = data.data.data[0].hunger / 100;
