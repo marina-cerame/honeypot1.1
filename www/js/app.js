@@ -55,7 +55,6 @@ angular.module('starter',['ionic',
     templateUrl: 'templates/firstPet.html',
     controller: 'FirstPetCtrl'
   })
-
   .state('app.store', {
       url: '/store',
       views: {
