@@ -17,7 +17,7 @@ angular.module('auth', [])
   };
 
   $scope.goToSignup = function() {
-    $location.path('/app/signup');
+    $location.path('/signup');
   };
 
   $scope.signup = function() {
@@ -26,7 +26,7 @@ angular.module('auth', [])
         $http.post('http://localhost:3000/v1/access_tokens', $scope.user)
           .then(function(res) {
             $rootScope.user = res.data.data[0].user_id;
-            $location.path('/app/bankAuth');
+            $location.path('/bankAuth');
           }, function(err) {
             console.log(err);
           });

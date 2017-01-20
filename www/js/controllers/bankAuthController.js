@@ -52,7 +52,7 @@ angular.module('app.bankAuth', [])
             };
 
             $scope.goToFirstPet = function() {
-               $location.path('/app/firstPet');
+               $location.path('/firstPet');
              };
         }
     );
