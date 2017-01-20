@@ -2,15 +2,15 @@
   <ion-content>
     <h1>Critter FoodMart</h1>
 
-    <div class="list" ng-repeat='food in food'>
+    <div class="list" ng-repeat='food in food' ng-click='buyFood()' confirm>
 
     <a class="item item-thumbnail-left" href="#">
       <img src={{food.img}} >
       <div id='food-item-text'>
       <h2>{{ food.name }}</h2>
       <p>
-        <strong>Cost:</strong> {{ food.price }} <br />
-        <strong>Health increase:</strong> {{ food.hunger }}
+        <div ng-model='grab.cost'><strong>Cost:</strong> {{ food.cost }} </div><br />
+        <strong>Health increase:</strong> {{ food.effect }}
       </p>
       </div>
     </a>
