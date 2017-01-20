@@ -59,7 +59,6 @@ angular.module('starter',['ionic',
       }
     }
   })
-
   .state('app.store', {
       url: '/store',
       views: {
