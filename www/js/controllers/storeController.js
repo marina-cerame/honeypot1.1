@@ -5,10 +5,12 @@ angular.module('app.store', [])
   $scope.test = 'Hello!'
 
   $scope.food = [
-    { id: 1, name: 'Carrot', price: '5 Bear Cents', hunger: '10 pts', img: './img/carrot_square_png.png'},
-    { id: 2, name: 'Salmon', price: '15 Bear Cents', hunger: '20pts', img: '/img/salmon.png'},
+    { id: 1, name: 'Berries', price: '10 Bear Cents', hunger: '10pts', img: './img/berries.png'},
+    { id: 2, name: 'Salmon', price: '19 Bear Cents', hunger: '20pts', img: '/img/salmon.png'},
     { id: 3, name: 'Honey!', price: '25 Bear Cents', hunger: '30pts', img: '/img/honey_pot.png'}
   ]
+
+
 
   $scope.color = function() {
     let color = '#';

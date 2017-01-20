@@ -12,6 +12,9 @@
 .food-div {
   margin-bottom: 0px;
 }
+#food-item-text {
+  text-align: right;
+}
 /*.food-img {
   position: fixed;
   right: 10%;

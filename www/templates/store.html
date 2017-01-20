@@ -2,25 +2,17 @@
   <ion-content>
     <h1>Critter FoodMart</h1>
 
-    <!-- <div class="list card" ng-repeat='food in food'>
-
-    <a href="#" class="item item-icon-left">
-      <text id="food-title" style="strong">{{ food.name }}</text><br  />
-      <strong>Cost:</strong> <br /> {{ food.price }} <br  />
-      <strong>Hunger increase:</strong><br  /> {{ food.hunger }}
-      <img src={{food.img}} />
-    </a> -->
-
     <div class="list" ng-repeat='food in food'>
 
     <a class="item item-thumbnail-left" href="#">
       <img src={{food.img}} >
+      <div id='food-item-text'>
       <h2>{{ food.name }}</h2>
       <p>
-        <!-- <text id="food-title" style="strong">{{ food.name }}</text><br  /> -->
         <strong>Cost:</strong> {{ food.price }} <br />
         <strong>Health increase:</strong> {{ food.hunger }}
       </p>
+      </div>
     </a>
 
 </div>
@@ -29,6 +21,18 @@
   </ion-content>
 </ion-view>
 
+
+
+
+
+<!-- <div class="list card" ng-repeat='food in food'>
+
+<a href="#" class="item item-icon-left">
+  <text id="food-title" style="strong">{{ food.name }}</text><br  />
+  <strong>Cost:</strong> <br /> {{ food.price }} <br  />
+  <strong>Hunger increase:</strong><br  /> {{ food.hunger }}
+  <img src={{food.img}} />
+</a> -->
 
 
     <!-- <ion-list>
