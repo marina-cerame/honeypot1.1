@@ -1,0 +1,32 @@
+<ion-view view-title="Starter Pet">
+  <ion-content>
+    <h1>Adopt Your First Pet!</h1>
+    <div class="list">
+      <label class="item item-input">
+        <span class="input-label">Your Pet's Name:</span>
+        <input type="text" ng-model='pet.name'>
+      </label>
+      <label class="item item-input">
+        <span class="input-label">Choose a Species:</span>
+        <select>
+          <option>Emperor Penguin</option>
+          <option selected>Starter Bear</option>
+          <option>Vietnamese Potbelly Pig</option>
+        </select>
+      </label>
+      <label class="item item-input">
+        <span class="input-label">What's your savings goal?</span>
+        <input type="text">
+      </label>
+      <label class="item item-input">
+        <span class="input-label">Choose Your Goal Amount</span>
+        <select>
+          <option ng-repeat='goal in goal_amt'>${{goal}}</option>
+        </select>
+      </label>
+  </div>
+  <button class="button button-full button-energized">
+    Adopt this pet!
+  </button>
+  </ion-content>
+</ion-view>
