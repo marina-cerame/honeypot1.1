@@ -11,7 +11,7 @@ class V1PetsController extends Nodal.Controller {
       .join('user')
       .where(this.params.query)
       .end((err, models) => {
-        this.respond(err || models, ['name', {'user': ['username']}]);
+        this.respond(err || models);
 
       });
 
@@ -19,7 +19,7 @@ class V1PetsController extends Nodal.Controller {
 
   show() {
     Pet.find(this.params.route.id, (err, model) => {
-      this.respond(err || { model });
+      this.respond(err ||  model );
 
     });
 
