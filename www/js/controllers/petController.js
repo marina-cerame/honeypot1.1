@@ -23,9 +23,6 @@ angular.module('app.pet', [])
         $scope.healthBar.animate(level);
 
       }, function(err) { console.log(err) })
-
-
-
   console.log($scope, 'heres scope in pet ctrl')
   $scope.test = 'Hello!'
   $scope.food = [
@@ -33,6 +30,7 @@ angular.module('app.pet', [])
   ]
   $scope.bearTouch = function() {
     console.log('bearTouch');
+    console.log($rootScope.user);
     const earUp = function() {
       TweenLite.to('.ears', .5, { y: -7, onComplete: earDown })
     }
