@@ -5,11 +5,11 @@
     <form name="firstPet" novalidate>
       <div class="list">
         <label class="item item-input">
-          <span class="input-label">Your Pet's Name:</span>
+          <span class="input-label">Your Pet's Name :</span>
           <input name="pet" type="text" ng-minlength="5" ng-model='pet.name' required>
         </label>
         <label class="item item-input">
-          <span class="input-label">Choose a Species:</span>
+          <span class="input-label">Choose a Species :</span>
           <text ng-model='pet.pet_type_id' id="starter-pet-text">Starter Bear</text>
         </label>
         <label class="item item-input">
@@ -17,10 +17,11 @@
           <input type="text" ng-minlength="5" ng-model='pet.goal_name' required>
         </label>
         <label class="item item-input">
-          <span class="input-label">Choose Your Goal Amount</span>
-          <select ng-model='pet.goal_amt'>
-            <option ng-repeat='goal in goal_amt' selected>${{goal}}</option>
-          </select>
+          <span class="input-label">Choose Your Goal Amount :</span> $
+            <input type="number" pattern="^\d+(\.|\,)\d{2}$" ng-model="pet.goal_amt" required>
+          <!-- <select ng-model='pet.goal_amt'> -->
+            <!-- <option ng-repeat='goal in goal_amt' selected>${{goal}}</option> -->
+          <!-- </select> -->
         </label>
     </div>
       <div class="padding">
