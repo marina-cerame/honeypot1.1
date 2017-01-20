@@ -9,7 +9,7 @@
         </button>
       </ion-nav-buttons>
       <ion-nav-buttons side="right">
-        <button id="market" class="button button-clear button-positive" ng-hide=true>Market</button>
+        <button id="market" class="button button-clear button-positive" ng-if='market === true'>Market</button>
       </ion-nav-buttons>
     </ion-nav-bar>
     <ion-nav-view name="menuContent"></ion-nav-view>
@@ -21,13 +21,13 @@
     </ion-header-bar>
     <ion-content>
       <ion-list>
-        <ion-item menu-close href="#/app/login">
+        <!-- <ion-item menu-close href="#/app/login">
           Login
-        </ion-item>
+        </ion-item> -->
         <ion-item menu-close href="#/app/pet">
           Pet
         </ion-item>
-        <ion-item menu-close href="#/app/firstPet">
+        <ion-item menu-close href="#/firstPet">
           First Pet
         </ion-item>
         <ion-item menu-close href="#/app/store">

@@ -1,9 +1,8 @@
-angular.module('app.bankAuth', [
-])
+angular.module('app.bankAuth', [])
 
     .controller('BankCtrl',
 
-        function($scope, $location) {
+        function($scope, $location, $http) {
             $scope.checkingName;
             $scope.savingsName;
             var checkingHandler = Plaid.create({
@@ -19,6 +18,7 @@ angular.module('app.bankAuth', [
                     $scope.checkingName = metadata.account.name;
                     $scope.$apply();
                     console.log('checking token: ', token)
+                    console.log('checking id: ', metadata.account.id);
                 },
                 onExit: function() {
                     console.log('user closed');
@@ -37,7 +37,7 @@ angular.module('app.bankAuth', [
                     $scope.savingsName = metadata.account.name;
                     $scope.$apply();
                     console.log('savings token: ', token);
-
+                    console.log('savings id: ', metadata.account.id);
                 },
                 onExit: function() {
                     console.log('user closed');
@@ -52,7 +52,7 @@ angular.module('app.bankAuth', [
             };
 
             $scope.goToFirstPet = function() {
-               $location.path('/app/firstPet');
+               $location.path('/firstPet');
              };
         }
     );

@@ -11,7 +11,8 @@ angular.module('app.firstPet', [])
       console.log($scope.pet);
       $http.post('http://localhost:3000/v1/pets', $scope.pet)
         .then(function(res) {
-          $rootScope.pet = $scope.pet;
+          $rootScope.pet = res.data.data[0];
+          console.log($rootScope.pet);
           $location.path('/app/pet');
         }, function(err) {
           console.log(err);

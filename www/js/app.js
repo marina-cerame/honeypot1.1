@@ -11,7 +11,8 @@ angular.module('starter',['ionic',
                           'app.pet',
                           'app.bankAuth',
                           'app.firstPet',
-                          'app.store'])
+                          'app.store',
+                          'app.account'])
 
 
 .run(function($ionicPlatform) {
@@ -50,16 +51,11 @@ angular.module('starter',['ionic',
     }
   })
 
-  .state('app.firstPet', {
+  .state('firstPet', {
     url: '/firstPet',
-    views: {
-      'menuContent': {
-        templateUrl: 'templates/firstPet.html',
-        controller: 'FirstPetCtrl'
-      }
-    }
+    templateUrl: 'templates/firstPet.html',
+    controller: 'FirstPetCtrl'
   })
-
   .state('app.store', {
       url: '/store',
       views: {
@@ -75,40 +71,28 @@ angular.module('starter',['ionic',
       views: {
         'menuContent': {
           templateUrl: 'templates/account.html',
-          // controller: 'PlaylistsCtrl'
+          controller: 'accountController'
         }
       }
     })
 
-  .state('app.login', {
+  .state('login', {
     url: '/login',
-    views: {
-      'menuContent': {
-        templateUrl: 'templates/login.html',
-        controller: 'AuthController'
-      }
-    }
+    templateUrl: 'templates/login.html',
+    controller: 'AuthController'
   })
 
-  .state('app.bankAuth', {
+  .state('bankAuth', {
     url: '/bankAuth',
-    views: {
-      'menuContent': {
-        templateUrl: 'templates/bankAuth.html',
-        controller: 'BankCtrl'
-      }
-    }
+    templateUrl: 'templates/bankAuth.html',
+    controller: 'BankCtrl'
   })
 
-  .state('app.signup', {
+  .state('signup', {
     url: '/signup',
-    views: {
-      'menuContent': {
-        templateUrl: 'templates/signup.html',
-        controller: 'AuthController'
-      }
-    }
+    templateUrl: 'templates/signup.html',
+    controller: 'AuthController'
   });
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/login');
+  $urlRouterProvider.otherwise('/login');
 });
