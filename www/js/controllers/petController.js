@@ -1,36 +1,34 @@
 angular.module('app.pet', [])
 .controller('PetCtrl', function($scope, $rootScope, $http) {
   // get pet info
-  $http.get('http://localhost:3000/v1/pets/1')
-    .then(function(data) {
-      const pet = data.data.data[0];
-      console.log(pet);
-      $rootScope.pet_id = pet.id;
-      $scope.goal_amt = pet.goal_amt;
-      $http.get('http://localhost:3000/v1/totals/?pet_id__is=1')
-        .then(function(data) {
-          const spent = data.data.data[0].total
-          console.log(spent);
-          ;
-
-          $scope.goal.animate(spent / $scope.goal_amt)
-        }, function(err) {console.log(err)})
-    }, function(err) {console.log(err)})
-    $http.get('http://localhost:3000/v1/levels/?pet_id__is=1')
-      .then(function(data) {
-        console.log(data.data.data[0])
-        const level = data.data.data[0].hunger / 100;
-        $scope.healthBar.animate(level);
-
-      }, function(err) { console.log(err) })
-  console.log($scope, 'heres scope in pet ctrl')
+  // $http.get('http://localhost:3000/v1/pets/1')
+  //   .then(function(data) {
+  //     const pet = data.data.data[0];
+  //     console.log(pet);
+  //     $rootScope.pet_id = pet.id;
+  //     $scope.goal_amt = pet.goal_amt;
+  //     $http.get('http://localhost:3000/v1/totals/?pet_id__is=1')
+  //       .then(function(data) {
+  //         const spent = data.data.data[0].total
+  //         console.log(spent);
+  //         ;
+  //
+  //         $scope.goal.animate(spent / $scope.goal_amt)
+  //       }, function(err) {console.log(err)})
+  //   }, function(err) {console.log(err)})
+  //   $http.get('http://localhost:3000/v1/levels/?pet_id__is=1')
+  //     .then(function(data) {
+  //       console.log(data.data.data[0])
+  //       const level = data.data.data[0].hunger / 100;
+  //       $scope.healthBar.animate(level);
+  //
+  //     }, function(err) { console.log(err) })
+  // console.log($scope, 'heres scope in pet ctrl')
   $scope.test = 'Hello!'
   $scope.food = [
     { name: 'Carrot', price: '5 Bear Cents', hunger: '10 pts'}
   ]
   $scope.bearTouch = function() {
-    console.log('bearTouch');
-    console.log($rootScope.user);
     const earUp = function() {
       TweenLite.to('.ears', .5, { y: -7, onComplete: earDown })
     }
@@ -54,6 +52,9 @@ angular.module('app.pet', [])
     trailColor: '#eee',
     trailWidth: 1,
     svgStyle: {width: '100%', height: '100%'},
+    text: {
+      value: 'Health'
+    },
     from: {color: '#ff0000'},
     to: {color: '#32CD32'},
     step: (state, bar) => {
@@ -67,10 +68,16 @@ angular.module('app.pet', [])
     // prevent clipping
     strokeWidth: 4,
     trailWidth: 1,
+    svgStyle: {width: '120%', height: '120%'},
     easing: 'easeInOut',
     duration: 2000,
     text: {
-      autoStyleContainer: false
+      autoStyleContainer: false,
+      style: {
+        position: 'relative',
+        bottom: '75px',
+        right: '-27px'
+      }
     },
     from: { color: '#aaa', width: 1 },
     to: { color: '#333', width: 4 },
@@ -83,21 +90,12 @@ angular.module('app.pet', [])
       if (value === 0) {
         circle.setText('0%');
       } else {
-        circle.setText(value + '%');
+        circle.setText('Goal: ' + value + '%');
       }
     }
   });
-
-  // $http({
-  // method: 'GET',
-  // url: 'http://localhost:3000/v1/levels?pet_id__is={id}'
-  // }).then(function successCallback(response) {
-  //   // this callback will be called asynchronously
-  //   // when the response is available
-  // }, function errorCallback(response) {
-  //   // called asynchronously if an error occurs
-  //   // or server returns response with an error status.
-  // });
+  $scope.healthBar.animate(.8)
+  $scope.goal.animate(.8)
   $scope.bearGrow();
 
 })
