@@ -12,7 +12,7 @@ angular.module('app.firstPet', [])
     $scope.makeFirstPet = function() {
 
       $scope.pet.pet_type_id = 1;
-      $scope.pet.goal_amt = $scope.pet.goal_amt.slice(1);
+      $scope.pet.goal_amt = $scope.pet.goal_amt;
       $scope.pet.user_id = $rootScope.user;
       console.log($scope.pet);
       $http.post('http://localhost:3000/v1/pets', $scope.pet)
