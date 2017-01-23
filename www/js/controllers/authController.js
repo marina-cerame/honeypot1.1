@@ -13,7 +13,6 @@ angular.module('auth', [])
       .then(function(res) {
         $rootScope.user = res.data.data[0].user_id;
         $location.path('/myPets');
-
       }, function(err) {
         console.log(err);
       });
