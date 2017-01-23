@@ -19,8 +19,8 @@ angular.module('auth', [])
           }, function(err) {
             console.log(err);
           });
-     
-        $state.go('myPets');
+
+        $location.path('/myPets');
 
       }, function(err) {
         console.log(err);

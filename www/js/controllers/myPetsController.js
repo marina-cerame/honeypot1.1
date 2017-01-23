@@ -11,6 +11,7 @@ angular.module('myPets', [])
   $scope.goToPet = function(pet) {
     $rootScope.pet = pet;
     $location.path('/market/pet');
+
   }
 
   $scope.editPet = function(pet) {
