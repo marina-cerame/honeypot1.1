@@ -39,6 +39,7 @@ const V1LevelsController = Nodal.require('app/controllers/v1/levels_controller.j
 const V1TotalsController = Nodal.require('app/controllers/v1/totals_controller.js');
 const V1AccessTokensController = Nodal.require('app/controllers/v1/access_tokens_controller.js');
 const V1BankTokensController = Nodal.require('app/controllers/v1/bank_tokens_controller.js');
+const V1PetStatsController = Nodal.require('app/controllers/v1/pet_stats_controller.js');
 
 /* generator: end imports */
 
@@ -55,6 +56,7 @@ router.route('/v1/levels/{id}').use(V1LevelsController);
 router.route('/v1/totals/{id}').use(V1TotalsController);
 router.route('/v1/access_tokens/{id}').use(V1AccessTokensController);
 router.route('/v1/bank_tokens/{id}').use(V1BankTokensController);
+router.route('/v1/pet_stats/{id}').use(V1PetStatsController);
 
 /* generator: end routes */
 
