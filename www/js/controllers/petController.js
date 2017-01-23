@@ -1,31 +1,18 @@
 angular.module('app.pet', [])
 .controller('PetCtrl', function($scope, $rootScope, $http) {
-  // get pet info
-  $http.get(`http://localhost:3000/v1/pets/${$rootScope.pet.id}`)
-    .then(function(data) {
-      const pet = data.data.data[0];
-      console.log('PET', pet);
-      $scope.goal_amt = pet.goal_amt;
-      $scope.petName = pet.name
-      $http.get(`http://localhost:3000/v1/totals/?pet_id__is=${$rootScope.pet.id}`)
-        .then(function(data) {
-          const spent = data.data.data[0].total
-          console.log(spent);
-          $scope.goal.animate(spent / $scope.goal_amt)
-        }, function(err) {console.log(err)})
-    }, function(err) {console.log(err)})
-    $http.get(`http://localhost:3000/v1/levels/?pet_id__is=${$rootScope.pet.id}`)
-      .then(function(data) {
-        console.log(data.data.data[0])
-        const level = data.data.data[0].hunger / 100;
-        $scope.healthBar.animate(level);
+  $http.get(`http://localhost:3000/v1/pet_stats/?id__is=${$rootScope.pet.id}`)
+    .then(function(res) {
+      $scope.goal_amt = res.data.data[0].goal_amt;
+      $scope.petName = res.data.data[0].name;
+      $scope.goal_progress = res.data.data[0].goal_progress;
+      $scope.hunger = res.data.data[0].hunger;
+      $scope.happiness = res.data.data[0].happiness;
+      $scope.goal.animate($scope.goal_progress / $scope.goal_amt);
+      $scope.healthBar.animate($scope.hunger / 100);
+    }, function(err) {
+      console.log(err);
+    })
 
-      }, function(err) { console.log(err) })
-  console.log($scope, 'heres scope in pet ctrl')
-  $scope.test = 'Hello!'
-  $scope.food = [
-    { name: 'Carrot', price: '5 Bear Cents', hunger: '10 pts'}
-  ]
   $scope.bearTouch = function() {
     const earUp = function() {
       TweenLite.to('.ears', .5, { y: -7, onComplete: earDown })
@@ -101,7 +88,5 @@ angular.module('app.pet', [])
   });
   $scope.bearGrow();
   $scope.bearTilt();
-
-  $scope.market = true;
 
 })
