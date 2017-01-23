@@ -5,7 +5,7 @@
     <div id="bear-logo">
       <img src={{logo}} />
     </div>
-    
+
     <form name="loginForm" ng-submit='login()'>
       <div class="list list-inset">
         <label class="item item-input">
@@ -22,6 +22,6 @@
   <button class="button button-full button-light" ng-click="goToSignup()">
     Create an Account
   </button>
-
+  <div class="g-signin2" data-onsuccess="onSignIn"></div>
   </ion-content>
 </ion-view>

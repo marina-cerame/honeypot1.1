@@ -4,7 +4,16 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers'])
+
+angular.module('starter',['ionic',
+                          'starter.controllers',
+                          'auth',
+                          'app.pet',
+                          'app.bankAuth',
+                          'app.firstPet',
+                          'app.store',
+                          'app.account'])
+
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -32,42 +41,58 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     controller: 'AppCtrl'
   })
 
-  .state('app.search', {
-    url: '/search',
+  .state('app.pet', {
+    url: '/pet',
     views: {
       'menuContent': {
-        templateUrl: 'templates/search.html'
+        templateUrl: 'templates/pet.html',
+        controller: 'PetCtrl'
       }
     }
   })
 
-  .state('app.browse', {
-      url: '/browse',
+  .state('firstPet', {
+    url: '/firstPet',
+    templateUrl: 'templates/firstPet.html',
+    controller: 'FirstPetCtrl'
+  })
+  .state('app.store', {
+      url: '/store',
       views: {
         'menuContent': {
-          templateUrl: 'templates/browse.html'
-        }
-      }
-    })
-    .state('app.playlists', {
-      url: '/playlists',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/playlists.html',
-          controller: 'PlaylistsCtrl'
+          templateUrl: 'templates/store.html',
+          controller: 'StoreCtrl'
         }
       }
     })
 
-  .state('app.single', {
-    url: '/playlists/:playlistId',
-    views: {
-      'menuContent': {
-        templateUrl: 'templates/playlist.html',
-        controller: 'PlaylistCtrl'
+    .state('app.account', {
+      url: '/account',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/account.html',
+          controller: 'accountController'
+        }
       }
-    }
+    })
+
+  .state('login', {
+    url: '/login',
+    templateUrl: 'templates/login.html',
+    controller: 'AuthController'
+  })
+
+  .state('bankAuth', {
+    url: '/bankAuth',
+    templateUrl: 'templates/bankAuth.html',
+    controller: 'BankCtrl'
+  })
+
+  .state('signup', {
+    url: '/signup',
+    templateUrl: 'templates/signup.html',
+    controller: 'AuthController'
   });
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/playlists');
+  $urlRouterProvider.otherwise('/login');
 });
