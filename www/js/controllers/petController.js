@@ -31,13 +31,12 @@ angular.module('app.pet', [])
   }
 
   $scope.bearGrow = function() {
-    console.log('bearGrow')
-    TweenLite.to('.bear', .1, { scale: 1.5 })
+    TweenLite.to('.bear', .1, { scale: 1.5, y: 230})
   }
 
   $scope.healthBar = new ProgressBar.Line(healthBar, {
 
-    strokeWidth: 4,
+    strokeWidth: 6,
     easing: 'easeInOut',
     duration: 1400,
     color: '#FFEA82',
@@ -55,14 +54,15 @@ angular.module('app.pet', [])
   });
 
   $scope.goal = new ProgressBar.Circle(goal, {
-    color: '#aaa',
+    color: '#000000',
     // This has to be the same size as the maximum width to
     // prevent clipping
-    strokeWidth: 4,
+    strokeWidth: 6,
     trailWidth: 1,
     svgStyle: {width: '120%', height: '120%'},
     easing: 'easeInOut',
     duration: 2000,
+    fill: '#fff400',
     text: {
       autoStyleContainer: false,
       style: {
@@ -71,8 +71,8 @@ angular.module('app.pet', [])
         right: '-27px'
       }
     },
-    from: { color: '#aaa', width: 1 },
-    to: { color: '#333', width: 4 },
+    from: { color: '#ffbb00', width: 3 },
+    to: { color: '#ffbb00', width: 3 },
     // Set default step function for all animate calls
     step: function(state, circle) {
       circle.path.setAttribute('stroke', state.color);

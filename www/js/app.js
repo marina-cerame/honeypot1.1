@@ -8,11 +8,13 @@
 angular.module('starter',['ionic',
                           'starter.controllers',
                           'auth',
+                          'myPets',
                           'app.pet',
                           'app.bankAuth',
                           'app.firstPet',
                           'app.store',
-                          'app.account'])
+                          'app.account',
+                          'editPet'])
 
 
 .run(function($ionicPlatform) {
@@ -75,6 +77,22 @@ angular.module('starter',['ionic',
         }
       }
     })
+
+  .state('app.editPet', {
+    url: '/editPet',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/editPet.html',
+        controller: 'editPetController'
+      }
+    }
+  })
+
+  .state('myPets', {
+    url: '/myPets',
+    templateUrl: 'templates/myPets.html',
+    controller: 'MyPetsCtrl'
+  })
 
   .state('login', {
     url: '/login',
