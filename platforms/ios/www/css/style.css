@@ -1,1 +1,56 @@
 /* Empty. Add your own CSS if you like */
+.ground {
+  z-index: -1;
+  background-color: #008000;
+  position: relative;
+}
+
+.food-item {
+  position: relative;
+  top: -95px;
+}
+.food-div {
+  margin-bottom: 0px;
+}
+#food-item-text {
+  text-align: right;
+}
+/*.food-img {
+  position: fixed;
+  right: 10%;
+  top: 10%;
+}*/
+
+#bear-logo {
+  margin: auto;
+  text-align: center;
+}
+
+#goal {
+  margin: auto;
+  width: 100px;
+  height: 100px;
+  position: fixed;
+  left: auto;
+  right: 10%;
+  top: 5%;
+}
+
+#healthbar {
+  position: fixed;
+}
+h1 {
+  text-align: center;
+  color: #ADD8E6;
+}
+
+#food-title {
+  /*color: 	#FF4500;*/
+  font-size: 25px;
+  font-weight: bolder;
+}
+
+#starter-pet-text {
+  opacity: 0.5;
+
+}
