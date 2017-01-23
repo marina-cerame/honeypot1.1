@@ -2,7 +2,6 @@
 
 const Nodal = require('nodal');
 const Pet = Nodal.require('app/models/pet.js');
-const Transaction = Nodal.require('app/models/transaction.js');
 
 class V1PetsController extends Nodal.Controller {
 
