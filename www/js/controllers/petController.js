@@ -14,7 +14,6 @@ angular.module('app.pet', [])
   //   })
 
   $scope.bearTouch = function() {
-    alert('hello!')
     const earUp = function() {
       TweenLite.to('.ears', .5, { y: -7, onComplete: earDown })
       TweenLite.to('.leftArm', .5, {rotation:75, transformOrigin:"80% 50%"});
