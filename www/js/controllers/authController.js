@@ -12,15 +12,10 @@ angular.module('auth', [])
     $http.post('http://localhost:3000/v1/access_tokens', $scope.user)
       .then(function(res) {
         $rootScope.user = res.data.data[0].user_id;
-        $http.get('http://localhost:3000/v1/bank_tokens')
-          .then(function(res) {
-            console.log(res);
-            // $rootScope.checkingName = res.data[0].name;
-          }, function(err) {
-            console.log(err);
-          });
-          
-        $location.path('/market/pet');
+
+        $location.path('/myPets');
+
+
       }, function(err) {
         console.log(err);
       });
