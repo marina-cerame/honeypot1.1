@@ -43,7 +43,12 @@ angular.module('starter',['ionic',
     controller: 'AppCtrl'
   })
 
-  .state('app.pet', {
+  .state('market', {
+    url: '/market',
+    templateUrl: 'templates/marketmenu.html'
+  })
+  
+  .state('market.pet', {
     url: '/pet',
     views: {
       'menuContent': {
