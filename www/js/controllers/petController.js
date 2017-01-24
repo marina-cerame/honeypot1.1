@@ -1,17 +1,37 @@
 angular.module('app.pet', [])
-.controller('PetCtrl', function($scope, $rootScope, $http) {
-  // $http.get(`http://localhost:3000/v1/pet_stats/?id__is=${$rootScope.pet.id}`)
-  //   .then(function(res) {
-  //     $scope.goal_amt = res.data.data[0].goal_amt;
-  //     $scope.petName = res.data.data[0].name;
-  //     $scope.goal_progress = res.data.data[0].goal_progress;
-  //     $scope.hunger = res.data.data[0].hunger;
-  //     $scope.happiness = res.data.data[0].happiness;
-  //     $scope.goal.animate($scope.goal_progress / $scope.goal_amt);
-  //     $scope.healthBar.animate($scope.hunger / 100);
-  //   }, function(err) {
-  //     console.log(err);
-  //   })
+.controller('PetCtrl', function($scope, $rootScope, $http, $window, $state) {
+  // $('div').remove('#goal');
+//   // $('div').remove('#healthBar');
+//   var $goal = $("<div>", {id: "foo"})
+// $('.ground').append($goal)
+//   // $('.ground').append('<div></div>').attr('id', 'goal');
+//   $('.ground').append('<div></div>').attr('id', 'healthBar');
+
+  $http.get(`http://localhost:3000/v1/pet_stats/?id__is=${$rootScope.pet.id}`)
+    .then(function(res) {
+      console.log(res);
+      $scope.goal_amt = res.data.data[0].goal_amt;
+      $scope.petName = res.data.data[0].name;
+      $scope.goal_progress = res.data.data[0].goal_progress;
+      $scope.hunger = res.data.data[0].hunger;
+      $scope.happiness = res.data.data[0].happiness;
+      $scope.progress = $scope.goal_progress / $scope.goal_amt;
+      console.log($scope.progress + ' progress');
+      $scope.goal.animate($scope.progress);
+      $scope.health = $scope.hunger / 100;
+      console.log($scope.health + ' health');
+      $scope.healthBar.animate($scope.health);
+    }, function(err) {
+      console.log(err);
+    })
+  //
+  // setTimeout(function() {
+  //   $scope.goal.animate($scope.progress);
+  // }, 1000);
+  //
+  // setTimeout(function() {
+  //   $scope.healthBar.animate($scope.health);
+  // }, 1000);
 
   $scope.bearTouch = function() {
     const earUp = function() {
@@ -34,7 +54,7 @@ angular.module('app.pet', [])
     TweenLite.to('.bear', .1, { scale: 1.5, y: 230})
   }
 
-  $scope.healthBar = new ProgressBar.Line(healthBar, {
+  $scope.healthBar = new ProgressBar.Line('#healthBar', {
 
     strokeWidth: 6,
     easing: 'easeInOut',
@@ -53,7 +73,7 @@ angular.module('app.pet', [])
     }
   });
 
-  $scope.goal = new ProgressBar.Circle(goal, {
+  $scope.goal = new ProgressBar.Circle('#goal', {
     color: '#000000',
     // This has to be the same size as the maximum width to
     // prevent clipping
@@ -89,17 +109,7 @@ angular.module('app.pet', [])
   $scope.bearGrow();
   $scope.bearTilt();
 
-  $http.get(`http://localhost:3000/v1/pet_stats/?id__is=${$rootScope.pet.id}`)
-    .then(res => {
-      $scope.goal_amt = res.data.data[0].goal_amt;
-      $scope.petName = res.data.data[0].name;
-      $scope.goal_progress = res.data.data[0].goal_progress;
-      $scope.hunger = res.data.data[0].hunger;
-      $scope.happiness = res.data.data[0].happiness;
-      $scope.goal.animate($scope.goal_progress / $scope.goal_amt);
-      $scope.healthBar.animate($scope.hunger / 100);
-    }, function(err) {
-      console.log(err);
-    })
+  // $('div').remove('#goal');
+  // $('div').remove('#healthBar');
 
 })
