@@ -37,25 +37,11 @@ app.post('/authenticate', function(serverReq, serverRes) {
       console.log(bank_account_token);
       console.log('checking');
       console.log('userID: ', serverReq.body.user);
-      let tokenInfo = {
-        user_id: serverReq.body.user,
-        type: serverReq.body.type,
-        token: bank_account_token
-      }
-      // $http.post('http://localhost:3000/v1/bank_tokens', tokenInfo)
-      //   .then(function(res) {
-      //     console.log(res);
-      //   }, function(err) {
-      //     console.log(err);
-      //   });
-      // res.send(bank_account_token);
+      serverRes.send(bank_account_token);
     }
   });
-  console.log('resBANK: ', serverRes.bank_account_token);
-  serverRes.send(200);
-
 });
 
 var server = app.listen('8080', function() {
-  console.log('new server listening!: ', 8080);
+  console.log('connors-express-server listening on port: ', 8080);
 })
