@@ -1,11 +1,11 @@
-angular.module('app.bankAuth', [
-])
+angular.module('app.bankAuth', [])
 
     .controller('BankCtrl',
 
-        function($scope, $location) {
-            $scope.checkingName;
-            $scope.savingsName;
+        function($scope, $location, $http, $rootScope) {
+            $rootScope.checkingName;
+            $rootScope.savingsName;
+            console.log('rootScope.checkingName: ', $rootScope.checkingName);
             var checkingHandler = Plaid.create({
                 selectAccount: true,
                 env: 'tartan',
@@ -16,12 +16,41 @@ angular.module('app.bankAuth', [
                     // The Link module finished loading.
                 },
                 onSuccess: function(token, metadata) {
-                    $scope.checkingName = metadata.account.name;
+                    $rootScope.checkingName = metadata.account.name;
+                    console.log('rootScope.checkingName: ', $rootScope.checkingName);
+
                     $scope.$apply();
+                    console.log('metadata>>>>>>>>>>>>>>', metadata);
                     console.log('checking token: ', token)
+                    console.log('checking id: ', metadata.account.id);
+                    let postFormat = JSON.stringify({
+                        public_token: token,
+                        account_id: metadata.account.id
+                    });
+                    $http.post('http://localhost:8080/authenticate', postFormat)
+                        .then(function(res) {
+                            let checkingTokenInfo = JSON.stringify({
+                                user_id: $rootScope.user,
+                                type: 'checking',
+                                token: res.data
+                            });
+                            $http.post('http://localhost:3000/v1/bank_tokens', checkingTokenInfo)
+                                .then(function(res) {
+                                    console.log(res);
+                                }, function(err) {
+                                    console.log(err);
+                                });
+                            console.log('this happened: ', res.data);
+                            // res.json(token, metadata.account.id);
+                        }, function(err) {
+                            console.log('error: ', err);
+                        }
+                    );
                 },
                 onExit: function() {
                     console.log('user closed');
+                    console.log('rootScope.checkingName: ', $rootScope.checkingName);
+
                 }
             });
             var savingsHandler = Plaid.create({
@@ -34,9 +63,34 @@ angular.module('app.bankAuth', [
                     // The Link module finished loading.
                 },
                 onSuccess: function(token, metadata) {
-                    $scope.savingsName = metadata.account.name;
+                    $rootScope.savingsName = metadata.account.name;
                     $scope.$apply();
+                    console.log('metadata>>>>>>>>>>>>>>', metadata);
                     console.log('savings token: ', token);
+                    console.log('savings id: ', metadata.account.id);
+                    let postFormat = JSON.stringify({
+                        public_token: token,
+                        account_id: metadata.account.id
+                    });
+                    $http.post('http://localhost:8080/authenticate', postFormat)
+                        .then(function(res) {
+                            let checkingTokenInfo = JSON.stringify({
+                                user_id: $rootScope.user,
+                                type: 'savings',
+                                token: res.data
+                            });
+                            $http.post('http://localhost:3000/v1/bank_tokens', checkingTokenInfo)
+                                .then(function(res) {
+                                    console.log(res);
+                                }, function(err) {
+                                    console.log(err);
+                                });
+                            console.log('this happened: ', res.data);
+                            // res.json(token, metadata.account.id);
+                        }, function(err) {
+                            console.log('error: ', err);
+                        }
+                    );
                 },
                 onExit: function() {
                     console.log('user closed');
@@ -51,7 +105,7 @@ angular.module('app.bankAuth', [
             };
 
             $scope.goToFirstPet = function() {
-               $location.path('/app/firstPet');
+               $location.path('/firstPet');
              };
         }
     );

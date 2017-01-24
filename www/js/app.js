@@ -4,7 +4,18 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'app.bankAuth'])
+
+angular.module('starter',['ionic',
+                          'starter.controllers',
+                          'auth',
+                          'myPets',
+                          'app.pet',
+                          'app.bankAuth',
+                          'app.firstPet',
+                          'app.store',
+                          'app.account',
+                          'editPet'])
+
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -29,23 +40,36 @@ angular.module('starter', ['ionic', 'starter.controllers', 'app.bankAuth'])
     url: '/app',
     abstract: true,
     templateUrl: 'templates/menu.html',
+    // controller: 'AppCtrl'
+  })
+
+  .state('market', {
+    url: '/market',
+    templateUrl: 'templates/marketmenu.html',
     controller: 'AppCtrl'
   })
 
-  .state('app.pet', {
+  .state('market.pet', {
     url: '/pet',
     views: {
       'menuContent': {
-        templateUrl: 'templates/pet.html'
+        templateUrl: 'templates/pet.html',
+        controller: 'PetCtrl'
       }
     }
   })
 
+  .state('firstPet', {
+    url: '/firstPet',
+    templateUrl: 'templates/firstPet.html',
+    controller: 'FirstPetCtrl'
+  })
   .state('app.store', {
       url: '/store',
       views: {
         'menuContent': {
-          templateUrl: 'templates/store.html'
+          templateUrl: 'templates/store.html',
+          controller: 'StoreCtrl'
         }
       }
     })
@@ -55,39 +79,44 @@ angular.module('starter', ['ionic', 'starter.controllers', 'app.bankAuth'])
       views: {
         'menuContent': {
           templateUrl: 'templates/account.html',
-          // controller: 'PlaylistsCtrl'
+          controller: 'accountController'
         }
       }
     })
 
-  .state('app.login', {
+  .state('app.editPet', {
+    url: '/editPet',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/editPet.html',
+        controller: 'editPetController'
+      }
+    }
+  })
+
+  .state('myPets', {
+    url: '/myPets',
+    templateUrl: 'templates/myPets.html',
+    controller: 'MyPetsCtrl'
+  })
+
+  .state('login', {
     url: '/login',
-    views: {
-      'menuContent': {
-        templateUrl: 'templates/login.html',
-        // controller: 'PlaylistCtrl'
-      }
-    }
+    templateUrl: 'templates/login.html',
+    controller: 'AuthController'
   })
 
-  .state('app.bankAuth', {
+  .state('bankAuth', {
     url: '/bankAuth',
-    views: {
-      'menuContent': {
-        templateUrl: 'templates/bankAuth.html',
-        controller: 'BankCtrl'
-      }
-    }
+    templateUrl: 'templates/bankAuth.html',
+    controller: 'BankCtrl'
   })
 
-  .state('app.signup', {
+  .state('signup', {
     url: '/signup',
-    views: {
-      'menuContent': {
-        templateUrl: 'templates/signup.html'
-      }
-    }
+    templateUrl: 'templates/signup.html',
+    controller: 'AuthController'
   });
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/login');
+  $urlRouterProvider.otherwise('/login');
 });

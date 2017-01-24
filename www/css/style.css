@@ -1,1 +1,65 @@
 /* Empty. Add your own CSS if you like */
+.ground {
+  z-index: -1;
+  position: relative;
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#1e5799+0,3ca840+0,8dd9fc+0,0fb0d8+59,22d883+61,3ca840+100 */
+  background: #1e5799; /* Old browsers */
+  background: -moz-linear-gradient(top,  #1e5799 0%, #3ca840 0%, #8dd9fc 0%, #0fb0d8 59%, #22d883 61%, #3ca840 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top,  #1e5799 0%,#3ca840 0%,#8dd9fc 0%,#0fb0d8 59%,#22d883 61%,#3ca840 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom,  #1e5799 0%,#3ca840 0%,#8dd9fc 0%,#0fb0d8 59%,#22d883 61%,#3ca840 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#3ca840',GradientType=0 ); /* IE6-9 */
+
+}
+
+.food-item {
+  position: relative;
+  top: -95px;
+}
+.food-div {
+  margin-bottom: 0px;
+}
+#food-item-text {
+  text-align: right;
+}
+/*.food-img {
+  position: fixed;
+  right: 10%;
+  top: 10%;
+}*/
+
+#bear-logo {
+  margin: auto;
+  text-align: center;
+}
+
+#goal {
+  margin: auto;
+  width: 100px;
+  height: 100px;
+  position: fixed;
+  left: auto;
+  right: 10%;
+  top: 5%;
+}
+
+#healthbar {
+  position: fixed;
+}
+h1 {
+  text-align: center;
+  color: #ADD8E6;
+}
+
+#food-title {
+  /*color: 	#FF4500;*/
+  font-size: 25px;
+  font-weight: bolder;
+}
+
+#starter-pet-text {
+  opacity: 0.5;
+
+}
+#pet-text {
+  text-align: right;
+}
