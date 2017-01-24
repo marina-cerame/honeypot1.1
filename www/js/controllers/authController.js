@@ -21,7 +21,6 @@ angular.module('auth', [])
           });
 
         $location.path('/myPets');
-
       }, function(err) {
         console.log(err);
       });

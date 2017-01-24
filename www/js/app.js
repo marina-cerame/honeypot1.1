@@ -50,6 +50,7 @@ angular.module('starter',['ionic',
     controller: 'AppCtrl'
   })
 
+
   .state('market.pet', {
     url: '/pet',
     views: {
