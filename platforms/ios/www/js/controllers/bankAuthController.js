@@ -17,8 +17,11 @@ angular.module('app.bankAuth', [])
                 onSuccess: function(token, metadata) {
                     $scope.checkingName = metadata.account.name;
                     $scope.$apply();
+
+                    console.log('metadata>>>>>>>>>>>>>>', metadata);
                     console.log('checking token: ', token)
                     console.log('checking id: ', metadata.account.id);
+                    $http.post('https://tartan.plaid.com/exchange_token', token, metadata.account.id)
                 },
                 onExit: function() {
                     console.log('user closed');
