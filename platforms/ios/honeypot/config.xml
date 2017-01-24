@@ -11,6 +11,7 @@
     <allow-intent href="geo:*" />
     <allow-intent href="itms:*" />
     <allow-intent href="itms-apps:*" />
+
     <feature name="LocalStorage">
         <param name="ios-package" value="CDVLocalStorage" />
     </feature>
@@ -47,6 +48,7 @@
     <feature name="InAppBrowser">
         <param name="ios-package" value="CDVInAppBrowser" />
     </feature>
+
     <name>honeypot</name>
     <description>
         An Ionic Framework and Cordova project.
@@ -106,5 +108,6 @@
     <preference name="FadeSplashScreenDuration" value="2000" />
     <preference name="android-minSdkVersion" value="16" />
     <preference name="BackupWebStorage" value="none" />
+
     <preference name="SplashScreen" value="screen" />
 </widget>
