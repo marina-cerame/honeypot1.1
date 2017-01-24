@@ -1,6 +1,6 @@
 angular.module('auth', [])
 
-.controller('AuthController', function($scope, $location, $http, $rootScope) {
+.controller('AuthController', function($scope, $location, $http, $rootScope, $state) {
 
   $scope.user = {
     grant_type: 'password'
@@ -12,7 +12,8 @@ angular.module('auth', [])
     $http.post('http://localhost:3000/v1/access_tokens', $scope.user)
       .then(function(res) {
         $rootScope.user = res.data.data[0].user_id;
-        $location.path('/myPets');
+        // $location.path('/myPets');
+        $state.go('myPets');
 
       }, function(err) {
         console.log(err);
