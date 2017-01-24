@@ -67,8 +67,16 @@
   position: fixed;
 }
 h1 {
-  text-align: center;
+  /*text-align: center;*/
   color: #ADD8E6;
+  padding-bottom: 40px;
+/*color: #111;*/
+font-family: 'Helvetica Neue', sans-serif;
+font-size: 50px;
+font-weight: bold;
+letter-spacing: -1px;
+line-height: 1;
+text-align: center;
 }
 
 #food-title {
