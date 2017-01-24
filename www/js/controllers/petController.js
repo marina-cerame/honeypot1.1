@@ -1,17 +1,17 @@
 angular.module('app.pet', [])
 .controller('PetCtrl', function($scope, $rootScope, $http) {
-  $http.get(`http://localhost:3000/v1/pet_stats/?id__is=${$rootScope.pet.id}`)
-    .then(function(res) {
-      $scope.goal_amt = res.data.data[0].goal_amt;
-      $scope.petName = res.data.data[0].name;
-      $scope.goal_progress = res.data.data[0].goal_progress;
-      $scope.hunger = res.data.data[0].hunger;
-      $scope.happiness = res.data.data[0].happiness;
-      $scope.goal.animate($scope.goal_progress / $scope.goal_amt);
-      $scope.healthBar.animate($scope.hunger / 100);
-    }, function(err) {
-      console.log(err);
-    })
+  // $http.get(`http://localhost:3000/v1/pet_stats/?id__is=${$rootScope.pet.id}`)
+  //   .then(function(res) {
+  //     $scope.goal_amt = res.data.data[0].goal_amt;
+  //     $scope.petName = res.data.data[0].name;
+  //     $scope.goal_progress = res.data.data[0].goal_progress;
+  //     $scope.hunger = res.data.data[0].hunger;
+  //     $scope.happiness = res.data.data[0].happiness;
+  //     $scope.goal.animate($scope.goal_progress / $scope.goal_amt);
+  //     $scope.healthBar.animate($scope.hunger / 100);
+  //   }, function(err) {
+  //     console.log(err);
+  //   })
 
   $scope.bearTouch = function() {
     const earUp = function() {
@@ -88,5 +88,18 @@ angular.module('app.pet', [])
   });
   $scope.bearGrow();
   $scope.bearTilt();
+
+  $http.get(`http://localhost:3000/v1/pet_stats/?id__is=${$rootScope.pet.id}`)
+    .then(res => {
+      $scope.goal_amt = res.data.data[0].goal_amt;
+      $scope.petName = res.data.data[0].name;
+      $scope.goal_progress = res.data.data[0].goal_progress;
+      $scope.hunger = res.data.data[0].hunger;
+      $scope.happiness = res.data.data[0].happiness;
+      $scope.goal.animate($scope.goal_progress / $scope.goal_amt);
+      $scope.healthBar.animate($scope.hunger / 100);
+    }, function(err) {
+      console.log(err);
+    })
 
 })

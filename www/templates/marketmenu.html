@@ -9,8 +9,12 @@
         </button>
       </ion-nav-buttons>
       <ion-nav-buttons side="right">
-        <button id="market" class="button button-clear button-positive">Market</button>
+        <button class="button button-icon button-clear ion-ios-cart" on-tap="goToStore()">
+        </button>
       </ion-nav-buttons>
+      <!-- <ion-nav-buttons side="right-icon button-positive ion-ios-cart"></button>
+
+      </ion-nav-buttons> -->
     </ion-nav-bar>
     <ion-nav-view name="menuContent"></ion-nav-view>
   </ion-side-menu-content>
@@ -21,11 +25,8 @@
     </ion-header-bar>
     <ion-content>
       <ion-list>
-        <ion-item menu-close href="#/app/pet">
-          Pet
-        </ion-item>
-        <ion-item menu-close href="#/app/store">
-          Store
+        <ion-item menu-close href="#/myPets">
+          My Pets
         </ion-item>
         <ion-item menu-close href="#/app/account">
           Account

@@ -41,5 +41,3 @@ angular.module('auth', [])
 
 
 })
-
-// $location.path('/app/pet')
