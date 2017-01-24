@@ -12,8 +12,13 @@ angular.module('auth', [])
     $http.post('http://localhost:3000/v1/access_tokens', $scope.user)
       .then(function(res) {
         $rootScope.user = res.data.data[0].user_id;
+<<<<<<< HEAD
         $location.path('/myPets');
 
+=======
+
+        $location.path('/market/pet');
+>>>>>>> some work on market menu
       }, function(err) {
         console.log(err);
       });
