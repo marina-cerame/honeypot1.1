@@ -1,0 +1,30 @@
+
+<ion-view view-title="My Pets">
+  <ion-nav-bar class="bar-stable"></ion-nav-bar>
+  <ion-content>
+    <h1>My Pets Page</h1>
+    <!-- <div class="list" ng-repeat='pet in pets' ng-click='goToPet(pet)' confirm>
+        <div id='pet-text'>
+        <h2>{{ pet.name }}</h2>
+        <h3>
+          <div><strong>Goal:</strong> {{ pet.goal_name }} </div>
+        </h3>
+
+      <button class="button icon ion-gear-a" ng-click='editPet(pet)'></button>
+      </div>
+    </div> -->
+    <div class="list" ng-repeat='pet in pets' on-tap='goToPet(pet)' on-hold='editPet(pet)'>
+
+      <a class="item item-thumbnail-left">
+        <img src='./img/berries.png'>
+        <div id='pet-text'>
+          <h2>{{ pet.name }}</h2>
+          <p><strong>Goal:</strong> {{ pet.goal_name }} </p>
+          <!-- <button class="button icon ion-gear-a" ng-click='editPet(pet)'></button> -->
+        </div>
+      </a>
+
+  </div>
+
+  </ion-content>
+</ion-view>
