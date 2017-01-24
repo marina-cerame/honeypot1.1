@@ -62,9 +62,11 @@ class V1PetStatsController extends Nodal.Controller {
               if (happiness < 0) happiness = 0;
 
               // update state based on item bought
-              if (itemData.type === 'food') hunger += itemData.effect * 10
-              else if (itemData.type === 'accessory') happiness += itemData.effect * 10
-              else {
+              if (itemData.type === 'food') {
+                hunger += itemData.effect * 10
+              } else if (itemData.type === 'accesory') {
+                happiness += itemData.effect * 10
+              } else {
                 happiness += itemData.effect * 10;
                 hunger += itemData.effect * 5;
               }
