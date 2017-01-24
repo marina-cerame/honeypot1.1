@@ -12,7 +12,8 @@ angular.module('auth', [])
     $http.post('http://localhost:3000/v1/access_tokens', $scope.user)
       .then(function(res) {
         $rootScope.user = res.data.data[0].user_id;
-        $location.path('/app/pet');
+        $location.path('/myPets');
+
       }, function(err) {
         console.log(err);
       });
@@ -40,5 +41,3 @@ angular.module('auth', [])
 
 
 })
-
-// $location.path('/app/pet')
