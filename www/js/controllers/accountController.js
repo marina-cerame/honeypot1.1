@@ -36,9 +36,10 @@ angular.module('app.account', [])
                             let checkingTokenInfo = JSON.stringify({
                                 user_id: $rootScope.user,
                                 type: 'checking',
-                                token: res.data
+                                token: res.data,
+                                name: $rootScope.checkingName
                             });
-                            $http.post('http://localhost:3000/v1/bank_tokens', checkingTokenInfo)
+                            $http.put(`http://localhost:3000/v1/bank_tokens/${$rootScope.checking_id}`, checkingTokenInfo)
                                 .then(function(res) {
                                     console.log(res);
                                 }, function(err) {
@@ -78,12 +79,13 @@ angular.module('app.account', [])
                     });
                     $http.post('http://localhost:8080/authenticate', postFormat)
                         .then(function(res) {
-                            let checkingTokenInfo = JSON.stringify({
+                            let savingsTokenInfo = JSON.stringify({
                                 user_id: $rootScope.user,
                                 type: 'savings',
-                                token: res.data
+                                token: res.data,
+                                name: $rootScope.savingsName
                             });
-                            $http.post('http://localhost:3000/v1/bank_tokens', checkingTokenInfo)
+                            $http.put(`http://localhost:3000/v1/bank_tokens/${$rootScope.savings_id}`, savingsTokenInfo)
                                 .then(function(res) {
                                     console.log(res);
                                 }, function(err) {
@@ -102,6 +104,7 @@ angular.module('app.account', [])
             });
 
             $scope.openSavings = function() {
+                console.log('THIS IS ROOT USER: ', $rootScope.user);
                 savingsHandler.open();
             };
             $scope.openChecking = function() {

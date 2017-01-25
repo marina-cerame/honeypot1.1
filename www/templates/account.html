@@ -6,22 +6,24 @@
         <ion-list>
             <ion-item class="text-center">${{total}} saved towards {{goal}}!</ion-item>
             <ion-item>
-                <div class="item-button-right">checking account: {{ checkingName }}
+                <div> checking account: {{ checkingName }} </div>
+                <div>
                   <button ng-click="openChecking()" class="button" >
-                      Change Account
+                      edit
                   </button>
                 </div>
             </ion-item>
             <ion-item>
-              <div class="item-button-right">savings account: {{ savingsName }}
+              <div> savings account: {{ savingsName }} </div>
+              <div>
                 <button ng-click="openSavings()" class="button" >
-                    Change Account
+                    edit
                 </button>
               </div>
             </ion-item>
         </ion-list>
         <button class="button button-full button-energized" ng-click="goToPet()">
-   Next
+   Save
 </button>
 
     </div>
