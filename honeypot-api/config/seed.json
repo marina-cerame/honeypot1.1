@@ -14,8 +14,8 @@
     ],
     "PetType": [
       {"name": "bear", "model": {"bear": "bear"}},
-      {"name": "cat", "model": {"cat": "cat"}},
-      {"name": "dog", "model": {"dog": "dog"}}
+      {"name": "octopus", "model": {"octopus": "octopus"}},
+      {"name": "dragon", "model": {"dragon": "dragon"}}
     ],
     "Pet": [
       {"user_id": 1, "pet_type_id": 1, "name": "pet1", "goal_amt": 100, "goal_name": "Stuff"},
@@ -50,12 +50,12 @@
       {"pet_type_id": 1, "type": "food", "name": "berries", "image": {"src": "test"}, "cost": 1, "effect": 1},
       {"pet_type_id": 1, "type": "food", "name": "fish", "image": {"src": "test"}, "cost": 2, "effect": 2},
       {"pet_type_id": 1, "type": "food", "name": "honey", "image": {"src": "test"}, "cost": 3, "effect": 3},
-      {"pet_type_id": 2, "type": "food", "name": "dry food", "image": {"src": "test"}, "cost": 1, "effect": 1},
-      {"pet_type_id": 2, "type": "food", "name": "fancy food", "image": {"src": "test"}, "cost": 2, "effect": 2},
-      {"pet_type_id": 2, "type": "food", "name": "caviar", "image": {"src": "test"}, "cost": 3, "effect": 3},
-      {"pet_type_id": 3, "type": "food", "name": "kibble", "image": {"src": "test"}, "cost": 1, "effect": 1},
-      {"pet_type_id": 3, "type": "food", "name": "sausage", "image": {"src": "test"}, "cost": 2, "effect": 2},
-      {"pet_type_id": 3, "type": "food", "name": "steak", "image": {"src": "test"}, "cost": 3, "effect": 3},
+      {"pet_type_id": 2, "type": "food", "name": "shrimp", "image": {"src": "test"}, "cost": 1, "effect": 1},
+      {"pet_type_id": 2, "type": "food", "name": "fish", "image": {"src": "test"}, "cost": 2, "effect": 2},
+      {"pet_type_id": 2, "type": "food", "name": "lobster", "image": {"src": "test"}, "cost": 3, "effect": 3},
+      {"pet_type_id": 3, "type": "food", "name": "sheep", "image": {"src": "test"}, "cost": 1, "effect": 1},
+      {"pet_type_id": 3, "type": "food", "name": "cow", "image": {"src": "test"}, "cost": 2, "effect": 2},
+      {"pet_type_id": 3, "type": "food", "name": "knight", "image": {"src": "test"}, "cost": 3, "effect": 3},
       {"pet_type_id": 1, "type": "accessory", "name": "hat", "image": {"src": "test"}, "cost": 1, "effect": 1},
       {"pet_type_id": 1, "type": "accessory", "name": "glasses", "image": {"src": "test"}, "cost": 2, "effect": 2},
       {"pet_type_id": 1, "type": "accessory", "name": "crown", "image": {"src": "test"}, "cost": 3, "effect": 3},
@@ -68,12 +68,12 @@
       {"pet_type_id": 1, "type": "treat", "name": "bear treat", "image": {"src": "test"}, "cost": 1, "effect": 1},
       {"pet_type_id": 1, "type": "treat", "name": "big bear treat", "image": {"src": "test"}, "cost": 2, "effect": 2},
       {"pet_type_id": 1, "type": "treat", "name": "huge bear treat", "image": {"src": "test"}, "cost": 3, "effect": 3},
-      {"pet_type_id": 2, "type": "treat", "name": "cat treat", "image": {"src": "test"}, "cost": 1, "effect": 1},
-      {"pet_type_id": 2, "type": "treat", "name": "big cat treat", "image": {"src": "test"}, "cost": 2, "effect": 2},
-      {"pet_type_id": 2, "type": "treat", "name": "huge cat treat", "image": {"src": "test"}, "cost": 3, "effect": 3},
-      {"pet_type_id": 3, "type": "treat", "name": "dog treat", "image": {"src": "test"}, "cost": 1, "effect": 1},
-      {"pet_type_id": 3, "type": "treat", "name": "big dog treat", "image": {"src": "test"}, "cost": 2, "effect": 2},
-      {"pet_type_id": 3, "type": "treat", "name": "huge dog treat", "image": {"src": "test"}, "cost": 3, "effect": 3}
+      {"pet_type_id": 2, "type": "treat", "name": "octo treat", "image": {"src": "test"}, "cost": 1, "effect": 1},
+      {"pet_type_id": 2, "type": "treat", "name": "big octo treat", "image": {"src": "test"}, "cost": 2, "effect": 2},
+      {"pet_type_id": 2, "type": "treat", "name": "huge octo treat", "image": {"src": "test"}, "cost": 3, "effect": 3},
+      {"pet_type_id": 3, "type": "treat", "name": "dragon treat", "image": {"src": "test"}, "cost": 1, "effect": 1},
+      {"pet_type_id": 3, "type": "treat", "name": "big dragon treat", "image": {"src": "test"}, "cost": 2, "effect": 2},
+      {"pet_type_id": 3, "type": "treat", "name": "huge dragon treat", "image": {"src": "test"}, "cost": 3, "effect": 3}
     ],
     "Transaction": [
       {"user_id": 1, "pet_id": 1, "item_id": 1, "amount": 5},
