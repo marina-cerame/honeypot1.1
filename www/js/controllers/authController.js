@@ -1,6 +1,6 @@
 angular.module('auth', [])
 
-.controller('AuthController', function($scope, $location, $http, $rootScope, $state) {
+.controller('AuthController', function($scope, $location, $http, $rootScope) {
 
   $scope.user = {
     grant_type: 'password'
@@ -19,8 +19,9 @@ angular.module('auth', [])
           }, function(err) {
             console.log(err);
           });
-     
-        $state.go('myPets');
+
+        $location.path('/app/myPets');
+
 
       }, function(err) {
         console.log(err);
