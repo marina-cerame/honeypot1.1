@@ -3,13 +3,12 @@
     <ion-slide-box does-continue="true" autoplay="true" slide-interval="1000" on-slide-changed="slideHasChanged($index)">
       <ion-slide ng-repeat='type in petTypes'>
         <div ng-model='newpet.type' value={{type.name}} class="adopt-showcase">
-          <h1>{{type.name}}</h1>
+          <h1>Adopt a New {{petTypeDisplay(type.name)}}!</h1>
 
           <img src={{type.img}} />
 
 
         </div>
-        <h1>Adopt a New {{type.name}}!</h1>
       </ion-slide>
     </ion-slide-box>
     <form name="newPet" novalidate>

@@ -11,6 +11,15 @@ angular.module('app.adoptPet', [])
       3: '../img/pets/dragon.png'
     }
 
+    $scope.petTypeDisplay = function(type) {
+      let types = {
+        bear: 'Fluffy Bear',
+        cat: 'Sly Octopus',
+        dog: 'Fiery Dragon'
+      }
+      return types[type];
+    }
+
     $scope.slideHasChanged = function(index) {
       console.log(index)
       $scope.selectedPet = $scope.petTypes[index];
