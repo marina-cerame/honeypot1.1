@@ -5,6 +5,7 @@
   "description": "honeypot: An Ionic project",
   "dependencies": {
     "angular-plaid-link": "^1.0.1",
+    "angular-stripe": "^4.2.12",
     "gsap": "1.19.1",
     "gulp": "^3.5.6",
     "gulp-concat": "^2.2.0",
