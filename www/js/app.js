@@ -107,10 +107,14 @@ angular.module('starter',['ionic',
     }
   })
 
-  .state('myPets', {
+  .state('app.myPets', {
     url: '/myPets',
-    templateUrl: 'templates/myPets.html',
-    controller: 'MyPetsCtrl'
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/myPets.html',
+        controller: 'MyPetsCtrl'
+      }
+    }
   })
 
   .state('login', {
