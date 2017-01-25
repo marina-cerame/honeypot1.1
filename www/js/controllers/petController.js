@@ -1,12 +1,5 @@
 angular.module('app.pet', [])
 .controller('PetCtrl', function($scope, $rootScope, $http, $window, $state) {
-  // $('#goal').empty();
-  // $('div').remove('#goal');
-//   // $('div').remove('#healthBar');
-//   var $goal = $("<div>", {id: "foo"})
-// $('.ground').append($goal)
-//   // $('.ground').append('<div></div>').attr('id', 'goal');
-//   $('.ground').append('<div></div>').attr('id', 'healthBar');
 
   $http.get(`http://localhost:3000/v1/pet_stats/?id__is=${$rootScope.pet.id}`)
     .then(function(res) {
@@ -25,15 +18,6 @@ angular.module('app.pet', [])
     }, function(err) {
       console.log(err);
     })
-  //
-  // setTimeout(function() {
-  //   $scope.goal.animate($scope.progress);
-  // }, 1000);
-  //
-  // setTimeout(function() {
-  //   $scope.healthBar.animate($scope.health);
-  // }, 1000);
-
 
   $scope.bearTouch = function() {
     const earUp = function() {

@@ -9,7 +9,7 @@ angular.module('app.account', [])
                 console.log(res.data.data[0]);
                 $scope.total=res.data.data[0].total;
               })
-            $scope.goal = $rootScope.pet.goal_name;
+            
             var checkingHandler = Plaid.create({
                 selectAccount: true,
                 env: 'tartan',
