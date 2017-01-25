@@ -18,7 +18,6 @@ angular.module('app.bankAuth', [])
                 onSuccess: function(token, metadata) {
                     $rootScope.checkingName = metadata.account.name;
                     console.log('rootScope.checkingName: ', $rootScope.checkingName);
-
                     $scope.$apply();
                     console.log('metadata>>>>>>>>>>>>>>', metadata);
                     console.log('checking token: ', token)

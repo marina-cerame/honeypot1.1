@@ -1,5 +1,6 @@
 angular.module('app.pet', [])
 .controller('PetCtrl', function($scope, $rootScope, $http, $window, $state) {
+  // $('#goal').empty();
   // $('div').remove('#goal');
 //   // $('div').remove('#healthBar');
 //   var $goal = $("<div>", {id: "foo"})

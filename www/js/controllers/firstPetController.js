@@ -2,9 +2,9 @@ angular.module('app.firstPet', [])
 
   .controller('FirstPetCtrl', function($scope, $location, $http, $rootScope) {
     $scope.pet = {};
+    $scope.testRes;
 
     $scope.bearShrink = function() {
-      console.log('bearGrow')
       TweenLite.to('.first-bear', 2, { scale: 0.75, x: '15%', y: '-40%'  })
     }
     $scope.bearShrink();
@@ -12,9 +12,8 @@ angular.module('app.firstPet', [])
     $scope.makeFirstPet = function() {
 
       $scope.pet.pet_type_id = 1;
-      $scope.pet.goal_amt = $scope.pet.goal_amt;
       $scope.pet.user_id = $rootScope.user;
-      console.log($scope.pet);
+      // console.log($scope.pet, 'heres scope pet');
       $http.post('http://localhost:3000/v1/pets', $scope.pet)
         .then(function(res) {
           $rootScope.pet = res.data.data[0];
@@ -22,6 +21,7 @@ angular.module('app.firstPet', [])
         }, function(err) {
           console.log(err);
         });
+        console.log($scope.testRes)
     };
 
     $scope.goal_amt = [

@@ -11,6 +11,33 @@
 
 }
 
+.adopt-showcase {
+  text-align: center;
+  margin: auto;
+  padding: 5%;
+}
+
+.food-item {
+  position: relative;
+  top: -95px;
+}
+.food-div {
+  margin-bottom: 0px;
+}
+#food-item-text {
+  text-align: right;
+}
+/*.food-img {
+  position: fixed;
+  right: 10%;
+  top: 10%;
+}*/
+
+#bear-logo {
+  margin: auto;
+  text-align: center;
+}
+
 .food-item {
   position: relative;
   top: -95px;
@@ -46,8 +73,18 @@
   position: fixed;
 }
 h1 {
-  text-align: center;
-  color: #ADD8E6;
+color: #ADD8E6;
+padding-bottom: 40px;
+/*color: #111;*/
+font-family: 'Helvetica Neue', sans-serif;
+/*font-family: 'Arial black', Arial black;*/
+font-size: 50px;
+font-weight: bold;
+letter-spacing: -2px;
+line-height: 1;
+text-align: center;
+-webkit-font-smoothing: antialiased;
+text-rendering: optimizelegibility;
 }
 
 #food-title {
