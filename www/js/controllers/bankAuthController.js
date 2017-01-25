@@ -31,7 +31,8 @@ angular.module('app.bankAuth', [])
                             let checkingTokenInfo = JSON.stringify({
                                 user_id: $rootScope.user,
                                 type: 'checking',
-                                token: res.data
+                                token: res.data,
+                                name: $rootScope.checkingName
                             });
                             $http.post('http://localhost:3000/v1/bank_tokens', checkingTokenInfo)
                                 .then(function(res) {
@@ -76,7 +77,8 @@ angular.module('app.bankAuth', [])
                             let checkingTokenInfo = JSON.stringify({
                                 user_id: $rootScope.user,
                                 type: 'savings',
-                                token: res.data
+                                token: res.data,
+                                name: $rootScope.savingsName
                             });
                             $http.post('http://localhost:3000/v1/bank_tokens', checkingTokenInfo)
                                 .then(function(res) {

@@ -12,10 +12,17 @@ angular.module('auth', [])
     $http.post('http://localhost:3000/v1/access_tokens', $scope.user)
       .then(function(res) {
         $rootScope.user = res.data.data[0].user_id;
-        $http.get('http://localhost:3000/v1/bank_tokens')
+        $http.get(`http://localhost:3000/v1/bank_tokens/?user_id__is=${$rootScope.user}`)
           .then(function(res) {
-            console.log(res);
-            // $rootScope.checkingName = res.data[0].name;
+            res.data.data.forEach(entry => {
+              if (entry.type === 'checking') {
+                $rootScope.checkingName = entry.name;
+                $rootScope.checking_id = entry.id;
+              } else {
+                $rootScope.savingsName = entry.name;
+                $rootScope.savings_id = entry.id;
+              }
+            });
           }, function(err) {
             console.log(err);
           });
