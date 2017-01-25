@@ -25,6 +25,7 @@ angular.module('app.store', [])
     $http.post('http://localhost:3000/v1/transactions', $scope.transaction)
       .then(function(res){
         $location.path('/market/pet')
+
       }, function(error){
         console.log(error);
       })
