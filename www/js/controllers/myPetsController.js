@@ -1,5 +1,5 @@
 angular.module('myPets', [])
-.controller('MyPetsCtrl', function($scope, $rootScope, $http, $location, $state) {
+.controller('MyPetsCtrl', function($scope, $rootScope, $http, $location) {
 
   $http.get(`http://localhost:3000/v1/pets/?user_id__is=${$rootScope.user}`)
     .then(function(res) {
@@ -11,8 +11,6 @@ angular.module('myPets', [])
   $scope.goToPet = function(pet) {
     $rootScope.pet = pet;
     $location.path('/market/pet');
-    // $state.go('market.pet');
-
   }
 
   $scope.editPet = function(pet) {

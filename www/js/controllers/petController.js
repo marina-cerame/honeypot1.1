@@ -33,6 +33,7 @@ angular.module('app.pet', [])
   //   $scope.healthBar.animate($scope.health);
   // }, 1000);
 
+
   $scope.bearTouch = function() {
     const earUp = function() {
       TweenLite.to('.ears', .5, { y: -7, onComplete: earDown })
@@ -108,8 +109,7 @@ angular.module('app.pet', [])
   });
   $scope.bearGrow();
   $scope.bearTilt();
+  
 
-  // $('div').remove('#goal');
-  // $('div').remove('#healthBar');
 
 })
