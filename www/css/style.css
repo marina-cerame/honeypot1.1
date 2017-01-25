@@ -11,6 +11,12 @@
 
 }
 
+.adopt-showcase {
+  text-align: center;
+  margin: auto;
+  padding: 5%;
+}
+
 .food-item {
   position: relative;
   top: -95px;

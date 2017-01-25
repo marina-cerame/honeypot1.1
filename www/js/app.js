@@ -15,6 +15,7 @@ angular.module('starter',['ionic',
                           'app.firstPet',
                           'app.store',
                           'app.account',
+                          'app.adoptPet',
                           'editPet'])
 
 
@@ -65,6 +66,17 @@ angular.module('starter',['ionic',
     templateUrl: 'templates/firstPet.html',
     controller: 'FirstPetCtrl'
   })
+
+  .state('app.adoptPet', {
+    url: '/adoptPet',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/adoptPet.html',
+        controller: 'adoptPetCtrl'
+      }
+    }
+  })
+
   .state('app.store', {
       url: '/store',
       views: {
