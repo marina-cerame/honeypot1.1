@@ -39,10 +39,14 @@ angular.module('app.pet', [])
     const earUp = function() {
       TweenLite.to('.ears', .5, { y: -7, onComplete: earDown })
       TweenLite.to('.leftArm', .5, {rotation:75, transformOrigin:"80% 50%"});
+      TweenLite.to('.balloons', .5, {y: -77, x: 12})
+
     }
     const earDown = function() {
       TweenLite.to('.ears', .5, { y: 7 })
       TweenLite.to('.leftArm', .5, {rotation:0, transformOrigin:"80% 50%"});
+      TweenLite.to('.balloons', .5, {y: 0, x: 0})
+
     }
     earUp();
   }
@@ -110,7 +114,7 @@ angular.module('app.pet', [])
   });
   $scope.bearGrow();
   $scope.bearTilt();
-  
+
 
 
 })
