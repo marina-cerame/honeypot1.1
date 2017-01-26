@@ -1,5 +1,6 @@
 'use strict';
 
+const stripe = require('stripe')('sk_test_XtAMFVO64j1hd1Fiud3lCVdj');
 const Nodal = require('nodal');
 const Transaction = Nodal.require('app/models/transaction.js');
 
@@ -29,12 +30,21 @@ class V1TransactionsController extends Nodal.Controller {
 
   create() {
 
-    Transaction.create(this.params.body, (err, model) => {
+    const amount = this.params.body.amount;
+    const checking = this.params.body.checking;
+    console.log('body!!!!!!!!!!!!!!!!!', this.params.body);
+    var context = this;
 
-      this.respond(err || model);
 
+    stripe.charges.create({
+      amount: amount,
+      currency: "usd",
+      customer: checking
     });
 
+    Transaction.create(context.params.body, (err, model) => {
+      this.respond(err || model);
+    });
   }
 
   update() {

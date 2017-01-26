@@ -69,12 +69,12 @@ class V1BankTokensController extends Nodal.Controller {
             if (err) {
               console.log(err);
             } else {
-              console.log(customer);
+              console.log('customer id: ', customer.id);
               const newToken = {
                 user_id: user_id,
                 type: type,
                 name: name,
-                token: customer
+                token: customer.id
               }
               BankToken.create(newToken, (err, model) => {
                 context.respond(err || model);
@@ -123,13 +123,14 @@ class V1BankTokensController extends Nodal.Controller {
             if (err) {
               console.log(err);
             } else {
-              console.log(customer);
+              console.log('customer id: ', customer.id);
               const newToken = {
                 user_id: user_id,
                 type: type,
                 name: name,
-                token: customer
+                token: customer.id
               }
+              console.log('newToken: ', newToken);
               BankToken.update(context.params.route.id, context.params.body, (err, model) => {
 
                 context.respond(err || model);
