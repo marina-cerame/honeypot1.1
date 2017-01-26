@@ -1,7 +1,6 @@
 <ion-view cache-view="false" view-title="{{petName}}">
   <ion-content>
     <div class="ground">
-    <div id="goal"></div>
       <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
              viewBox="0 0 750 1200" style="enable-background:new 0 0 750 1200;" xml:space="preserve">
 
@@ -148,7 +147,32 @@
         </g>
 
       </svg>
-      <div id="healthBar"></div>
+      <div id="main-progress">
+        <div class="progress-text">
+          Health
+        </div>
+        <div class="progress">
+          <div class="progress-bar progress-bar-custom progress-bar-danger" role="progressbar"
+          aria-valuenow={{health}} aria-valuemin="0" aria-valuemax="100" style="width:{{health}}%">
+          </div>
+        </div>
+        <div class="progress-text">
+          Happiness
+        </div>
+        <div class="progress">
+          <div class="progress-bar progress-bar-custom progress-bar-warning active" role="progressbar"
+          aria-valuenow=60 aria-valuemin="0" aria-valuemax="100" style="width:60%">
+          </div>
+        </div>
+        <div class="progress-text">
+          Progress Towards {{goal}}
+        </div>
+        <div class="progress">
+          <div class="progress-bar progress-bar-custom progress-bar-info active" role="progressbar"
+          aria-valuenow={{progress + 100}} aria-valuemin="0" aria-valuemax="100" style="width:{{progress * 100}}%">
+          </div>
+        </div>
+      </div>
     </div>
 
 

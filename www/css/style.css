@@ -1,5 +1,6 @@
 /* Empty. Add your own CSS if you like */
 .ground {
+  height: 800px;
   z-index: -1;
   position: relative;
   /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#1e5799+0,3ca840+0,8dd9fc+0,0fb0d8+59,22d883+61,3ca840+100 */
@@ -9,6 +10,29 @@
   background: linear-gradient(to bottom,  #1e5799 0%,#3ca840 0%,#8dd9fc 0%,#0fb0d8 59%,#22d883 61%,#3ca840 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#3ca840',GradientType=0 ); /* IE6-9 */
 
+}
+
+#main-progress {
+  /*text-align: inherit;*/
+  font-weight: bold;
+  /*margin-bottom: 100px;*/
+}
+
+.progress-text {
+  margin-left: 10%;
+}
+.progress {
+  background: rgba(232, 229, 135, 1);
+  width:80%;
+  margin:auto;
+  background: -webkit-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(232, 229, 135, 1) 100%);
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(232, 229, 135, 1) 100%);
+  border: 2px solid rgba(245, 245, 245, 1);
+  border-radius: 25px;
+  height: 23px;}
+
+.progress-bar-custom {
+  background: rgba(66, 139, 202, 1);
 }
 
 .adopt-showcase {
@@ -59,7 +83,7 @@
   text-align: center;
 }
 
-#goal {
+/*#goal {
   margin: auto;
   width: 100px;
   height: 100px;
@@ -67,11 +91,11 @@
   left: auto;
   right: 10%;
   top: 5%;
-}
+}*/
 
-#healthbar {
+/*#healthbar {
   position: fixed;
-}
+}*/
 h1 {
 color: #84C0C6;
 padding-bottom: 40px;
