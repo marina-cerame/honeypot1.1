@@ -11,6 +11,17 @@ angular.module('app.pet', [])
       $scope.progress = ($scope.goal_progress / $scope.goal_amt) * 100;
       $scope.goal = res.data.data[0].goal_name;
       $scope.health = $scope.hunger;
+
+      //For happiness
+      if($scope.happiness < 51) {
+        TweenMax.to('.mouth', .5, {alpha: 0})
+        TweenMax.to('.frown', .5, {alpha: 1})
+        if($scope.happiness < 26) {
+          TweenMax.to('.tears', 2, {alpha: 1})
+        }
+      } else {
+        $scope.bearTilt();
+      }
     }, function(err) {
       console.log(err);
     });
@@ -22,12 +33,27 @@ angular.module('app.pet', [])
       TweenMax.to('.balloons', .5, {y: -77, x: 12});
     };
     const earDown = function() {
-      TweenMax.to('.ears', .5, { y: 7 });
-      TweenMax.to('.leftArm', .5, {rotation:0, transformOrigin:'80% 50%'});
-      TweenMax.to('.balloons', .5, {y: 0, x: 0});
-    };
-    earUp();
-  };
+      TweenMax.to('.ears', .5, { y: 7 })
+      TweenMax.to('.leftArm', .5, {rotation:0, transformOrigin:"80% 50%"});
+      TweenMax.to('.balloons', .5, {y: 0, x: 0})
+    }
+    if($scope.happiness > 25) {
+      earUp();
+    } else {
+      if(tear === 1) {
+        TweenMax.to('.tear3', 4, {y:30, ease: 'easeIn'})
+        TweenMax.to('.tear3', 2, {alpha: 0, delay: 2})
+        TweenMax.to('.tear3', .001, {y: 0, alpha: 1, delay: 4})
+        tear++;
+      } else {
+        TweenMax.to('.tear2', 4, {y:30, ease: 'easeIn'})
+        TweenMax.to('.tear2', 2, {alpha: 0, delay: 2})
+        TweenMax.to('.tear2', .001, {y: 0, alpha: 1, delay: 4})
+        tear = 1;
+      }
+      console.log('test')
+    }
+  }
   $scope.bearTilt = function() {
     const left = function() { TweenMax.to('.bear', 1, { rotation: 2, transformOrigin: '50% 50%', onComplete: right }); };
     const right = function() { TweenLite.to('.bear', 1, { rotation: -2, transformOrigin: '50% 50%', onComplete: left }); };
@@ -66,18 +92,22 @@ angular.module('app.pet', [])
   }, 1000);
 
   ///////////Sun & Moon/////////////
-  TweenMax.to('.sun', .001, {alpha: 0, rotation: 180, transformOrigin: '0px 1000px'});
-  TweenMax.to('.moon', .001, {alpha: 0});
+  TweenMax.to('.sun', .001, {alpha: 0, rotation: 180, transformOrigin: "0px 1000px"})
+  TweenMax.to('.moon', .001, {alpha: 0, rotation: 180, transformOrigin: "0px 1000px"})
   let newDate1 = new Date(), datetime1 = newDate1.timeNow(), second1 = datetime1.slice(6,8) * 360 / 60,
       minute1 = datetime1.slice(3,5) * 360 / 60, hour1 = datetime1.slice(0,2) * 360 / 12 + (minute1 / 12);
   if(hour1 > 180 && hour1 < 540) {
-    TweenMax.fromTo('.sun', 1.5, {alpha: 1}, {rotation: 360, ease: 'easeOut', transformOrigin: '0px 1000px'});
+    TweenMax.fromTo('.sun', 1.5, {alpha: 1}, {rotation: 360, ease: "easeOut", transformOrigin: "0px 1000px"})
+  } else {
+    TweenMax.fromTo('.moon', 1.5, {alpha: 1}, {rotation: 360, ease: "easeOut", transformOrigin: "0px 1000px"})
   }
   //////////Sad Bear///////////////
-  if($scope.happiness < 50) {
-    TweenMax.fromTo('.mouth', 1, {alpha: 0});
-  }
+  TweenMax.to('.tears', .001, {alpha:0})
+  TweenMax.to('.frown', .001, {alpha:0})
+  let tear = 1;
 
+  console.log($scope.happiness)
   $scope.bearGrow();
-  $scope.bearTilt();
-});
+
+
+})
