@@ -28,6 +28,7 @@ angular.module('app.bankAuth', [])
                     });
                     $http.post('http://localhost:8080/authenticate', postFormat)
                         .then(function(res) {
+                            console.log('this is new RES: ', res);
                             let checkingTokenInfo = JSON.stringify({
                                 user_id: $rootScope.user,
                                 type: 'checking',

@@ -20,6 +20,22 @@ angular.module('app.store', [])
       amount: this.food.cost
     }
 
+    $http.get(`http://localhost:3000/v1/bank_tokens/${$rootScope.checking_id}`)
+      .then(function(res) {
+        let stripeInfo = {
+          checking: res.data.data[0].token,
+          amount: $scope.transaction.amount
+        }
+        $http.post('http://localhost:8080/charge', stripeInfo)
+          .then(function(res) {
+            console.log('hell?', res);
+          }, function(err) {
+            console.log('o,', err);
+          });
+      })
+
+
+
     console.log($scope.transaction, 'heres transaction')
 
     $http.post('http://localhost:3000/v1/transactions', $scope.transaction)
