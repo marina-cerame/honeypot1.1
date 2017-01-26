@@ -8,7 +8,7 @@ angular.module('app.pet', [])
       $scope.goal_progress = res.data.data[0].goal_progress;
       $scope.hunger = res.data.data[0].hunger;
       $scope.happiness = res.data.data[0].happiness;
-      $scope.progress = $scope.goal_progress / $scope.goal_amt;
+      $scope.progress = ($scope.goal_progress / $scope.goal_amt) * 100;
       $scope.goal = res.data.data[0].goal_name;
       $scope.health = $scope.hunger;
     }, function(err) {
@@ -35,7 +35,7 @@ angular.module('app.pet', [])
   };
 
   $scope.bearGrow = function() {
-    TweenMax.to('.bear', .1, { scale: 1.5, y: 130});
+    TweenMax.to('.bear', .1, { scale: 1.15, y: 130});
   };
 
   /////// CLOCK FUNCTIONS///////

@@ -1,56 +1,31 @@
 <ion-view>
   <ion-content>
     <h1>crittermart</h1>
-
-    <div class="list" ng-repeat='food in food' ng-click='buyFood()' confirm>
-
+    <div class="list" ng-repeat='item in items | filter : filters' ng-click='buyFood()' confirm>
     <a class="item item-thumbnail-left">
-      <img src={{food.img}} >
+      <img src={{images[item.id]}} >
       <div id='food-item-text'>
-      <h2>{{ food.name }}</h2>
+      <h2>{{ item.name }}</h2>
       <p>
-        <div ng-model='grab.cost'><strong>Cost:</strong> {{ food.cost }} </div><br />
-        <strong>Health increase:</strong> {{ food.effect }}
+        <div ng-model='grab.cost'><strong>Cost:</strong> {{ item.cost }} </div><br />
+        <strong>{{effect[item.type]}} increase:</strong> {{ item.effect }}
       </p>
       </div>
     </a>
-
 </div>
-
   </div>
   </ion-content>
+  <div class="tabs-striped">
+    <div class="tabs">
+      <a ng-click="filters.type = 'food'" class="tab-item active" href="">
+        food
+      </a>
+      <a ng-click="filters.type = 'accessory'" class="tab-item active" href="">
+        accessories
+      </a>
+      <a ng-click="filters.type = 'treat'" class="tab-item active" href="">
+        treats
+      </a>
+    </div>
+  </div>
 </ion-view>
-
-
-<!-- <div class="list card" ng-repeat='food in food'>
-
-<a href="#" class="item item-icon-left">
-  <text id="food-title" style="strong">{{ food.name }}</text><br  />
-  <strong>Cost:</strong> <br /> {{ food.price }} <br  />
-  <strong>Hunger increase:</strong><br  /> {{ food.hunger }}
-  <img src={{food.img}} />
-</a> -->
-
-    <!-- <ion-list>
-     <ion-item ng-repeat='food in food'> -->
-      <!-- <div id='food-item' ng-style='color:{{$scope.color()}}' style='strong'>{{ food.name }}</div> -->
-      <!-- <table border="10px">
-        <tr>
-          <td width="45%"> -->
-          <!-- <div class="card">
-              <text id="food-title" style="strong">{{ food.name }}</text><br  />
-              <strong>Cost:</strong> <br /> {{ food.price }} <br  />
-              <strong>Hunger increase:</strong><br  /> {{ food.hunger }} -->
-            <!-- </td>
-            <td ="30%"> -->
-              <!-- <img src={{food.img}} align="right"/> -->
-
-          <!-- </div> -->
-          <!-- </td>
-        </tr>
-      </table> -->
-      <!-- <button class="button button-full button-stable">
-        Buy your pet a {{ food.name[0].toLowerCase() + food.name.slice(1) }}!
-      </button> -->
-     <!-- </ion-item>
-    </ion-list> -->
