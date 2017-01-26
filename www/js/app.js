@@ -38,11 +38,11 @@ angular.module('starter',['ionic',
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
 
-    .state('app', {
+  .state('app', {
     url: '/app',
     abstract: true,
     templateUrl: 'templates/menu.html',
-    // controller: 'AppCtrl'
+    controller: 'AppCtrl'
   })
 
   .state('market', {
@@ -78,14 +78,14 @@ angular.module('starter',['ionic',
   })
 
   .state('app.store', {
-      url: '/store',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/store.html',
-          controller: 'StoreCtrl'
-        }
+    url: '/store',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/store.html',
+        controller: 'StoreCtrl'
       }
-    })
+    }
+  })
 
     .state('app.account', {
       url: '/account',
