@@ -44,7 +44,7 @@ angular.module('app.pet', [])
   }
 
   $scope.bearGrow = function() {
-    TweenLite.to('.bear', .1, { scale: 1.5, y: 130})
+    TweenLite.to('.bear', .1, { scale: 1.25, y: 130})
   }
 
   $scope.bearGrow();
