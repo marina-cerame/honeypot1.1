@@ -21,9 +21,6 @@ angular.module('app.account', [])
                 onSuccess: function(token, metadata) {
                     $rootScope.checkingName = metadata.account.name;
                     $scope.$apply();
-                    console.log('metadata>>>>>>>>>>>>>>', metadata);
-                    console.log('checking token: ', token)
-                    console.log('checking id: ', metadata.account.id);
                     let postFormat = JSON.stringify({
                         public_token: token,
                         account_id: metadata.account.id,
@@ -32,11 +29,12 @@ angular.module('app.account', [])
                         name: $rootScope.checkingName
                     });
                     $http.put(`http://localhost:3000/v1/bank_tokens/${$rootScope.checking_id}`, postFormat)
-                        .then(res => console.log(res));
+                        .then(res => {
+                            console.log(res);
+                        })
                 },
                 onExit: function() {
                     console.log('user closed');
-                    console.log('rootScope.checkingName: ', $rootScope.checkingName);
                 }
             });
             var savingsHandler = Plaid.create({
@@ -66,7 +64,6 @@ angular.module('app.account', [])
             });
 
             $scope.openSavings = function() {
-                console.log('THIS IS ROOT USER: ', $rootScope.user);
                 savingsHandler.open();
             };
             $scope.openChecking = function() {

@@ -5,7 +5,6 @@ angular.module('app.bankAuth', [])
         function($scope, $location, $http, $rootScope) {
             $rootScope.checkingName;
             $rootScope.savingsName;
-            console.log('rootScope.checkingName: ', $rootScope.checkingName);
             var checkingHandler = Plaid.create({
                 selectAccount: true,
                 env: 'tartan',
@@ -17,9 +16,6 @@ angular.module('app.bankAuth', [])
                 onSuccess: function(token, metadata) {
                     $rootScope.checkingName = metadata.account.name;
                     $scope.$apply();
-                    console.log('metadata>>>>>>>>>>>>>>', metadata);
-                    console.log('savings token: ', token);
-                    console.log('savings id: ', metadata.account.id);
                     let postFormat = JSON.stringify({
                         public_token: token,
                         account_id: metadata.account.id,
@@ -30,12 +26,12 @@ angular.module('app.bankAuth', [])
                     $http.post('http://localhost:3000/v1/bank_tokens', postFormat)
                         .then(function(res) {
                             console.log(res);
+                            $rootScope.checking_id = res.data.data[0].id;
                         }
                     );
                 },
                 onExit: function() {
                     console.log('user closed');
-                    console.log('rootScope.checkingName: ', $rootScope.checkingName);
 
                 }
             });
@@ -51,9 +47,6 @@ angular.module('app.bankAuth', [])
                 onSuccess: function(token, metadata) {
                     $rootScope.savingsName = metadata.account.name;
                     $scope.$apply();
-                    console.log('metadata>>>>>>>>>>>>>>', metadata);
-                    console.log('savings token: ', token);
-                    console.log('savings id: ', metadata.account.id);
                     let postFormat = JSON.stringify({
                         public_token: token,
                         account_id: metadata.account.id,
@@ -64,6 +57,7 @@ angular.module('app.bankAuth', [])
                     $http.post('http://localhost:3000/v1/bank_tokens', postFormat)
                         .then(function(res) {
                             console.log(res);
+                            $rootScope.savings_id = res.data.data[0].id;
                         }
                     );
                 },
