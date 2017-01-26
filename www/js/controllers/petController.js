@@ -17,26 +17,25 @@ angular.module('app.pet', [])
 
   $scope.bearTouch = function() {
     const earUp = function() {
-      TweenLite.to('.ears', .5, { y: -7, onComplete: earDown });
-      TweenLite.to('.leftArm', .5, {rotation:75, transformOrigin:'80% 50%'});
-      TweenLite.to('.balloons', .5, {y: -77, x: 12});
+      TweenMax.to('.ears', .5, { y: -7, onComplete: earDown });
+      TweenMax.to('.leftArm', .5, {rotation:75, transformOrigin:'80% 50%'});
+      TweenMax.to('.balloons', .5, {y: -77, x: 12});
     };
     const earDown = function() {
-      TweenLite.to('.ears', .5, { y: 7 });
-      TweenLite.to('.leftArm', .5, {rotation:0, transformOrigin:'80% 50%'});
-      TweenLite.to('.balloons', .5, {y: 0, x: 0});
+      TweenMax.to('.ears', .5, { y: 7 });
+      TweenMax.to('.leftArm', .5, {rotation:0, transformOrigin:'80% 50%'});
+      TweenMax.to('.balloons', .5, {y: 0, x: 0});
     };
-
     earUp();
   };
   $scope.bearTilt = function() {
-    const left = function() { TweenLite.to('.bear', 1, { rotation: 2, transformOrigin: "50% 50%", onComplete: right }); };
-    const right = function() { TweenLite.to('.bear', 1, { rotation: -2, transformOrigin: "50% 50%", onComplete: left }); }
+    const left = function() { TweenMax.to('.bear', 1, { rotation: 2, transformOrigin: '50% 50%', onComplete: right }); };
+    const right = function() { TweenLite.to('.bear', 1, { rotation: -2, transformOrigin: '50% 50%', onComplete: left }); };
     left();
   };
 
   $scope.bearGrow = function() {
-    TweenLite.to('.bear', .1, { scale: 1.5, y: 130});
+    TweenMax.to('.bear', .1, { scale: 1.5, y: 130});
   };
 
   /////// CLOCK FUNCTIONS///////
@@ -76,10 +75,9 @@ angular.module('app.pet', [])
   }
   //////////Sad Bear///////////////
   if($scope.happiness < 50) {
-    TweenMax.fromTo('.mouth', 1, {alpha: 0});  
+    TweenMax.fromTo('.mouth', 1, {alpha: 0});
   }
 
   $scope.bearGrow();
   $scope.bearTilt();
-
 });
