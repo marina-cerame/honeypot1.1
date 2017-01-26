@@ -1,5 +1,4 @@
-var dotenv = require('dotenv');
-dotenv.load();
+require('dotenv').config();
 var express = require('express');
 var plaid = require('plaid');
 var bodyParser = require('body-parser');
@@ -9,7 +8,7 @@ var app = express();
 
 
 app.use(bodyParser.json())
-
+console.log('this is my env var: ', process.env.PLAID_CLIENT_ID);
 var plaidClient = new plaid.Client(process.env.PLAID_CLIENT_ID,
                                    process.env.PLAID_SECRET,
                                    plaid.environments.tartan);
