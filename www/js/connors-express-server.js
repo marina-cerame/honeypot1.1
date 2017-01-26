@@ -1,13 +1,17 @@
+var dotenv = require('dotenv');
+dotenv.load();
 var express = require('express');
 var plaid = require('plaid');
 var bodyParser = require('body-parser');
 var stripe = require('stripe')('sk_test_XtAMFVO64j1hd1Fiud3lCVdj');
 var app = express();
 
+
+
 app.use(bodyParser.json())
 
-var plaidClient = new plaid.Client('5876bdf2bdc6a41245f1b30d',
-                                   '16ceddb4fc4810c73d43926a9d754a',
+var plaidClient = new plaid.Client(process.env.PLAID_CLIENT_ID,
+                                   process.env.PLAID_SECRET,
                                    plaid.environments.tartan);
 
 app.post('/authenticate', function(serverReq, serverRes) {
