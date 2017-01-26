@@ -5,7 +5,6 @@ angular.module('app.bankAuth', [])
         function($scope, $location, $http, $rootScope) {
             $rootScope.checkingName;
             $rootScope.savingsName;
-            console.log('rootScope.checkingName: ', $rootScope.checkingName);
             var checkingHandler = Plaid.create({
                 selectAccount: true,
                 env: 'tartan',
@@ -16,40 +15,23 @@ angular.module('app.bankAuth', [])
                 },
                 onSuccess: function(token, metadata) {
                     $rootScope.checkingName = metadata.account.name;
-                    console.log('rootScope.checkingName: ', $rootScope.checkingName);
                     $scope.$apply();
-                    console.log('metadata>>>>>>>>>>>>>>', metadata);
-                    console.log('checking token: ', token)
-                    console.log('checking id: ', metadata.account.id);
                     let postFormat = JSON.stringify({
                         public_token: token,
                         account_id: metadata.account.id,
-                        user: $rootScope.user
+                        user_id: $rootScope.user,
+                        type: 'checking',
+                        name: $rootScope.checkingName
                     });
-                    $http.post('http://localhost:8080/authenticate', postFormat)
+                    $http.post('http://localhost:3000/v1/bank_tokens', postFormat)
                         .then(function(res) {
-                            console.log('this is new RES: ', res);
-                            let checkingTokenInfo = JSON.stringify({
-                                user_id: $rootScope.user,
-                                type: 'checking',
-                                token: res.data.id,
-                                name: $rootScope.checkingName
-                            });
-                            $http.post('http://localhost:3000/v1/bank_tokens', checkingTokenInfo)
-                                .then(function(res) {
-                                    console.log(res);
-                                }, function(err) {
-                                    console.log(err);
-                                });
-                            console.log('this happened: ', res.data);
-                        }, function(err) {
-                            console.log('error: ', err);
+                            console.log(res);
+                            $rootScope.checking_id = res.data.data[0].id;
                         }
                     );
                 },
                 onExit: function() {
                     console.log('user closed');
-                    console.log('rootScope.checkingName: ', $rootScope.checkingName);
 
                 }
             });
@@ -65,30 +47,17 @@ angular.module('app.bankAuth', [])
                 onSuccess: function(token, metadata) {
                     $rootScope.savingsName = metadata.account.name;
                     $scope.$apply();
-                    console.log('metadata>>>>>>>>>>>>>>', metadata);
-                    console.log('savings token: ', token);
-                    console.log('savings id: ', metadata.account.id);
                     let postFormat = JSON.stringify({
                         public_token: token,
-                        account_id: metadata.account.id
+                        account_id: metadata.account.id,
+                        user_id: $rootScope.user,
+                        type: 'savings',
+                        name: $rootScope.savingsName
                     });
-                    $http.post('http://localhost:8080/authenticate', postFormat)
+                    $http.post('http://localhost:3000/v1/bank_tokens', postFormat)
                         .then(function(res) {
-                            let checkingTokenInfo = JSON.stringify({
-                                user_id: $rootScope.user,
-                                type: 'savings',
-                                token: res.data.id,
-                                name: $rootScope.savingsName
-                            });
-                            $http.post('http://localhost:3000/v1/bank_tokens', checkingTokenInfo)
-                                .then(function(res) {
-                                    console.log(res);
-                                }, function(err) {
-                                    console.log(err);
-                                });
-                            console.log('this happened: ', res.data);
-                        }, function(err) {
-                            console.log('error: ', err);
+                            console.log(res);
+                            $rootScope.savings_id = res.data.data[0].id;
                         }
                     );
                 },
