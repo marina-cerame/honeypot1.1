@@ -44,8 +44,30 @@ angular.module('app.pet', [])
   }
 
   $scope.bearGrow = function() {
-    TweenLite.to('.bear', .1, { scale: 1.25, y: 130})
+    TweenLite.to('.bear', .1, { scale: 1.15, y: 130})
   }
+
+  /////// CLOCK FUNCTIONS///////
+  Date.prototype.timeNow = function () {
+     return ((this.getHours() < 10)?"0":"") + this.getHours() +":"+ ((this.getMinutes() < 10)?"0":"") + this.getMinutes() +":"+ ((this.getSeconds() < 10)?"0":"") + this.getSeconds();
+   }
+
+  setInterval(function() {
+    var newDate = new Date();
+    var datetime = newDate.timeNow();
+    let second = datetime.slice(6,8) * 360 / 60;
+    let minute = datetime.slice(3,5) * 360 / 60;
+    let hour = datetime.slice(0,2) * 360 / 12 + (minute / 12);
+    if (hour === 360) {
+      hour = 0;
+    }
+    console.log(hour, minute);
+
+
+    TweenLite.to('.hourHand', 1, {rotation: hour, transformOrigin: "bottom"})
+    TweenLite.to('.minuteHand', 1, {rotation: minute, transformOrigin: "bottom"})
+    TweenLite.to('.secondHand', 1, {rotation: second, transformOrigin: "bottom"})
+  }, 1000);
 
   $scope.bearGrow();
   $scope.bearTilt();
