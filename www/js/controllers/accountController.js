@@ -17,7 +17,6 @@ angular.module('app.account', [])
                 key: 'b7491cfbd7c72652af1c7bf9c9b667',
                 product: 'auth',
                 onLoad: function() {
-                    // The Link module finished loading.
                 },
                 onSuccess: function(token, metadata) {
                     $rootScope.checkingName = metadata.account.name;
@@ -36,7 +35,7 @@ angular.module('app.account', [])
                             let checkingTokenInfo = JSON.stringify({
                                 user_id: $rootScope.user,
                                 type: 'checking',
-                                token: res.data,
+                                token: res.data.id,
                                 name: $rootScope.checkingName
                             });
                             $http.put(`http://localhost:3000/v1/bank_tokens/${$rootScope.checking_id}`, checkingTokenInfo)
@@ -46,7 +45,6 @@ angular.module('app.account', [])
                                     console.log(err);
                                 });
                             console.log('this happened: ', res.data);
-                            // res.json(token, metadata.account.id);
                         }, function(err) {
                             console.log('error: ', err);
                         }
@@ -55,7 +53,6 @@ angular.module('app.account', [])
                 onExit: function() {
                     console.log('user closed');
                     console.log('rootScope.checkingName: ', $rootScope.checkingName);
-
                 }
             });
             var savingsHandler = Plaid.create({
@@ -65,7 +62,6 @@ angular.module('app.account', [])
                 key: 'b7491cfbd7c72652af1c7bf9c9b667',
                 product: 'auth',
                 onLoad: function() {
-                    // The Link module finished loading.
                 },
                 onSuccess: function(token, metadata) {
                     $rootScope.savingsName = metadata.account.name;
@@ -82,7 +78,7 @@ angular.module('app.account', [])
                             let savingsTokenInfo = JSON.stringify({
                                 user_id: $rootScope.user,
                                 type: 'savings',
-                                token: res.data,
+                                token: res.data.id,
                                 name: $rootScope.savingsName
                             });
                             $http.put(`http://localhost:3000/v1/bank_tokens/${$rootScope.savings_id}`, savingsTokenInfo)
@@ -92,7 +88,6 @@ angular.module('app.account', [])
                                     console.log(err);
                                 });
                             console.log('this happened: ', res.data);
-                            // res.json(token, metadata.account.id);
                         }, function(err) {
                             console.log('error: ', err);
                         }

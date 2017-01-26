@@ -13,7 +13,6 @@ angular.module('app.bankAuth', [])
                 key: 'b7491cfbd7c72652af1c7bf9c9b667',
                 product: 'auth',
                 onLoad: function() {
-                    // The Link module finished loading.
                 },
                 onSuccess: function(token, metadata) {
                     $rootScope.checkingName = metadata.account.name;
@@ -24,7 +23,8 @@ angular.module('app.bankAuth', [])
                     console.log('checking id: ', metadata.account.id);
                     let postFormat = JSON.stringify({
                         public_token: token,
-                        account_id: metadata.account.id
+                        account_id: metadata.account.id,
+                        user: $rootScope.user
                     });
                     $http.post('http://localhost:8080/authenticate', postFormat)
                         .then(function(res) {
@@ -32,7 +32,7 @@ angular.module('app.bankAuth', [])
                             let checkingTokenInfo = JSON.stringify({
                                 user_id: $rootScope.user,
                                 type: 'checking',
-                                token: res.data,
+                                token: res.data.id,
                                 name: $rootScope.checkingName
                             });
                             $http.post('http://localhost:3000/v1/bank_tokens', checkingTokenInfo)
@@ -42,7 +42,6 @@ angular.module('app.bankAuth', [])
                                     console.log(err);
                                 });
                             console.log('this happened: ', res.data);
-                            // res.json(token, metadata.account.id);
                         }, function(err) {
                             console.log('error: ', err);
                         }
@@ -78,7 +77,7 @@ angular.module('app.bankAuth', [])
                             let checkingTokenInfo = JSON.stringify({
                                 user_id: $rootScope.user,
                                 type: 'savings',
-                                token: res.data,
+                                token: res.data.id,
                                 name: $rootScope.savingsName
                             });
                             $http.post('http://localhost:3000/v1/bank_tokens', checkingTokenInfo)
@@ -88,7 +87,6 @@ angular.module('app.bankAuth', [])
                                     console.log(err);
                                 });
                             console.log('this happened: ', res.data);
-                            // res.json(token, metadata.account.id);
                         }, function(err) {
                             console.log('error: ', err);
                         }
@@ -105,7 +103,6 @@ angular.module('app.bankAuth', [])
             $scope.openChecking = function() {
                 checkingHandler.open();
             };
-
             $scope.goToFirstPet = function() {
                $location.path('/firstPet');
              };

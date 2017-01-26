@@ -22,9 +22,10 @@ angular.module('app.store', [])
 
     $http.get(`http://localhost:3000/v1/bank_tokens/${$rootScope.checking_id}`)
       .then(function(res) {
+        console.log('got checking id');
         let stripeInfo = {
           checking: res.data.data[0].token,
-          amount: $scope.transaction.amount
+          amount: '50'
         }
         $http.post('http://localhost:8080/charge', stripeInfo)
           .then(function(res) {
