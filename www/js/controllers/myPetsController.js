@@ -8,6 +8,15 @@ angular.module('myPets', [])
       console.log(err);
     })
 
+  $scope.petImages = {
+    1: '../img/pets/bear.png',
+    2: '../img/pets/octopus.png',
+    3: '../img/pets/dragon.png'
+  };
+
+  $scope.displayImages = function(type) {
+    return petImages[type]
+  }
   $scope.goToPet = function(pet) {
     $rootScope.pet = pet;
     $location.path('/market/pet');
