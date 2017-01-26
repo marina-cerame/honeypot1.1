@@ -6,7 +6,7 @@ angular.module('app.firstPet', [])
 
     $scope.bearShrink = function() {
       TweenLite.to('.first-bear', 2, { scale: 0.75, x: '15%', y: '-40%'  })
-    }
+    };
     $scope.bearShrink();
 
     $scope.makeFirstPet = function() {
@@ -35,13 +35,5 @@ angular.module('app.firstPet', [])
       300,
       200,
       100
-    ]
-  })
-
-
-  // let petTypes = [
-  //   null,
-  //   'Starter Bear'
-  // ]
-  //
-  // let animal = $scope.pet.pet_type_id;
+    ];
+  });
