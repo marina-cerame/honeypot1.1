@@ -42,7 +42,7 @@ angular.module('starter',['ionic',
     url: '/app',
     abstract: true,
     templateUrl: 'templates/menu.html',
-    // controller: 'AppCtrl'
+    controller: 'AppCtrl'
   })
 
   .state('market', {
