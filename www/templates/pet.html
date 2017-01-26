@@ -21,9 +21,9 @@
 
            /*////////Balloons//////*/
             .string{fill:none;stroke:#231F20;stroke-width:3;stroke-linecap:round;stroke-miterlimit:10;}
-            .redBal{opacity:0.9;fill:#3300CC;stroke:#000000;stroke-linecap:round;stroke-miterlimit:10;}
-            .yellowBal{opacity:0.8;fill:#FF0000;stroke:#000000;stroke-linecap:round;stroke-miterlimit:10;}
-            .blueBal{opacity:0.8;fill:#FFFF33;stroke:#000000;stroke-linecap:round;stroke-miterlimit:10;}
+            .blueBal{opacity:0.9;fill:#3300CC;stroke:#000000;stroke-linecap:round;stroke-miterlimit:10;}
+            .redBal{opacity:0.8;fill:#FF0000;stroke:#000000;stroke-linecap:round;stroke-miterlimit:10;}
+            .yellowBal{opacity:0.8;fill:#FFFF33;stroke:#000000;stroke-linecap:round;stroke-miterlimit:10;}
 
             /*//////Wizard Hat////*/
             .wizardHat{fill:#0C0068;stroke:#231F20;stroke-linecap:round;stroke-miterlimit:10;}
@@ -150,12 +150,15 @@
 <!-- //////////  Balloons  ///////// -->
 
           <g class="balloons">
-            <line class="string" x1="214" y1="476.7" x2="122.8" y2="225.2"/>
-            <ellipse class="redBal" cx="119.7" cy="147.9" rx="56.2" ry="77.2"/>
-            <line class="string" x1="213.8" y1="474.8" x2="256.8" y2="219.3"/>
-            <line class="string" x1="213.7" y1="477.6" x2="185.9" y2="187.7"/>
-            <ellipse class="yellowBal" cx="186.3" cy="108.4" rx="56.2" ry="77.2"/>
-            <ellipse class="blueBal" cx="256.8" cy="142.1" rx="56.2" ry="77.2"/>
+
+            <g class="string">
+              <line class="stringBlue" x1="214" y1="476.7" x2="122.8" y2="225.2"/>
+              <line class="stringYellow" x1="213.8" y1="474.8" x2="256.8" y2="219.3"/>
+              <line class="stringRed" x1="213.7" y1="477.6" x2="185.9" y2="187.7"/>
+            </g>
+            <ellipse class="blueBal" cx="119.7" cy="147.9" rx="56.2" ry="77.2"/>
+            <ellipse class="redBal" cx="186.3" cy="108.4" rx="56.2" ry="77.2"/>
+            <ellipse class="yellowBal" cx="256.8" cy="142.1" rx="56.2" ry="77.2"/>
           </g>
 
 <!-- /////////  WIZARD HAT ///////-->
