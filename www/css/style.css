@@ -1,6 +1,6 @@
 /* Empty. Add your own CSS if you like */
 .ground {
-  height: 800px;
+  height: 625px;
   z-index: -1;
   position: relative;
   /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#1e5799+0,3ca840+0,8dd9fc+0,0fb0d8+59,22d883+61,3ca840+100 */
@@ -15,7 +15,7 @@
 #main-progress {
   /*text-align: inherit;*/
   font-weight: bold;
-  /*margin-bottom: 100px;*/
+  /*margin-top: 30px;*/
 }
 
 .progress-text {
@@ -29,7 +29,8 @@
   background: linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(232, 229, 135, 1) 100%);
   border: 2px solid rgba(245, 245, 245, 1);
   border-radius: 25px;
-  height: 23px;}
+  height: 23px;
+}
 
 .progress-bar-custom {
   background: rgba(66, 139, 202, 1);
