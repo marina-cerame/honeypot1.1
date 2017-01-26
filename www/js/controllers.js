@@ -8,11 +8,10 @@ angular.module('starter.controllers', [])
         delete $rootScope[prop];
       }
     }
-    console.log($rootScope);
     $location.path('/login');
-  }
+  };
 
   $scope.goToStore = function() {
     $location.path('/app/store');
-  }
-})
+  };
+});

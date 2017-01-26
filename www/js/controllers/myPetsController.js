@@ -6,7 +6,7 @@ angular.module('myPets', [])
       $scope.pets = res.data.data;
     }, function(err) {
       console.log(err);
-    })
+    });
 
   $scope.petImages = {
     1: '../img/pets/bear.png',
@@ -15,12 +15,13 @@ angular.module('myPets', [])
   };
 
   $scope.displayImages = function(type) {
-    return petImages[type]
-  }
+    return $scope.petImages[type];
+  };
+
   $scope.goToPet = function(pet) {
     $rootScope.pet = pet;
     $location.path('/market/pet');
-  }
+  };
 
   $scope.editPet = function(pet) {
     $rootScope.pet = pet;

@@ -9,49 +9,46 @@ angular.module('app.adoptPet', [])
       1: '../img/pets/bear.png',
       2: '../img/pets/octopus.png',
       3: '../img/pets/dragon.png'
-    }
+    };
 
     $scope.petTypeDisplay = function(type) {
       let types = {
         bear: 'fluffy bear',
         cat: 'sly octopus',
         dog: 'fiery dragon'
-      }
+      };
       return types[type];
-    }
+    };
 
     $scope.slideHasChanged = function(index) {
-      console.log(index)
       $scope.selectedPet = $scope.petTypes[index];
-    }
+    };
 
     $http.get('http://localhost:3000/v1/pet_types')
       .then(function(res) {
         res.data.data.forEach(type => {
-          $scope.petTypes.push(type)
+          $scope.petTypes.push(type);
           for(let i = 0; i < $scope.petTypes.length; i++) {
-            console.log($scope.petTypes, 'pet types')
-            $scope.petTypes[i].img = $scope.petImages[$scope.petTypes[i].id]
+            $scope.petTypes[i].img = $scope.petImages[$scope.petTypes[i].id];
             $scope.selectedPet = $scope.petTypes[0].name;
           }
         });
       }, function(err) {
-        console.log(err)
-      })
+        console.log(err);
+      });
 
     $scope.adoptNewPet = function() {
 
       $scope.newpet.pet_type_id = $scope.selectedPet.id || 1;
       $scope.newpet.user_id = $rootScope.user;
-      console.log($scope.newpet, 'heres new pet')
 
       $http.post('http://localhost:3000/v1/pets', $scope.newpet)
-        .then(function(res) {
-          console.log(res)
+        .then(function() {
+          $location.path('/app/myPets');
         }, function(err) {
-          console.log(err)
-        })
+          console.log(err);
+        });
 
-    }
+    };
 
-  })
+  });

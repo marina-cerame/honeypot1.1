@@ -8,20 +8,20 @@ angular.module('editPet', [])
 
   $scope.edit = function() {
     $http.put(`http://localhost:3000/v1/pets/${$rootScope.pet.id}`, $scope.pet)
-      .then(function(res) {
+      .then(function() {
         $location.path('/app/myPets');
       }, function(err) {
         console.log(err);
-      })
-  }
+      });
+  };
 
   $scope.delete = function() {
     $http.delete(`http://localhost:3000/v1/pets/${$rootScope.pet.id}`)
-      .then(function(res) {
+      .then(function() {
         $location.path('/app/myPets');
       }, function(err) {
         console.log(err);
-      })
-  }
+      });
+  };
 
-})
+});
