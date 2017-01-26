@@ -1,10 +1,10 @@
-<ion-view view-title="View Account">
+<ion-view >
   <ion-content>
     <body>
-    <h1>Accounts</h1>
+    <h1>accounts</h1>
     <div class="container">
         <ion-list>
-            <ion-item class="text-center">${{total}} saved towards {{goal}}!</ion-item>
+            <h2 class="text-center">${{total}} saved!</h2>
             <ion-item>
                 <div> checking account: {{ checkingName }} </div>
                 <div>
@@ -22,10 +22,9 @@
               </div>
             </ion-item>
         </ion-list>
-        <button class="button button-full button-energized" ng-click="goToPet()">
-
-   Save
-</button>
+        <button style="background-color: #e3b11a" class="button button-full" ng-click="goToPet()">
+           Next
+        </button>
 
     </div>
   </body>

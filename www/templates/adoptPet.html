@@ -1,9 +1,9 @@
-<ion-view view-title="Starter Pet">
+<ion-view>
   <ion-content>
     <ion-slide-box does-continue="true" autoplay="true" slide-interval="1000" on-slide-changed="slideHasChanged($index)">
       <ion-slide ng-repeat='type in petTypes'>
         <div ng-model='newpet.type' value={{type.name}} class="adopt-showcase">
-          <h1>Adopt a New {{petTypeDisplay(type.name)}}!</h1>
+          <h1>adopt a new {{petTypeDisplay(type.name)}}!</h1>
 
           <img src={{type.img}} />
 
@@ -34,7 +34,7 @@
           <p ng-show="myForm.password.$error.minlength">* Password must be longer than 6 characters</p>
       </div>
     </form>
-    <button ng-disabled="firstPet.$invalid" ng-click='adoptNewPet()' class="button button-full button-energized">
+    <button ng-disabled="firstPet.$invalid" ng-click='adoptNewPet()' style="background-color: #e3b11a" class="button button-full">
     Adopt this pet!
     </button>
 

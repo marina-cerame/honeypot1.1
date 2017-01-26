@@ -14,4 +14,14 @@ angular.module('editPet', [])
         console.log(err);
       })
   }
+
+  $scope.delete = function() {
+    $http.delete(`http://localhost:3000/v1/pets/${$rootScope.pet.id}`)
+      .then(function(res) {
+        $location.path('/app/myPets');
+      }, function(err) {
+        console.log(err);
+      })
+  }
+
 })

@@ -13,9 +13,9 @@ angular.module('app.adoptPet', [])
 
     $scope.petTypeDisplay = function(type) {
       let types = {
-        bear: 'Fluffy Bear',
-        cat: 'Sly Octopus',
-        dog: 'Fiery Dragon'
+        bear: 'fluffy bear',
+        cat: 'sly octopus',
+        dog: 'fiery dragon'
       }
       return types[type];
     }
