@@ -38,9 +38,6 @@ class V1BankTokensController extends Nodal.Controller {
   create() {
     const public_token = this.params.body.public_token;
     const account_id = this.params.body.account_id;
-    console.log('public_token: ', public_token);
-    console.log('account_id: ', account_id);
-    console.log('PARAMs: ', this.params.body);
     const user_id = this.params.body.user_id;
     const type = this.params.body.type;
     const name = this.params.body.name;
@@ -60,16 +57,13 @@ class V1BankTokensController extends Nodal.Controller {
           console.log(err);
         } else {
           var access_token = res.access_token;
-          console.log(access_token);
           var bank_account_token = res.stripe_bank_account_token;
-          console.log(bank_account_token);
           stripe.customers.create({
             source: bank_account_token
           }, function(err, customer) {
             if (err) {
               console.log(err);
             } else {
-              console.log('customer id: ', customer.id);
               const newToken = {
                 user_id: user_id,
                 type: type,
@@ -93,46 +87,31 @@ class V1BankTokensController extends Nodal.Controller {
     // });
     const public_token = this.params.body.public_token;
     const account_id = this.params.body.account_id;
-    console.log('public_token: ', public_token);
-    console.log('account_id: ', account_id);
     const user_id = this.params.body.user_id;
     const type = this.params.body.type;
     const name = this.params.body.name;
 
-    // BankToken.query()
-    //   .where(this.params.query)
-    //   .end((err, models) => {
-    //
-    //     this.respond(err || models);
-    //
-    //   });
-
-      var context = this;
+    var context = this;
 
     plaidClient.exchangeToken(public_token, account_id, function(err, res) {
         if (err != null) {
           console.log(err);
         } else {
           var access_token = res.access_token;
-          console.log(access_token);
           var bank_account_token = res.stripe_bank_account_token;
-          console.log(bank_account_token);
           stripe.customers.create({
             source: bank_account_token
           }, function(err, customer) {
             if (err) {
               console.log(err);
             } else {
-              console.log('customer id: ', customer.id);
               const newToken = {
                 user_id: user_id,
                 type: type,
                 name: name,
                 token: customer.id
               }
-              console.log('newToken: ', newToken);
               BankToken.update(context.params.route.id, context.params.body, (err, model) => {
-
                 context.respond(err || model);
               });
             }

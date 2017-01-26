@@ -32,9 +32,7 @@ class V1TransactionsController extends Nodal.Controller {
 
     const amount = this.params.body.amount;
     const checking = this.params.body.checking;
-    console.log('body!!!!!!!!!!!!!!!!!', this.params.body);
     var context = this;
-
 
     stripe.charges.create({
       amount: amount,
