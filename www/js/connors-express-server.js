@@ -1,6 +1,8 @@
 var express = require('express');
 var plaid = require('plaid');
 var bodyParser = require('body-parser');
+var stripe = require('stripe')('sk_test_XtAMFVO64j1hd1Fiud3lCVdj');
+
 
 var app = express();
 
@@ -37,9 +39,32 @@ app.post('/authenticate', function(serverReq, serverRes) {
       console.log(bank_account_token);
       console.log('checking');
       console.log('userID: ', serverReq.body.user);
+
+      // let newCustomer = stripe.customers.create({
+      //   source: bank_account_token
+      // }, function(err, customer) {
+      //   console.log(err);
+      //   console.log('this is newCustomer: ', newCustomer);
+      //
+      // });
+      // console.log('this is newCustomer: ', newCustomer);
+
       serverRes.send(bank_account_token);
     }
   });
+});
+
+app.post('/charge', function(req, res) {
+  console.log('wreck dat body: ', req.body);
+
+
+  stripe.charges.create({
+  amount: req.body.amount,
+  currency: "usd",
+  source: req.body.token // Previously stored, then retrieved
+  });
+  console.log('charge happened');
+
 });
 
 var server = app.listen('8080', function() {
