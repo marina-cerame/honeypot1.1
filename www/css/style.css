@@ -39,10 +39,14 @@
   background: rgba(66, 139, 202, 1);
 }
 
+.slider {
+  height:350px;
+}
 .adopt-showcase {
   text-align: center;
   margin: auto;
   padding: 5%;
+  height: 200px;
 }
 
 .food-item {
