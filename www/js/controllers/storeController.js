@@ -21,8 +21,8 @@ angular.module('app.store', [])
     2: '/img/salmon.png',
     3: '/img/honey_pot.png',
     10: '/img/wiz-hat.png',
-    11: '/img/balloons.png',
-    12: '/img/clock-chain.png',
+    11: '/img/clock-chain.png',
+    12: '/img/balloons.png',
     19: '/img/coffee.png',
     20: '/img/chips.png',
     21: '/img/klondike.png'
