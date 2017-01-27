@@ -14,18 +14,21 @@
             .st5{fill:#EFD4B4;stroke:#231F20;stroke-linecap:round;stroke-miterlimit:10;}
 
             /*/////Clock Stuff////*/
+            .necklace{opacity: 0}
             .chain{fill:none;stroke:#FFE833;stroke-width:3;stroke-linecap:round;stroke-miterlimit:10;}
             .clockBack{fill:#FFE833;stroke:#231F20;stroke-linecap:round;stroke-miterlimit:10;}
 	          .clockPiece{fill:none;stroke:#231F20;stroke-linecap:round;stroke-miterlimit:10;}
 	          .clockCenter{stroke:#231F20;stroke-linecap:round;stroke-miterlimit:10;}
 
            /*////////Balloons//////*/
+            .balloons{opacity: 0}
             .string{fill:none;stroke:#231F20;stroke-width:3;stroke-linecap:round;stroke-miterlimit:10;}
             .blueBal{opacity:0.9;fill:#3300CC;stroke:#000000;stroke-linecap:round;stroke-miterlimit:10;}
             .redBal{opacity:0.8;fill:#FF0000;stroke:#000000;stroke-linecap:round;stroke-miterlimit:10;}
             .yellowBal{opacity:0.8;fill:#FFFF33;stroke:#000000;stroke-linecap:round;stroke-miterlimit:10;}
 
             /*//////Wizard Hat////*/
+            .hat{opacity: 0}
             .wizardHat{fill:#0C0068;stroke:#231F20;stroke-linecap:round;stroke-miterlimit:10;}
             .stars{fill:#B7E5FA;stroke:#B7E5FA;stroke-miterlimit:10;}
 
@@ -91,7 +94,7 @@
 
 
 <!-- ///////////CLOCK///////////// -->
-
+        <g class="necklace">
           <g class="chain">
         		<ellipse transform="matrix(0.9085 -0.4178 0.4178 0.9085 -149.8059 175.7539)" class="chainLink" cx="326.5" cy="430" rx="5.5" ry="8.4"/>
         		<ellipse transform="matrix(0.9085 -0.4178 0.4178 0.9085 -158.7717 185.05)" class="chainLink" cx="343.2" cy="455.1" rx="5.5" ry="8.4"/>
@@ -144,7 +147,7 @@
             </g>
           	<circle class="clockCenter" cx="355.4" cy="509.5" r="1.7"/>
           </g>
-
+        </g>
 
 
 <!-- //////////  Balloons  ///////// -->
@@ -162,6 +165,7 @@
           </g>
 
 <!-- /////////  WIZARD HAT ///////-->
+        <g class="hat">
             <polygon class="wizardHat" points="281.9,278.5 425.3,278.5 353.6,79.1 "/>
           <g class="stars">
               <path class="star" d="M341,141.2l3.8-11.7l3.8,11.7l-9.9-7.2h12.3"/>
@@ -183,6 +187,7 @@
               <path class="star" d="M333.5,171.3l3.8-11.7l3.8,11.7l-9.9-7.2h12.3"/>
               <path class="star" d="M363.3,175.6L367,164l3.8,11.7l-9.9-7.2h12.3"/>
           </g>
+        </g>
 
 <!-- //////////SAD BEAR/////////// -->
             <g class = "frown">

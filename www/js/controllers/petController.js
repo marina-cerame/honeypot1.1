@@ -6,22 +6,15 @@ angular.module('app.pet', [])
   ///////DATABASE CALL TO SET BEAR STATS/////////
   ///////////////////////////////////////////////
 
-
   $http.get(`http://35.167.2.107:3000/v1/pet_stats/?id__is=${$rootScope.pet.id}`)
     .then(function(res) {
       $scope.stats = res.data.data[0];
       $scope.stats.progress = ($scope.stats.goal_progress / $scope.stats.goal_amt) * 100;
-      console.log($scope.stats.happiness, 'happiness')
-      //For happiness
-      if($scope.stats.happiness < 51) {
-        TweenMax.to('.mouth', .5, {alpha: 0})
-        TweenMax.to('.frown', .5, {alpha: 1})
-        if($scope.stats.happiness < 26) {
-          TweenMax.to('.tears', 2, {alpha: 1})
-        }
-      } else {
-        $scope.bearTilt();
-      }
+      console.log(res.data.data[0])
+
+      setAccessories();
+      setHappiness();
+
     }, function(err) {
       console.log(err);
     });
@@ -63,6 +56,25 @@ angular.module('app.pet', [])
         TweenMax.to('.stringBlue', 2, {rotation: 20 + "_short", transformOrigin: "0% 0%", ease: 'easeIn'})
       }
       console.log('test')
+    }
+  }
+  //////////////////////////////
+  //////// ACCESSORIES /////////
+  //////////////////////////////
+  const setAccessories = function() {
+    const accessories = $scope.stats.accessories,
+      hat = accessories.hat,
+      necklace = accessories.necklace,
+      balloons = accessories.balloons
+    console.log(hat, 'hat')
+    if(hat) {
+      TweenMax.to('.hat', 0, {alpha: 1})
+    }
+    if(balloons) {
+      TweenMax.to('.balloons', 0, {alpha: 1})
+    }
+    if(necklace) {
+      TweenMax.to('.necklace', 0, {alpha: 1})
     }
   }
 
@@ -113,6 +125,17 @@ angular.module('app.pet', [])
   /////////////////////////////////
   //////////Sad Bear///////////////
   /////////////////////////////////
+  const setHappiness = () => {
+    if($scope.stats.happiness < 51) {
+      TweenMax.to('.mouth', .5, {alpha: 0})
+      TweenMax.to('.frown', .5, {alpha: 1})
+      if($scope.stats.happiness < 26) {
+        TweenMax.to('.tears', 2, {alpha: 1})
+      }
+    } else {
+      $scope.bearTilt();
+    }
+  }
 
   TweenMax.to('.tears', .001, {alpha:0})
   TweenMax.to('.frown', .001, {alpha:0})
