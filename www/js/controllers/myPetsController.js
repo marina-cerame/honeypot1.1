@@ -1,7 +1,7 @@
 angular.module('myPets', [])
 .controller('MyPetsCtrl', function($scope, $rootScope, $http, $location) {
 
-  $http.get(`http://localhost:3000/v1/pets/?user_id__is=${$rootScope.user}`)
+  $http.get(`http://35.167.2.107:3000/v1/pets/?user_id__is=${$rootScope.user}`)
     .then(function(res) {
       $scope.pets = res.data.data;
     }, function(err) {

@@ -9,10 +9,10 @@ angular.module('auth', [])
   $scope.logo = './img/honeypot_logo.png';
 
   $scope.login = function() {
-    $http.post('http://localhost:3000/v1/access_tokens', $scope.user)
+    $http.post('http://35.167.2.107:3000/v1/access_tokens', $scope.user)
       .then(function(res) {
         $rootScope.user = res.data.data[0].user_id;
-        $http.get(`http://localhost:3000/v1/bank_tokens/?user_id__is=${$rootScope.user}`)
+        $http.get(`http://35.167.2.107:3000/v1/bank_tokens/?user_id__is=${$rootScope.user}`)
           .then(function(res) {
             res.data.data.forEach(entry => {
               if (entry.type === 'checking') {
@@ -40,9 +40,9 @@ angular.module('auth', [])
   };
 
   $scope.signup = function() {
-    $http.post('http://localhost:3000/users', $scope.user)
+    $http.post('http://35.167.2.107:3000/users', $scope.user)
       .then(function() {
-        $http.post('http://localhost:3000/v1/access_tokens', $scope.user)
+        $http.post('http://35.167.2.107:3000/v1/access_tokens', $scope.user)
           .then(function(res) {
             $rootScope.user = res.data.data[0].user_id;
             $location.path('/bankAuth');
