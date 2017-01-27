@@ -201,7 +201,6 @@ angular.module('app.pet', [])
       .then(function (res) {
         $scope.stats = res.data.data[0];
         $scope.stats.progress = ($scope.stats.goal_progress / $scope.stats.goal_amt) * 100;
-
         setAccessories();
         setHappiness();
       }, function (err) {
