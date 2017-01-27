@@ -1,6 +1,6 @@
 angular.module('app.store', [])
 .controller('StoreCtrl', function($scope, $rootScope, $http , $location) {
-  $scope.transaction;
+
   $scope.filters = {type:'food'};
 
   $http.get(`http://35.167.2.107:3000/v1/items/?pet_type_id__is=${$rootScope.pet.pet_type_id}`)
@@ -29,19 +29,23 @@ angular.module('app.store', [])
   };
 
   $scope.buyFood = function() {
-    $scope.transaction = {
-      user_id: $rootScope.user,
-      pet_id: $rootScope.pet.id,
-      item_id: this.item.id,
-      amount: this.item.cost
-    };
-
-    $http.post('http://localhost:3000/v1/transactions', $scope.transaction)
-      .then(function(){
-        $location.path('/market/pet');
-      }, function(error){
-        console.log(error);
+    const context = this;
+    $http.get(`http://localhost:3000/v1/bank_tokens/${$rootScope.checking_id}`)
+      .then(function(res) {
+        console.log('res: ', res);
+        let transaction = {
+          user_id: $rootScope.user,
+          pet_id: $rootScope.pet.id,
+          item_id: context.item.id,
+          amount: context.item.cost,
+          checking: res.data.data[0].token
+        };
+        $http.post('http://localhost:3000/v1/transactions', transaction)
+          .then(function(){
+            $location.path('/market/pet');
+          }, function(error){
+            console.log(error);
+          });
       });
-  };
-
-});
+    }
+  });
