@@ -1,3 +1,4 @@
+
 'use strict';
 
 const Nodal = require('nodal');
@@ -13,12 +14,11 @@ class V1PetsController extends Nodal.Controller {
         this.respond(err || models);
 
       });
-
   }
 
   show() {
     Pet.find(this.params.route.id, (err, model) => {
-      this.respond(err ||  model );
+      this.respond(err || model);
 
     });
 
