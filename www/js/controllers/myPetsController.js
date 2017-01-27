@@ -6,12 +6,22 @@ angular.module('myPets', [])
       $scope.pets = res.data.data;
     }, function(err) {
       console.log(err);
-    })
+    });
+
+  $scope.petImages = {
+    1: '../img/pets/bear.png',
+    2: '../img/pets/octopus.png',
+    3: '../img/pets/dragon.png'
+  };
+
+  $scope.displayImages = function(type) {
+    return $scope.petImages[type];
+  };
 
   $scope.goToPet = function(pet) {
     $rootScope.pet = pet;
     $location.path('/market/pet');
-  }
+  };
 
   $scope.editPet = function(pet) {
     $rootScope.pet = pet;

@@ -6,7 +6,7 @@ angular.module('auth', [])
     grant_type: 'password'
   };
 
-  $scope.logo = './img/honeypot_logo.png'
+  $scope.logo = './img/honeypot_logo.png';
 
   $scope.login = function() {
     $http.post('http://localhost:3000/v1/access_tokens', $scope.user)
@@ -41,7 +41,7 @@ angular.module('auth', [])
 
   $scope.signup = function() {
     $http.post('http://localhost:3000/users', $scope.user)
-      .then(function(res) {
+      .then(function() {
         $http.post('http://localhost:3000/v1/access_tokens', $scope.user)
           .then(function(res) {
             $rootScope.user = res.data.data[0].user_id;
@@ -53,7 +53,4 @@ angular.module('auth', [])
         console.log(err);
       });
   };
-
-
-
-})
+});

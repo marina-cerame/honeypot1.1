@@ -13,7 +13,7 @@
           <text ng-model='pet.pet_type_id' id="starter-pet-text">Starter Bear</text>
         </label>
         <label class="item item-input">
-          <span class="input-label">What goal are you saving for?</span>
+          <span class="input-label">What are you saving for?</span>
           <input type="text" ng-minlength="1" ng-model='pet.goal_name' required>
         </label>
         <label class="item item-input">
@@ -24,7 +24,7 @@
           <!-- </select> -->
         </label>
     </div>
-      <div class="padding">
+      <div>
           <p ng-show="firstPet.name.$error.required">* Username is required</p>
           <!-- <p ng-show="myForm.username.$invalid && !myForm.username.$pristine">* Username must be an email address</p>
           <p ng-show="myForm.username.$error.minlength">* Username must be longer than 5 characters</p>
