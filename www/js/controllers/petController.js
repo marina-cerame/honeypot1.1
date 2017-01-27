@@ -112,15 +112,15 @@ angular.module('app.pet', [])
   //////////////////////////////////
   ///////////Sun & Moon/////////////
   //////////////////////////////////
-  TweenMax.to('.sun', .001, {alpha: 0, rotation: 180, transformOrigin: "0px 1000px"})
-  TweenMax.to('.moon', .001, {alpha: 0, rotation: 180, transformOrigin: "0px 1000px"})
-  let newDate1 = new Date(), datetime1 = newDate1.timeNow(), second1 = datetime1.slice(6,8) * 360 / 60,
-      minute1 = datetime1.slice(3,5) * 360 / 60, hour1 = datetime1.slice(0,2) * 360 / 12 + (minute1 / 12);
-  if(hour1 > 180 && hour1 < 540) {
-    TweenMax.fromTo('.sun', 1.5, {alpha: 1}, {rotation: 360, ease: "easeOut", transformOrigin: "0px 1000px"})
-  } else {
-    TweenMax.fromTo('.moon', 1.5, {alpha: 1}, {rotation: 360, ease: "easeOut", transformOrigin: "0px 1000px"})
-  }
+  // TweenMax.to('.sun', .001, {alpha: 0, rotation: 180, transformOrigin: "0px 1000px"})
+  // TweenMax.to('.moon', .001, {alpha: 0, rotation: 180, transformOrigin: "0px 1000px"})
+  // let newDate1 = new Date(), datetime1 = newDate1.timeNow(), second1 = datetime1.slice(6,8) * 360 / 60,
+  //     minute1 = datetime1.slice(3,5) * 360 / 60, hour1 = datetime1.slice(0,2) * 360 / 12 + (minute1 / 12);
+  // if(hour1 > 180 && hour1 < 540) {
+  //   TweenMax.fromTo('.sun', 1.5, {alpha: 1}, {rotation: 360, ease: "easeOut", transformOrigin: "0px 1000px"})
+  // } else {
+  //   TweenMax.fromTo('.moon', 1.5, {alpha: 1}, {rotation: 360, ease: "easeOut", transformOrigin: "0px 1000px"})
+  // }
 
   /////////////////////////////////
   //////////Sad Bear///////////////
