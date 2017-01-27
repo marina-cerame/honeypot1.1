@@ -6,11 +6,8 @@
     }
   },
   "rules": {
-    "no-console": [
-      "warn",
-      {
-        "allow": ["warn","error"]
-      }
-    ]
+    "no-console": 0,
+    "prefer-template": 0,
+    "no-undef": 0
   }
 }

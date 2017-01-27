@@ -2,7 +2,7 @@
 /* eslint no-param-reassign: ["error", { "props": false }] */
 
 angular.module('app.pet', [])
-  .controller('PetCtrl', function ($scope, $rootScope, $http) {
+  .controller('PetCtrl', function($scope, $rootScope, $http) {
     // ///////////////////////////////
     // ////////Sad Bear///////////////
     // ///////////////////////////////
@@ -26,15 +26,15 @@ angular.module('app.pet', [])
     // ///////Happy Bear//////////////
     // ///////////////////////////////
 
-    $scope.bearTilt = function () {
-      const left = function () {
+    $scope.bearTilt = () => {
+      const left = () => {
         TweenMax.to('.bear', 1, {
           rotation: 2,
           transformOrigin: '50% 50%',
           onComplete: right,
         });
       };
-      const right = function () {
+      const right = () => {
         TweenMax.to('.bear', 1, {
           rotation: -2,
           transformOrigin: '50% 50%',
@@ -47,18 +47,19 @@ angular.module('app.pet', [])
     // //////BEAR TOUCH EFFECT//////////////
     // /////////////////////////////////////
 
-    const earUp = function () {
-      TweenMax.to('.ears', 0.5, { y: -7, onComplete: earDown });
-      TweenMax.to('.leftArm', 0.5, { rotation: 75, transformOrigin: '80% 50%' });
-      TweenMax.to('.balloons', 0.5, { y: -77, x: 12 });
-    };
-    const earDown = function () {
+    const earDown = () => {
       TweenMax.to('.ears', 0.5, { y: 7 });
       TweenMax.to('.leftArm', 0.5, { rotation: 0, transformOrigin: '80% 50%' });
       TweenMax.to('.balloons', 0.5, { y: 0, x: 0 });
     };
 
-    $scope.bearTouch = function () {
+    const earUp = () => {
+      TweenMax.to('.ears', 0.5, { y: -7, onComplete: earDown });
+      TweenMax.to('.leftArm', 0.5, { rotation: 75, transformOrigin: '80% 50%' });
+      TweenMax.to('.balloons', 0.5, { y: -77, x: 12 });
+    };
+
+    $scope.bearTouch = () => {
       // IF BEAR IS HAPPY
       if ($scope.stats.happiness > 25) {
         earUp();
@@ -106,7 +107,7 @@ angular.module('app.pet', [])
     // ////////////////////////////
     // ////// ACCESSORIES /////////
     // ////////////////////////////
-    const setAccessories = function () {
+    const setAccessories = () => {
       const accessories = $scope.stats.accessories;
       const hat = accessories.hat;
       const necklace = accessories.necklace;
@@ -138,7 +139,7 @@ angular.module('app.pet', [])
     let second;
     let minute;
     let hour;
-    setInterval(function () {
+    setInterval(() => {
       newDate = new Date();
       datetime = newDate.timeNow();
       second = datetime.slice(6, 8) * 360 / 60;
@@ -163,47 +164,49 @@ angular.module('app.pet', [])
     // ////////////////////////////////
     // /////////Sun & Moon/////////////
     // ////////////////////////////////
-    // TweenMax.to('.sun', 0.001, { alpha: 0, rotation: 180, transformOrigin: "0px 1000px" });
-    // TweenMax.to('.moon', 0.001, { alpha: 0, rotation: 180, transformOrigin: "0px 1000px" });
-    // let newDate1 = new Date();
-    // let datetime1 = newDate1.timeNow();
-    // let second1 = datetime1.slice(6,8) * 360 / 60;
-    // let minute1 = datetime1.slice(3,5) * 360 / 60;
-      //  let hour1 = datetime1.slice(0,2) * 360 / 12 + (minute1 / 12);
-    // if (hour1 > 180 && hour1 < 540) {
-      // TweenMax.fromTo('.sun', 1.5, { alpha: 1 }, {
-      //   rotation: 360,
-      //   ease: 'easeOut',
-      //   transformOrigin: '0px 1000px',
-      // });
-    // } else {
-      // TweenMax.fromTo('.moon', 1.5, { alpha: 1 }, {
-      //   rotation: 360,
-      //   ease: 'easeOut',
-      //   transformOrigin: '0px 1000px'
-      // });
-    // };
+    TweenMax.to('.sun', 0.001, { alpha: 0, rotation: 180, transformOrigin: '0px 1000px' });
+    TweenMax.to('.moon', 0.001, { alpha: 0, rotation: 180, transformOrigin: '0px 1000px' });
+    const newDate1 = new Date();
+    const datetime1 = newDate1.timeNow();
+    const minute1 = datetime1.slice(3, 5) * 360 / 60;
+    const hour1 = datetime1.slice(0, 2) * 360 / 12 + (minute1 / 12);
+    if (hour1 > 180 && hour1 < 540) {
+      $('.ground').css('background-image', 'url(../img/woods_day.png)');
+    } else {
+      $('.ground').css('background-image', 'url(../img/woods_night.png)');
+    }
 
     // /////////////////////////////////////////////////////
     // ///////Initial Function to Fix Bear Size/////////////
     // /////////////////////////////////////////////////////
 
-    $scope.bearGrow = function () {
+    $scope.bearGrow = () => {
       TweenMax.to('.bear', 0.1, { scale: 1.15, y: 130 });
     };
     $scope.bearGrow();
+
+    // //////////////////////////////
+    // //////// EVOLUTION ///////////
+    // //////////////////////////////
+    const setEvolution = () => {
+      if ($scope.stats.progress > 50) {
+        TweenMax.to('.tusks', 0, { alpha: 1 });
+        TweenMax.to('.claws', 0, { alpha: 1 });
+      }
+    };
 
     // /////////////////////////////////////////////
     // /////DATABASE CALL TO SET BEAR STATS/////////
     // /////////////////////////////////////////////
 
     $http.get(`http://35.167.2.107:3000/v1/pet_stats/?id__is=${$rootScope.pet.id}`)
-      .then(function (res) {
+      .then(res => {
         $scope.stats = res.data.data[0];
         $scope.stats.progress = ($scope.stats.goal_progress / $scope.stats.goal_amt) * 100;
         setAccessories();
         setHappiness();
-      }, function (err) {
+        setEvolution();
+      }, err => {
         console.warn(err);
       });
   });
