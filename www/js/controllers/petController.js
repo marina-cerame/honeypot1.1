@@ -11,12 +11,12 @@ angular.module('app.pet', [])
     .then(function(res) {
       $scope.stats = res.data.data[0];
       $scope.stats.progress = ($scope.stats.goal_progress / $scope.stats.goal_amt) * 100;
-
+      console.log($scope.stats.happiness, 'happiness')
       //For happiness
-      if($scope.happiness < 51) {
+      if($scope.stats.happiness < 51) {
         TweenMax.to('.mouth', .5, {alpha: 0})
         TweenMax.to('.frown', .5, {alpha: 1})
-        if($scope.happiness < 26) {
+        if($scope.stats.happiness < 26) {
           TweenMax.to('.tears', 2, {alpha: 1})
         }
       } else {
@@ -32,7 +32,7 @@ angular.module('app.pet', [])
 
   $scope.bearTouch = function() {
     ////IF BEAR IS HAPPY
-    if($scope.happiness > 25) {
+    if($scope.stats.happiness > 25) {
       earUp();
     } else {
       ////IF BEAR IS SAD
@@ -48,18 +48,18 @@ angular.module('app.pet', [])
         tear++;
       }
       if(tear % 4 === 1) {
-        TweenMax.to('.redBal', 6, {y: -800, ease: 'easeIn'})
-        TweenMax.to('.stringRed', 6, {y: -800, ease: 'easeIn'})
+        TweenMax.to('.redBal', 6, {y: -800, ease: 'easeIn', x: -150})
+        TweenMax.to('.stringRed', 6, {y: -800, ease: 'easeIn', x: -150})
         TweenMax.to('.stringRed', 2, {rotation: 5 + "_short", transformOrigin: "0% 0%", ease: 'easeIn'})
       }
       if(tear % 6 === 1) {
-        TweenMax.to('.yellowBal', 6, {y: -800, ease: 'easeIn'})
-        TweenMax.to('.stringYellow', 6, {y: -800, ease: 'easeIn'})
+        TweenMax.to('.yellowBal', 6, {y: -800, ease: 'easeIn', x: -150})
+        TweenMax.to('.stringYellow', 6, {y: -800, ease: 'easeIn', x: -150})
         TweenMax.to('.stringYellow', 2, {rotation: -10 + "_short", transformOrigin: "0% 0%", ease: 'easeIn'})
       }
       if(tear % 8 === 1) {
-        TweenMax.to('.blueBal', 6, {y: -800, ease: 'easeIn'})
-        TweenMax.to('.stringBlue', 6, {y: -800, ease: 'easeIn'})
+        TweenMax.to('.blueBal', 6, {y: -800, ease: 'easeIn', x: -150})
+        TweenMax.to('.stringBlue', 6, {y: -800, ease: 'easeIn', x: -150})
         TweenMax.to('.stringBlue', 2, {rotation: 20 + "_short", transformOrigin: "0% 0%", ease: 'easeIn'})
       }
       console.log('test')
