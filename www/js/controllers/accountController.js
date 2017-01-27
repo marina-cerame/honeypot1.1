@@ -4,7 +4,7 @@ angular.module('app.account', [])
 
         function($scope, $location, $http, $rootScope) {
             console.log($rootScope.user, 'THIS IS THE USER IN THE ROOT SCOPE')
-            $http.get(`http://localhost:3000/v1/totals/?user_id__is=${$rootScope.user}`)
+            $http.get(`http://35.167.2.107:3000/v1/totals/?user_id__is=${$rootScope.user}`)
               .then(function(res){
                 console.log(res.data.data[0]);
                 $scope.total=res.data.data[0].total;
@@ -28,7 +28,7 @@ angular.module('app.account', [])
                         type: 'checking',
                         name: $rootScope.checkingName
                     });
-                    $http.put(`http://localhost:3000/v1/bank_tokens/${$rootScope.checking_id}`, postFormat)
+                    $http.put(`http://35.167.2.107:3000/v1/bank_tokens/${$rootScope.checking_id}`, postFormat)
                         .then(function(res) {
                             console.log(res);
                             $rootScope.checking_id = res.data.data[0].id;
@@ -57,7 +57,7 @@ angular.module('app.account', [])
                         type: 'savings',
                         name: $rootScope.savingsName
                     });
-                    $http.put(`http://localhost:3000/v1/bank_tokens/${$rootScope.savings_id}`, postFormat)
+                    $http.put(`http://35.167.2.107:3000/v1/bank_tokens/${$rootScope.savings_id}`, postFormat)
                         .then(function(res) {
                             console.log(res);
                             $rootScope.savings_id = res.data.data[0].id;

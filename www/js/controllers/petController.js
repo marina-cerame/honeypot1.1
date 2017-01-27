@@ -7,16 +7,10 @@ angular.module('app.pet', [])
   ///////////////////////////////////////////////
 
 
-  $http.get(`http://localhost:3000/v1/pet_stats/?id__is=${$rootScope.pet.id}`)
+  $http.get(`http://35.167.2.107:3000/v1/pet_stats/?id__is=${$rootScope.pet.id}`)
     .then(function(res) {
-      $scope.goal_amt = res.data.data[0].goal_amt;
-      $scope.petName = res.data.data[0].name;
-      $scope.goal_progress = res.data.data[0].goal_progress;
-      $scope.hunger = res.data.data[0].hunger;
-      $scope.happiness = res.data.data[0].happiness;
-      $scope.progress = ($scope.goal_progress / $scope.goal_amt) * 100;
-      $scope.goal = res.data.data[0].goal_name;
-      $scope.health = $scope.hunger;
+      $scope.stats = res.data.data[0];
+      $scope.stats.progress = ($scope.stats.goal_progress / $scope.stats.goal_amt) * 100;
 
       //For happiness
       if($scope.happiness < 51) {

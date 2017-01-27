@@ -30,7 +30,7 @@ angular.module('app.store', [])
 
   $scope.buyFood = function() {
     const context = this;
-    $http.get(`http://localhost:3000/v1/bank_tokens/${$rootScope.checking_id}`)
+    $http.get(`http://35.167.2.107:3000/v1/bank_tokens/${$rootScope.checking_id}`)
       .then(function(res) {
         console.log('res: ', res);
         let transaction = {
@@ -40,7 +40,7 @@ angular.module('app.store', [])
           amount: context.item.cost,
           checking: res.data.data[0].token
         };
-        $http.post('http://localhost:3000/v1/transactions', transaction)
+        $http.post('http://35.167.2.107:3000/v1/transactions', transaction)
           .then(function(){
             $location.path('/market/pet');
           }, function(error){

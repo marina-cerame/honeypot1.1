@@ -1,4 +1,4 @@
-<ion-view cache-view="false" view-title="{{petName}}">
+<ion-view cache-view="false" view-title="{{stats.name}}">
   <ion-content>
     <div class="ground">
       <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -203,7 +203,7 @@
         </span><br /><br />
         <div class="progress">
           <div class="progress-bar progress-bar-custom progress-bar-danger active" role="progressbar"
-          aria-valuenow={{health}} aria-valuemin="0" aria-valuemax="100" style="width:{{health}}%">
+          aria-valuenow={{stats.hunger}} aria-valuemin="0" aria-valuemax="100" style="width:{{stats.hunger}}%">
           </div>
         </div>
         <span class="progress-text">
@@ -211,7 +211,7 @@
         </span><br />
         <div class="progress">
           <div class="progress-bar progress-bar-custom progress-bar-warning active" role="progressbar"
-          aria-valuenow={{happiness}} aria-valuemin="0" aria-valuemax="100" style="width:{{happiness}}%">
+          aria-valuenow={{stats.happiness}} aria-valuemin="0" aria-valuemax="100" style="width:{{stats.happiness}}%">
           </div>
         </div>
         <div class="progress-text">
@@ -219,7 +219,7 @@
         </div><br />
         <div class="progress">
           <div class="progress-bar progress-bar-custom progress-bar-info active" role="progressbar"
-          aria-valuenow={{progress}} aria-valuemin="0" aria-valuemax="100" style="width:{{progress}}%">
+          aria-valuenow={{stats.progress}} aria-valuemin="0" aria-valuemax="100" style="width:{{stats.progress}}%">
           </div>
         </div>
     </div>
