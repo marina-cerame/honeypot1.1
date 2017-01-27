@@ -1,19 +1,19 @@
+/* eslint no-param-reassign: ["error", { "props": false }] */
 angular.module('app.store', [])
-.controller('StoreCtrl', function($scope, $rootScope, $http , $location) {
-
-  $scope.filters = {type:'food'};
+.controller('StoreCtrl', function ($scope, $rootScope, $http, $location) {
+  $scope.filters = { type: 'food' };
 
   $http.get(`http://35.167.2.107:3000/v1/items/?pet_type_id__is=${$rootScope.pet.pet_type_id}`)
-    .then(function(res) {
+    .then((res) => {
       $scope.items = res.data.data;
-    }, function(err) {
-      console.log(err);
+    }, (err) => {
+      console.warn(err);
     });
 
   $scope.effect = {
     food: 'Health',
     accessory: 'Happiness',
-    treat: 'Happiness'
+    treat: 'Happiness',
   };
 
   $scope.images = {
@@ -25,27 +25,26 @@ angular.module('app.store', [])
     12: '/img/balloons.png',
     19: '/img/coffee.png',
     20: '/img/chips.png',
-    21: '/img/klondike.png'
+    21: '/img/klondike.png',
   };
 
-  $scope.buyFood = function() {
+  $scope.buyFood = function () {
     const context = this;
     $http.get(`http://35.167.2.107:3000/v1/bank_tokens/${$rootScope.checking_id}`)
-      .then(function(res) {
-        console.log('res: ', res);
-        let transaction = {
+      .then((res) => {
+        const transaction = {
           user_id: $rootScope.user,
           pet_id: $rootScope.pet.id,
           item_id: context.item.id,
           amount: context.item.cost,
-          checking: res.data.data[0].token
+          checking: res.data.data[0].token,
         };
         $http.post('http://35.167.2.107:3000/v1/transactions', transaction)
-          .then(function(){
+          .then(() => {
             $location.path('/market/pet');
-          }, function(error){
-            console.log(error);
+          }, (error) => {
+            console.warn(error);
           });
       });
-    }
-  });
+  };
+});

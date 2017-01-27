@@ -1,39 +1,22 @@
+/* eslint no-param-reassign: ["error", { "props": false }] */
 angular.module('app.firstPet', [])
+.controller('FirstPetCtrl', function ($scope, $location, $http, $rootScope) {
+  $scope.pet = {};
 
-  .controller('FirstPetCtrl', function($scope, $location, $http, $rootScope) {
-    $scope.pet = {};
-    $scope.testRes;
+  $scope.bearShrink = () => {
+    TweenLite.to('.first-bear', 2, { scale: 0.75, x: '15%', y: '-40%' })
+  };
+  $scope.bearShrink();
 
-    $scope.bearShrink = function() {
-      TweenLite.to('.first-bear', 2, { scale: 0.75, x: '15%', y: '-40%'  })
-    };
-    $scope.bearShrink();
-
-    $scope.makeFirstPet = function() {
-
-      $scope.pet.pet_type_id = 1;
-      $scope.pet.user_id = $rootScope.user;
-      // console.log($scope.pet, 'heres scope pet');
-      $http.post('http://35.167.2.107:3000/v1/pets', $scope.pet)
-        .then(function(res) {
-          $rootScope.pet = res.data.data[0];
-          $location.path('/market/pet');
-        }, function(err) {
-          console.log(err);
-        });
-        console.log($scope.testRes)
-    };
-
-    $scope.goal_amt = [
-      1000,
-      900,
-      800,
-      700,
-      600,
-      500,
-      400,
-      300,
-      200,
-      100
-    ];
-  });
+  $scope.makeFirstPet = () => {
+    $scope.pet.pet_type_id = 1;
+    $scope.pet.user_id = $rootScope.user;
+    $http.post('http://35.167.2.107:3000/v1/pets', $scope.pet)
+      .then((res) => {
+        $rootScope.pet = res.data.data[0];
+        $location.path('/market/pet');
+      }, (err) => {
+        console.warn(err);
+      });
+  };
+});
