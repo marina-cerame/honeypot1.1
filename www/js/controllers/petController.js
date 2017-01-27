@@ -135,12 +135,21 @@ angular.module('app.pet', [])
     TweenMax.to('.leftArm', .5, {rotation:75, transformOrigin:"80% 50%"});
     TweenMax.to('.balloons', .5, {y: -77, x: 12})
 
-  $scope.bearGrow = function() {
-    TweenLite.to('.bear', .1, { scale: 1.25, y: 130})
   }
-}
-})
+  const earDown = function() {
+    TweenMax.to('.ears', .5, { y: 7 })
+    TweenMax.to('.leftArm', .5, {rotation:0, transformOrigin:"80% 50%"});
+    TweenMax.to('.balloons', .5, {y: 0, x: 0})
+  }
 
   ///////////////////////////////////////////////////////
   /////////Initial Function to Fix Bear Size/////////////
   ///////////////////////////////////////////////////////
+
+  $scope.bearGrow = function() {
+    TweenMax.to('.bear', .1, { scale: 1.15, y: 130})
+  }
+  $scope.bearGrow();
+
+
+})
