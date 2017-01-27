@@ -47,17 +47,20 @@ angular.module('app.pet', [])
         TweenMax.to('.tear2', .001, {y: 0, alpha: 1, delay: 4})
         tear++;
       }
-      if(tear % 5 === 1) {
-        TweenMax.to('.redBal', 6, {y: -600, ease: 'easeIn'})
-        TweenMax.to('.stringRed', 6, {y: -600, rotation: 10 + "_short", transformOrigin: "0% 0%", ease: 'easeIn'})
+      if(tear % 4 === 1) {
+        TweenMax.to('.redBal', 6, {y: -800, ease: 'easeIn'})
+        TweenMax.to('.stringRed', 6, {y: -800, ease: 'easeIn'})
+        TweenMax.to('.stringRed', 2, {rotation: 5 + "_short", transformOrigin: "0% 0%", ease: 'easeIn'})
+      }
+      if(tear % 6 === 1) {
+        TweenMax.to('.yellowBal', 6, {y: -800, ease: 'easeIn'})
+        TweenMax.to('.stringYellow', 6, {y: -800, ease: 'easeIn'})
+        TweenMax.to('.stringYellow', 2, {rotation: -10 + "_short", transformOrigin: "0% 0%", ease: 'easeIn'})
       }
       if(tear % 8 === 1) {
-        TweenMax.to('.yellowBal', 6, {y: -600, ease: 'easeIn'})
-        TweenMax.to('.stringYellow', 6, {y: -600, rotation: -10 + "_short", transformOrigin: "0% 0%", ease: 'easeIn'})
-      }
-      if(tear % 10 === 1) {
-        TweenMax.to('.blueBal', 6, {y: -600, ease: 'easeIn'})
-        TweenMax.to('.stringBlue', 6, {y: -600, rotation: 22 + "_short", transformOrigin: "0% 0%", ease: 'easeIn'})
+        TweenMax.to('.blueBal', 6, {y: -800, ease: 'easeIn'})
+        TweenMax.to('.stringBlue', 6, {y: -800, ease: 'easeIn'})
+        TweenMax.to('.stringBlue', 2, {rotation: 20 + "_short", transformOrigin: "0% 0%", ease: 'easeIn'})
       }
       console.log('test')
     }
