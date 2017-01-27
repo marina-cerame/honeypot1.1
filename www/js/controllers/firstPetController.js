@@ -14,7 +14,7 @@ angular.module('app.firstPet', [])
       $scope.pet.pet_type_id = 1;
       $scope.pet.user_id = $rootScope.user;
       // console.log($scope.pet, 'heres scope pet');
-      $http.post('http://localhost:3000/v1/pets', $scope.pet)
+      $http.post('http://35.167.2.107:3000/v1/pets', $scope.pet)
         .then(function(res) {
           $rootScope.pet = res.data.data[0];
           $location.path('/market/pet');

@@ -24,7 +24,7 @@ angular.module('app.adoptPet', [])
       $scope.selectedPet = $scope.petTypes[index];
     };
 
-    $http.get('http://localhost:3000/v1/pet_types')
+    $http.get('http://35.167.2.107:3000/v1/pet_types')
       .then(function(res) {
         res.data.data.forEach(type => {
           $scope.petTypes.push(type);
@@ -42,7 +42,7 @@ angular.module('app.adoptPet', [])
       $scope.newpet.pet_type_id = $scope.selectedPet.id || 1;
       $scope.newpet.user_id = $rootScope.user;
 
-      $http.post('http://localhost:3000/v1/pets', $scope.newpet)
+      $http.post('http://35.167.2.107:3000/v1/pets', $scope.newpet)
         .then(function() {
           $location.path('/app/myPets');
         }, function(err) {

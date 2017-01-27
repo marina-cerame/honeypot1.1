@@ -23,7 +23,7 @@ angular.module('app.bankAuth', [])
                         type: 'checking',
                         name: $rootScope.checkingName
                     });
-                    $http.post('http://localhost:3000/v1/bank_tokens', postFormat)
+                    $http.post('http://35.167.2.107:3000/v1/bank_tokens', postFormat)
                         .then(function(res) {
                             console.log(res);
                             $rootScope.checking_id = res.data.data[0].id;
@@ -54,7 +54,7 @@ angular.module('app.bankAuth', [])
                         type: 'savings',
                         name: $rootScope.savingsName
                     });
-                    $http.post('http://localhost:3000/v1/bank_tokens', postFormat)
+                    $http.post('http://35.167.2.107:3000/v1/bank_tokens', postFormat)
                         .then(function(res) {
                             console.log(res);
                             $rootScope.savings_id = res.data.data[0].id;

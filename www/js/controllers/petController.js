@@ -7,7 +7,7 @@ angular.module('app.pet', [])
   ///////////////////////////////////////////////
 
 
-  $http.get(`http://localhost:3000/v1/pet_stats/?id__is=${$rootScope.pet.id}`)
+  $http.get(`http://35.167.2.107:3000/v1/pet_stats/?id__is=${$rootScope.pet.id}`)
     .then(function(res) {
       $scope.goal_amt = res.data.data[0].goal_amt;
       $scope.petName = res.data.data[0].name;
