@@ -1,12 +1,10 @@
+/* global angular */
 /* eslint no-param-reassign: ["error", { "props": false }] */
 angular.module('myPets', [])
-.controller('MyPetsCtrl', function ($scope, $rootScope, $http, $location) {
-
-  $http.get(`http://35.167.2.107:3000/v1/pets/?user_id__is=${$rootScope.user}`)
-    .then((res) => {
-      $scope.pets = res.data.data;
-    }, (err) => {
-      console.warn(err);
+.controller('MyPetsCtrl', function ($scope, $rootScope, $http, $location, myPets) {
+  myPets.getAll()
+    .then((pets) => {
+      $scope.pets = pets;
     });
 
   $scope.petImages = {
