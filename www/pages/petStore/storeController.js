@@ -28,18 +28,56 @@ angular.module('app.store', [])
     21: '/img/klondike.png',
   };
 
-  store.buyFood();
+  // $scope.buyFood = function () {
+  //   const context = this;
+  //   $http.get(`http://35.167.2.107:3000/v1/bank_tokens/${$rootScope.checking_id}`)
+  //     .then((res) => {
+  //       const transaction = {
+  //         user_id: $rootScope.user,
+  //         pet_id: $rootScope.pet.id,
+  //         item_id: context.item.id,
+  //         amount: context.item.cost,
+  //         checking: res.data.data[0].token,
+  //       };
+  //       $http.post('http://35.167.2.107:3000/v1/transactions', transaction)
+  //         .then(() => {
+  //           $location.path('/market/pet');
+  //         }, (error) => {
+  //           console.warn(error);
+  //         });
+  //     });
+  // };
 
   $scope.showConfirm = function () {
     const confirmPopup = $ionicPopup.confirm({
       title: 'Confirm Transaction',
       template: 'Are you sure?',
     });
+    const context = this;
 
     confirmPopup.then(function (res) {
       if (res) {
         console.log('You are sure');
-        store.buyFood();
+        $http.get(`http://35.167.2.107:3000/v1/bank_tokens/${$rootScope.checking_id}`)
+          .then((res) => {
+            const transaction = {
+              user_id: $rootScope.user,
+              pet_id: $rootScope.pet.id,
+              item_id: context.item.id,
+              // amount: context.item.cost,
+              amount: 50000,
+              checking: res.data.data[0].token,
+            };
+            console.log('happening?');
+            $http.post('http://35.167.2.107:3000/v1/transactions', transaction)
+              .then(() => {
+                console.log('happpp');
+                $location.path('/market/pet');
+              }, (error) => {
+                console.warn(error);
+              });
+          });
+
       } else {
         console.log('You are not sure');
       }
