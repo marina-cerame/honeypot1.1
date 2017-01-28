@@ -2,9 +2,9 @@
 /* eslint no-param-reassign: ["error", { "props": false }] */
 
 angular.module('store.service', ['app.store'])
-  .factory('store', function ($location, $http, $rootScope) {
-    const buyFood = function () {
-      const context = this;
+  .factory('store', function ($location, $http, $rootScope, $ionicPopup) {
+    const buyFood = function (context) {
+      // const context = this;
       $http.get(`http://35.167.2.107:3000/v1/bank_tokens/${$rootScope.checking_id}`)
         .then((res) => {
           const transaction = {
@@ -15,7 +15,7 @@ angular.module('store.service', ['app.store'])
             checking: res.data.data[0].token,
           };
           $http.post('http://35.167.2.107:3000/v1/transactions', transaction)
-            .then(() => {
+            .then((res) => {
               $location.path('/market/pet');
             }, (error) => {
               console.warn(error);
