@@ -32,7 +32,7 @@ angular.module('app.account', [])
       },
       onExit: () => {
         console.warn('user closed');
-      }
+      },
     });
     const savingsHandler = Plaid.create({
       selectAccount: true,
