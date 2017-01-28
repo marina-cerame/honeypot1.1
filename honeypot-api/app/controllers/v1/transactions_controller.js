@@ -40,7 +40,11 @@ class V1TransactionsController extends Nodal.Controller {
       customer: checking
     });
 
+    console.log('it happened! WTFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF');
+
     Transaction.create(context.params.body, (err, model) => {
+      console.log('it happened! WTFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF');
+
       this.respond(err || model);
     });
   }
