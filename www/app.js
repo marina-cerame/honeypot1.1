@@ -34,13 +34,13 @@ angular.module('starter', ['ionic',
   .state('app', {
     url: '/app',
     abstract: true,
-    templateUrl: 'templates/menu.html',
+    templateUrl: 'pages/menu/menu.html',
     controller: 'AppCtrl',
   })
 
   .state('market', {
     url: '/market',
-    templateUrl: 'templates/marketmenu.html',
+    templateUrl: 'pages/menu/marketmenu.html',
     controller: 'AppCtrl',
   })
 
@@ -48,7 +48,7 @@ angular.module('starter', ['ionic',
     url: '/pet',
     views: {
       'menuContent': {
-        templateUrl: 'templates/pet.html',
+        templateUrl: 'pages/petPages/pet.html',
         controller: 'PetCtrl',
       },
     },
@@ -56,7 +56,7 @@ angular.module('starter', ['ionic',
 
   .state('firstPet', {
     url: '/firstPet',
-    templateUrl: 'templates/firstPet.html',
+    templateUrl: 'pages/firstPet/firstPet.html',
     controller: 'FirstPetCtrl',
   })
 
@@ -64,7 +64,7 @@ angular.module('starter', ['ionic',
     url: '/adoptPet',
     views: {
       'menuContent': {
-        templateUrl: 'templates/adoptPet.html',
+        templateUrl: 'pages/adoptPet/adoptPet.html',
         controller: 'adoptPetCtrl',
       },
     },
@@ -74,7 +74,7 @@ angular.module('starter', ['ionic',
     url: '/store',
     views: {
       'menuContent': {
-        templateUrl: 'templates/store.html',
+        templateUrl: 'pages/petStore/store.html',
         controller: 'StoreCtrl',
       },
     },
@@ -84,7 +84,7 @@ angular.module('starter', ['ionic',
       url: '/account',
       views: {
         'menuContent': {
-          templateUrl: 'templates/account.html',
+          templateUrl: 'pages/accounts/account.html',
           controller: 'accountController',
         },
       },
@@ -94,7 +94,7 @@ angular.module('starter', ['ionic',
     url: '/editPet',
     views: {
       'menuContent': {
-        templateUrl: 'templates/editPet.html',
+        templateUrl: 'pages/editPet/editPet.html',
         controller: 'editPetController',
       },
     },
@@ -104,7 +104,7 @@ angular.module('starter', ['ionic',
     url: '/myPets',
     views: {
       'menuContent': {
-        templateUrl: 'templates/myPets.html',
+        templateUrl: 'pages/myPets/myPets.html',
         controller: 'MyPetsCtrl',
       },
     },
@@ -112,19 +112,19 @@ angular.module('starter', ['ionic',
 
   .state('login', {
     url: '/login',
-    templateUrl: 'templates/login.html',
+    templateUrl: 'pages/userAuth/login.html',
     controller: 'AuthController',
   })
 
   .state('bankAuth', {
     url: '/bankAuth',
-    templateUrl: 'templates/bankAuth.html',
+    templateUrl: 'pages/bankAuth/bankAuth.html',
     controller: 'BankCtrl',
   })
 
   .state('signup', {
     url: '/signup',
-    templateUrl: 'templates/signup.html',
+    templateUrl: 'pages/userAuth/signup.html',
     controller: 'AuthController',
   });
   // if none of the above states are matched, use this as the fallback

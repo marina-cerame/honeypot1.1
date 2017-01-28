@@ -1,4 +1,6 @@
 /* eslint no-param-reassign: ["error", { "props": false }] */
+/* global angular Plaid */
+
 angular.module('app.bankAuth', [])
 .controller('BankCtrl', function ($scope, $location, $http, $rootScope) {
   const checkingHandler = Plaid.create({
@@ -7,8 +9,7 @@ angular.module('app.bankAuth', [])
     clientName: 'Client Name',
     key: 'b7491cfbd7c72652af1c7bf9c9b667',
     product: 'auth',
-    onLoad: () => {
-    },
+    onLoad: () => {},
     onSuccess: (token, metadata) => {
       $rootScope.checkingName = metadata.account.name;
       $scope.$apply();
@@ -35,9 +36,7 @@ angular.module('app.bankAuth', [])
     clientName: 'Client Name',
     key: 'b7491cfbd7c72652af1c7bf9c9b667',
     product: 'auth',
-    onLoad: () => {
-        // The Link module finished loading.
-    },
+    onLoad: () => {},
     onSuccess: (token, metadata) => {
       $rootScope.savingsName = metadata.account.name;
       $scope.$apply();
