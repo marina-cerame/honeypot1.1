@@ -1,7 +1,8 @@
+/* global angular */
 /* eslint no-param-reassign: ["error", { "props": false }] */
-angular.module('starter.controllers', [])
-.controller('AppCtrl', function ($scope, $location, $rootScope) {
-  $scope.logout = () => {
+angular.module('menuService', [])
+.factory('Menu', function ($rootScope, $location) {
+  const logout = () => {
     for (const prop in $rootScope) {
       if (prop.substring(0, 1) !== '$') {
         delete $rootScope[prop];
@@ -10,7 +11,7 @@ angular.module('starter.controllers', [])
     $location.path('/login');
   };
 
-  $scope.goToStore = () => {
-    $location.path('/app/store');
+  return {
+    logout,
   };
 });

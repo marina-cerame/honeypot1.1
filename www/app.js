@@ -1,8 +1,11 @@
 angular.module('starter', ['ionic',
                           'ui.router',
                           'starter.controllers',
+                          'menuService',
                           'auth',
+                          'authService',
                           'myPets',
+                          'myPetsService',
                           'app.pet',
                           'app.bankAuth',
                           'app.firstPet',
@@ -11,7 +14,8 @@ angular.module('starter', ['ionic',
                           'app.adoptPet',
                           'editPet',
                           'bankAuth.service',
-                          'account.service'])
+                          'account.service',
+                          'editPetService'])
 
 
 .run(function ($ionicPlatform) {
