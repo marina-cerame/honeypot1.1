@@ -16,7 +16,7 @@ angular.module('starter', ['ionic',
                           'bankAuth.service',
                           'account.service',
                           'editPetService',
-                          'adoptPet.service'])
+                          'adoptPet.service',
                           'pet.service'])
 
 
