@@ -50,8 +50,8 @@ angular.module('pet.service', ['app.pet'])
 
   let tear = 1;
   factory.bearTouch = () => {
-    TweenMax.to('.leftFoot', 0.5, { rotation: -15, transformOrigin: 'right' });
-    TweenMax.to('.leftFoot', 0.5, { rotation: 0, transformOrigin: 'right', delay: .5 });
+    // TweenMax.to('.leftFoot', 0.5, { rotation: -15, transformOrigin: 'right' });
+    // TweenMax.to('.leftFoot', 0.5, { rotation: 0, transformOrigin: 'right', delay: .5 });
     // IF BEAR IS HAPPY
     if (happiness > 25) {
       earUp();
