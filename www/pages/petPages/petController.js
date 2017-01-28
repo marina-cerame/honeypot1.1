@@ -198,15 +198,18 @@ angular.module('app.pet', [])
     // /////////////////////////////////////////////
     // /////DATABASE CALL TO SET BEAR STATS/////////
     // /////////////////////////////////////////////
-
-    $http.get(`http://35.167.2.107:3000/v1/pet_stats/?id__is=${$rootScope.pet.id}`)
-      .then(res => {
-        $scope.stats = res.data.data[0];
-        $scope.stats.progress = ($scope.stats.goal_progress / $scope.stats.goal_amt) * 100;
-        setAccessories();
-        setHappiness();
-        setEvolution();
-      }, err => {
-        console.warn(err);
-      });
+    const getReq = () => {
+      $http.get(`http://35.167.2.107:3000/v1/pet_stats/?id__is=${$rootScope.pet.id}`)
+        .then(res => {
+          $scope.stats = res.data.data[0];
+          $scope.stats.progress = ($scope.stats.goal_progress / $scope.stats.goal_amt) * 100;
+          setAccessories();
+          setHappiness();
+          setEvolution();
+          console.log($scope.stats.goal_progress);
+        }, err => {
+          console.warn(err);
+        });
+    };
+    getReq();
   });
