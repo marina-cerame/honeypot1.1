@@ -38,6 +38,10 @@
   background: rgba(66, 139, 202, 1);
 }
 
+#adopt-page {
+  margin-top: 50px;
+}
+
 .slider {
   height:350px;
 }

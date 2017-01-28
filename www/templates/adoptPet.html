@@ -1,5 +1,5 @@
 <ion-view>
-  <ion-content>
+  <ion-pane id="adopt-page">
       <ion-slides options="data.sliderOptions" slider="data.sliderDelegate" style="height:55%">
         <ion-slide-page ng-repeat='type in petTypes'>
           <div ng-model='newpet.type' value={{type.name}} class="adopt-showcase">
@@ -37,5 +37,5 @@
     Adopt this pet!
     </button>
 
-  </ion-content>
+  </ion-pane>
 </ion-view>
