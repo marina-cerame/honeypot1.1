@@ -3,13 +3,11 @@
 
 angular.module('app.bankAuth', [])
 .controller('BankCtrl', function ($scope, $rootScope, $location, bankAuth) {
-  const checkingHandler = bankAuth.accountHandler($rootScope.checkingName, $rootScope.checking_id, 'checking');
-  const savingsHandler = bankAuth.accountHandler($rootScope.savingsName, $rootScope.savings_id, 'savings');
   $scope.openChecking = () => {
-    checkingHandler.open();
+    bankAuth.checkingHandler.open();
   };
   $scope.openSavings = () => {
-    savingsHandler.open();
+    bankAuth.savingsHandler.open();
   };
   $scope.goToFirstPet = () => {
     $location.path('/firstPet');
