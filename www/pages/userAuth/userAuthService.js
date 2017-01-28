@@ -1,7 +1,7 @@
 /* global angular */
 /* eslint no-param-reassign: ["error", { "props": false }] */
 angular.module('authService', [])
-.factory('Auth', function ($http, $rootScope, $location) {
+.factory('Auth', function ($http, $rootScope, $location, $ionicPopup) {
   const login = (user) => {
     $http.post('http://35.167.2.107:3000/v1/access_tokens', user)
       .then((res) => {
@@ -23,6 +23,9 @@ angular.module('authService', [])
         $location.path('/app/myPets');
       }, (err) => {
         console.warn(err);
+        $ionicPopup.alert({
+          title: 'wrong username or password',
+        });
       });
   };
 
