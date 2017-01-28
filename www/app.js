@@ -10,7 +10,8 @@ angular.module('starter', ['ionic',
                           'app.account',
                           'app.adoptPet',
                           'editPet',
-                          'bankAuth.service'])
+                          'bankAuth.service',
+                          'account.service'])
 
 
 .run(function ($ionicPlatform) {

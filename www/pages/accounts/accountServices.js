@@ -1,8 +1,8 @@
 /* global angular Plaid */
 /* eslint no-param-reassign: ["error", { "props": false }] */
 
-angular.module('bankAuth.service', ['app.bankAuth'])
-  .factory('bankAuth', function ($location, $http, $rootScope) {
+angular.module('account.service', ['app.account'])
+  .factory('account', function ($location, $http, $rootScope) {
     const checkingHandler = Plaid.create({
       selectAccount: true,
       env: 'tartan',
@@ -19,8 +19,8 @@ angular.module('bankAuth.service', ['app.bankAuth'])
           type: 'checking',
           name: $rootScope.checkingName,
         });
-        $http.post('http://35.167.2.107:3000/v1/bank_tokens', postFormat)
-          .then((res) => {
+        $http.put(`http://35.167.2.107:3000/v1/bank_tokens/${$rootScope.checking_id}`, postFormat)
+          .then(function (res) {
             $rootScope.checking_id = res.data.data[0].id;
           });
       },
@@ -44,8 +44,8 @@ angular.module('bankAuth.service', ['app.bankAuth'])
           type: 'savings',
           name: $rootScope.savingsName,
         });
-        $http.post('http://35.167.2.107:3000/v1/bank_tokens', postFormat)
-          .then((res) => {
+        $http.put(`http://35.167.2.107:3000/v1/bank_tokens/${$rootScope.savings_id}`, postFormat)
+          .then(function (res) {
             $rootScope.savings_id = res.data.data[0].id;
           });
       },
