@@ -2,11 +2,11 @@
   <ion-nav-bar class="bar-stable"></ion-nav-bar>
   <ion-content>
     <h1>adopt your first pet</h1>
-    <form name="firstPet" novalidate>
+    <form name="firstPet" ng-submit='makeFirstPet()' novalidate>
       <div class="list">
         <label class="item item-input">
           <span class="input-label">Your Pet's Name :</span>
-          <input name="pet" type="text" ng-minlength="1" ng-model='pet.name' required>
+          <input name="pet" type="text" ng-model='pet.name' required>
         </label>
         <label class="item item-input">
           <span class="input-label">Choose a Species :</span>
@@ -14,27 +14,25 @@
         </label>
         <label class="item item-input">
           <span class="input-label">What are you saving for?</span>
-          <input type="text" ng-minlength="1" ng-model='pet.goal_name' required>
+          <input name="goalName" type="text" ng-model='pet.goal_name' required>
         </label>
         <label class="item item-input">
           <span class="input-label">Choose Your Goal Amount :</span> $
-            <input type="number" ng-model="pet.goal_amt" required>
+            <input name="goalAmt" type="number" ng-model="pet.goal_amt" required>
           <!-- <select ng-model='pet.goal_amt'> -->
             <!-- <option ng-repeat='goal in goal_amt' selected>${{goal}}</option> -->
           <!-- </select> -->
         </label>
     </div>
-      <div>
-          <p ng-show="firstPet.name.$error.required">* Username is required</p>
-          <!-- <p ng-show="myForm.username.$invalid && !myForm.username.$pristine">* Username must be an email address</p>
-          <p ng-show="myForm.username.$error.minlength">* Username must be longer than 5 characters</p>
-          <p ng-show="myForm.password.$error.required">* Password is required</p>
-          <p ng-show="myForm.password.$error.minlength">* Password must be longer than 6 characters</p> -->
-      </div>
-    </form>
+    <div align="center" padding>
+        <p ng-show="firstPet.pet.$invalid && !firstPet.pet.$pristine">please name your pet</p>
+        <p ng-show="firstPet.goalName.$invalid && !firstPet.goalName.$pristine">a name for your goal is required</p>
+        <p ng-show="firstPet.goalAmt.$invalid && !firstPet.goalAmt.$pristine">a goal amount is required</p>
+    </div>
   <button ng-disabled="firstPet.$invalid" ng-click='makeFirstPet()' class="button button-full button-energized">
     Adopt this pet!
   </button>
+  </form>
 
   <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
          viewBox="0 0 750 1101" style="enable-background:new 0 0 750 1101;" xml:space="preserve">
