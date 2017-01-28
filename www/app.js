@@ -18,7 +18,8 @@ angular.module('starter', ['ionic',
                           'account.service',
                           'editPetService',
                           'adoptPet.service',
-                          'pet.service'])
+                          'pet.service',
+                          'firstPetService'])
 
 
 .run(function ($ionicPlatform) {
