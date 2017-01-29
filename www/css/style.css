@@ -143,3 +143,15 @@ h2 {
 * {
   font-family: 'Fabada'
 }
+
+.popup-buttons .button {
+    background-color: #e3b11a;
+    font-size: 20px;
+}
+.popup-buttons .button.activated {
+    background-color: #e3b11a;
+}
+
+.popup-title {
+    font-family: 'Fabada', sans-serif;
+}
