@@ -14,5 +14,7 @@
     "quote-props": 0,
     "one-var": 0,
     "arrow-body-style": 0,
+    "no-unused-vars": 0,
+    "no-use-before-define": 0,
   }
 }
