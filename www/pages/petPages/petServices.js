@@ -28,9 +28,6 @@ angular.module('pet.service', ['app.pet'])
         TweenMax.to('.tears', 2, { alpha: 0.7 });
       }
     }
-    // else {
-    //   bearTilt();
-    // }
   };
 
   // /////////////////////////////////////
@@ -49,40 +46,9 @@ angular.module('pet.service', ['app.pet'])
     TweenMax.to('.balloons', 0.5, { y: -77, x: 12 });
   };
 
-  let tear = 1,
-    steps = 10;
-  factory.bearTouch = () => {
-    const walk = () => {
-      console.log(steps);
-      if (!steps) return;
-      steps--;
-      TweenMax.to('.leftFoot', 0.5, {
-        y: 10,
-        rotation: -5,
-        transformOrigin: 'right' });
-      TweenMax.to('.leftFoot', 0.5, { y: 0,
-        rotation: 0,
-        transformOrigin:
-        'right',
-        delay: 0.5,
-      });
-      TweenMax.to('.rightFoot', 0.5, {
-        y: 10,
-        rotation: 5,
-        transformOrigin: 'left',
-        delay: 0.8,
-      });
-      TweenMax.to('.rightFoot', 0.5, {
-        y: 0,
-        rotation: 0,
-        transformOrigin: 'left',
-        onComplete: walk,
-        delay: 1.13,
-      });
-    };
-    TweenMax.fromTo('.bear', 6, { y: -10, scale: 0.6 }, { y: 0, scale: 1.15 });
-    walk();
+  let tear = 1;
 
+  factory.bearTouch = () => {
     // IF BEAR IS HAPPY
     if (happiness > 25) {
       earUp();
@@ -108,6 +74,7 @@ angular.module('pet.service', ['app.pet'])
           ease: 'easeIn',
         });
       }
+      tear++;
       if (tear % 6 === 1) {
         TweenMax.to('.yellowBal', 6, { y: -800, ease: 'easeIn', x: -150 });
         TweenMax.to('.stringYellow', 6, { y: -800, ease: 'easeIn', x: -150 });
@@ -126,7 +93,7 @@ angular.module('pet.service', ['app.pet'])
       });
       }
     }
-  };
+  }
 
   // ////////////////////////////
   // ////// ACCESSORIES /////////
