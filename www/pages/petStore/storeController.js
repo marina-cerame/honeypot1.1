@@ -10,6 +10,19 @@ angular.module('app.store', [])
       console.warn(err);
     });
 
+  if ($rootScope.checking_id === undefined) {
+    const bankFail = $ionicPopup.confirm({
+      title: 'You must add your accounts before shopping',
+    });
+    bankFail.then((res) => {
+      if (res) {
+        $location.path('/app/account');
+      } else {
+        $location.path('/market/pet');
+      }
+    });
+  }
+
   $scope.effect = {
     food: 'Health',
     accessory: 'Happiness',
