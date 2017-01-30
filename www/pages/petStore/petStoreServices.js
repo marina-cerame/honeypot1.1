@@ -6,7 +6,7 @@ angular.module('store.service', ['app.store'])
     const buyFood = function (context) {
       // const context = this;
       console.log('checking_id: ', $rootScope.checking_id);
-      $http.get(`http://35.167.2.107:3000/v1/bank_tokens/${$rootScope.checking_id}`)
+      $http.get(`http://35.167.2.107:3000/v1/bank_tokens/?user_id__is=${$rootScope.user}`)
         .then((res) => {
           console.log('res: ', res);
           const transaction = {
@@ -21,6 +21,7 @@ angular.module('store.service', ['app.store'])
           console.log('transaction: ', transaction);
           $http.post('http://35.167.2.107:3000/v1/transactions', transaction)
             .then((res) => {
+              console.log('resfdsfsfs: ', res);
               $location.path('/market/pet');
             }, (error) => {
               console.warn(error);
