@@ -74,7 +74,6 @@ angular.module('pet.service', ['app.pet'])
           ease: 'easeIn',
         });
       }
-      tear++;
       if (tear % 6 === 1) {
         TweenMax.to('.yellowBal', 6, { y: -800, ease: 'easeIn', x: -150 });
         TweenMax.to('.stringYellow', 6, { y: -800, ease: 'easeIn', x: -150 });
@@ -93,7 +92,7 @@ angular.module('pet.service', ['app.pet'])
       });
       }
     }
-  }
+  };
 
   // ////////////////////////////
   // ////// ACCESSORIES /////////
@@ -125,16 +124,12 @@ angular.module('pet.service', ['app.pet'])
   };
 
   const newDate = new Date();
-  let datetime;
-  let second;
-  let minute;
-  let hour;
   const setClock = () => {
     setInterval(() => {
-      datetime = newDate.timeNow();
-      second = datetime.slice(6, 8) * 360 / 60;
-      minute = datetime.slice(3, 5) * 360 / 60;
-      hour = datetime.slice(0, 2) * 360 / 12 + (minute / 12);
+      const datetime = newDate.timeNow();
+      let second = datetime.slice(6, 8) * 360 / 60;
+      let minute = datetime.slice(3, 5) * 360 / 60;
+      let hour = datetime.slice(0, 2) * 360 / 12 + (minute / 12);
       if (hour === 360) {
         hour = 0;
       }
@@ -188,9 +183,55 @@ angular.module('pet.service', ['app.pet'])
         setAccessories();
         setHappiness();
         setEvolution();
-        if (factory.evolve) {
+        if (factory.evolve === 1) {
           factory.evolve = false;
-          console.log('Evolution');
+          const tl = new TimelineMax();
+          // let jitter = 20;
+          // let jitterspeed = 0.9;
+          // while (jitter > 0) {
+          //   tl.fromTo('.bear', jitterspeed, { rotation: -2, transformOrigin: 'center' }, { rotation: 2 });
+          //   jitterspeed /= 1.2;
+          //   jitter--;
+          // }
+
+          /* bear bounce up */
+          tl.to('.bear', 3, {
+            transformOrigin: '50% 50%',
+            y: -270,
+            ease: Circ.easeOut,
+          }, 'bounce')
+
+          /* bear bounce down */
+          .to('.bear', 0.4, {
+            transformOrigin: '50% 50%',
+            y: 35,
+            ease: Circ.easeIn,
+            delay: 0.6,
+          }, 'bounce2')
+          /* bear squash */
+          .to('.bear', 0.2, {
+            transformOrigin: '50% 100%',
+            scaleX: 1.2,
+            scaleY: 0.8,
+            ease: Power1.easeInOut,
+          }, 'bounce3-=0.04')
+          .to('.bear', 0.2, {
+            transformOrigin: '50% 100%',
+            scaleX: 1.1,
+            scaleY: 1.1,
+            ease: Power1.easeInOut,
+          });
+
+          TweenMax.fromTo('.tusks', 2.5, { alpha: 1, scale: 0, transformOrigin: 'top' },
+            { scale: 1.2, transformOrigin: 'top', delay: 1 });
+          TweenMax.fromTo('.rightClaw', 3, { alpha: 1, scale: 0, transformOrigin: 'top left' },
+            { scale: 1.4, transformOrigin: 'top left', delay: 1 });
+          TweenMax.fromTo('.leftClaw', 3, { alpha: 1, scale: 0, transformOrigin: 'top right' },
+            { scale: 1.4, transformOrigin: 'top right', delay: 1 });
+        }
+        if (factory.evolve === 2) {
+          factory.evolve = false;
+          console.log('Evolution 2');
         }
         if (stats.accessories.necklace) {
           setClock();
