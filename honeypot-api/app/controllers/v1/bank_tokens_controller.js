@@ -2,7 +2,7 @@
 
 require('dotenv').config();
 const plaid = require('plaid');
-const stripe = require('stripe')('sk_test_XtAMFVO64j1hd1Fiud3lCVdj');
+const stripe = require('stripe')(process.env.STRIPE_SECRET);
 const Nodal = require('nodal');
 const BankToken = Nodal.require('app/models/bank_token.js');
 
