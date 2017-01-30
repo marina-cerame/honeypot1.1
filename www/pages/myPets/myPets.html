@@ -6,14 +6,17 @@
 
       <a class="item item-thumbnail-left">
         <img ng-src="{{petImages[pet.pet_type_id]}}">
-        <div id='pet-text'>
+        <div id="pet-text">
           <h2>{{ pet.name }}</h2>
-          <p><strong>Goal:</strong> {{ pet.goal_name }} </p>
-
+          <h3><strong>{{ pet.goal_progress }}% saved to {{ pet.goal_name }}</strong></h3>
+          <p><font color={{fontColor(pet.hunger)}}><strong>Hunger:</strong> {{ pet.hunger }} </font></p>
+          <p><font color={{fontColor(pet.happiness)}}><strong>Happiness:</strong> {{pet.happiness}}</font> </p>
         </div>
       </a>
 
   </div>
-
   </ion-content>
+  <div class="bar bar-footer">
+    <a id="help" class="button pull-right" ng-click="showHelp()">?</a>
+  </div>
 </ion-view>

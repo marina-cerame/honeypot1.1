@@ -10,22 +10,23 @@ angular.module('app.store', [])
       console.warn(err);
     });
 
+  if ($rootScope.checking_id === undefined) {
+    const bankFail = $ionicPopup.confirm({
+      title: 'You must add your accounts before shopping',
+    });
+    bankFail.then((res) => {
+      if (res) {
+        $location.path('/app/account');
+      } else {
+        $location.path('/market/pet');
+      }
+    });
+  }
+
   $scope.effect = {
     food: 'Health',
     accessory: 'Happiness',
     treat: 'Happiness',
-  };
-
-  $scope.images = {
-    1: '/img/berries.png',
-    2: '/img/salmon.png',
-    3: '/img/honey_pot.png',
-    10: '/img/wiz-hat.png',
-    11: '/img/clock-chain.png',
-    12: '/img/balloons.png',
-    19: '/img/coffee.png',
-    20: '/img/chips.png',
-    21: '/img/klondike.png',
   };
 
   $scope.showConfirm = function () {
