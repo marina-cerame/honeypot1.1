@@ -10,32 +10,30 @@
           </div>
         </ion-slide-page>
       </ion-slides>
-    <form name="newPet" novalidate>
+    <form name="newPet" ng-submit="adoptMe()" novalidate>
       <div class="list">
         <label class="item item-input">
           <span class="input-label">Your New Pet's Name:</span>
-          <input name="newPet" type="text" ng-minlength="3" ng-model='newpet.name' required>
+          <input name="name" type="text" ng-model='newpet.name' required>
         </label>
         <label class="item item-input">
           <span class="input-label">What are you saving for?</span>
-          <input type="text" ng-minlength="3" ng-model='newpet.goal_name' required>
+          <input name="goalName" type="text" ng-model='newpet.goal_name' required>
         </label>
         <label class="item item-input">
           <span class="input-label">Goal Amount :</span> $
-            <input name="newPet" type="number" ng-model="newpet.goal_amt" required>
+            <input name="goalAmt" type="number" ng-model="newpet.goal_amt" required>
         </label>
     </div>
-      <div class="padding">
-          <p ng-show="firstPet.name.$error.required">* Username is required</p>
-          <p ng-show="myForm.username.$invalid && !myForm.username.$pristine">* Username must be an email address</p>
-          <p ng-show="myForm.username.$error.minlength">* Username must be longer than 5 characters</p>
-          <p ng-show="myForm.password.$error.required">* Password is required</p>
-          <p ng-show="myForm.password.$error.minlength">* Password must be longer than 6 characters</p>
+      <div align="center" padding>
+        <p ng-show="newPet.name.$error.required && !newPet.name.$pristine">please name your new pet</p>
+        <p ng-show="newPet.goalName.$error.required && !newPet.goalName.$pristine">a name for your goal is required</p>
+        <p ng-show="newPet.goalAmt.$error.required && !newPet.goalAmt.$pristine">you must set a goal amount</p>
       </div>
-    </form>
-    <button ng-disabled="firstPet.$invalid" ng-click='adoptMe()' style="background-color: #e3b11a" class="button button-full">
+
+    <button ng-disabled="newPet.$invalid" style="background-color: #e3b11a" class="button button-full">
     Adopt this pet!
     </button>
-
+  </form>
   </ion-pane>
 </ion-view>
