@@ -1,7 +1,6 @@
 
 <ion-view cache-view="false">
   <ion-content>
-    <a id="help" class="button pull-right">?</a>
     <h1>my pets</h1>
     <div class="list" ng-repeat='pet in pets' on-tap='goToPet(pet)' on-hold='editPet(pet)'>
 
@@ -11,14 +10,14 @@
           <h2>{{ pet.name }}</h2>
           <h3><strong>{{ pet.goal_progress }}% saved to {{ pet.goal_name }}</strong></h3>
           <p><font color={{fontColor(pet.hunger)}}><strong>Hunger:</strong> {{ pet.hunger }} </font></p>
-          <p><font color={{fontColor(pet.happiness)}}><strong>Happiness:</strong> {{pet.happiness}}</font> </p>
+          <p><font face="veranda" color={{fontColor(pet.happiness)}}><strong>Happiness:</strong>{{pet.happiness}}</font> </p>
         </div>
       </a>
 
   </div>
   </ion-content>
   <div class="bar bar-footer">
-    <a id="help" class="button pull-right">?</a>
+    <a id="help" class="button pull-right" ng-click="showHelp()">?</a>
   </div>
 </ion-view>
 

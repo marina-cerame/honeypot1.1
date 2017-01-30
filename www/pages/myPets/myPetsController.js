@@ -25,6 +25,8 @@ angular.module('myPets', [])
     3: '../img/pets/thumb-dragon.png',
   };
 
+  $scope.showHelp = () => { myPets.showHelp(); };
+
   $scope.displayImages = (type) => $scope.petImages[type];
 
   $scope.goToPet = (pet) => {

@@ -13,4 +13,6 @@ angular.module('auth', [])
   $scope.goToSignup = () => $location.path('/signup');
 
   $scope.signup = () => Auth.signup($scope.user);
+
+  $scope.goToLogin = () => $location.path('/login');
 });
