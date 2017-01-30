@@ -49,6 +49,7 @@ angular.module('account.service', ['app.account'])
         });
         $http.put(`http://35.167.2.107:3000/v1/bank_tokens/${$rootScope.savings_id}`, postFormat)
           .then(function (res) {
+            console.log('savings res: ', res);
             $rootScope.savings_id = res.data.data[0].id;
           });
       },

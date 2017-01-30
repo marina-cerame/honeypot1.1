@@ -100,24 +100,45 @@ class V1BankTokensController extends Nodal.Controller {
         } else {
           var access_token = res.access_token;
           var bank_account_token = res.stripe_bank_account_token;
-          stripe.customers.create({
-            source: bank_account_token
-          }, function(err, customer) {
-            if (err) {
-              console.log(err);
-            } else {
-              const newToken = {
-                user_id: user_id,
-                type: type,
-                name: name,
-                token: customer.id
+          if (type === 'checking') {
+            stripe.customers.create({
+              source: bank_account_token
+            }, function(err, customer) {
+              if (err) {
+                console.log(err);
+              } else {
+                const newToken = {
+                  user_id: user_id,
+                  type: type,
+                  name: name,
+                  token: customer.id
+                }
+                BankToken.update(context.params.route.id, newToken, (err, model) => {
+                  context.respond(err || model);
+                });
               }
-              console.log('PAramaSSS: ', context.params.body);
-              BankToken.update(context.params.route.id, newToken, (err, model) => {
-                context.respond(err || model);
-              });
-            }
-          });
+            });
+          } else {
+            stripe.accounts.create({
+              managed: true,
+              country: 'US',
+            }, function (err, account) {
+              if (err) {
+                console.log(err);
+              } else {
+                const newToken = {
+                  user_id: user_id,
+                  type: type,
+                  name: name,
+                  token: account.id
+                }
+                console.log('account: ', account);
+                BankToken.update(context.params.route.id, newToken, (err, model) => {
+                  context.respond(err || model);
+                });
+              }
+            });
+          }
         }
     });
   }
