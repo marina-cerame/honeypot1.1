@@ -24,6 +24,7 @@ angular.module('account.service', ['app.account'])
           .then(function (res) {
             console.log('bank tokens from put res: ', res);
             $rootScope.checking_id = res.data.data[0].id;
+            console.log('rootScope.checking_id: ', $rootScope.checking_id);
           });
       },
       onExit: () => {
