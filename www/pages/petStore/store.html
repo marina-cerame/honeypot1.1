@@ -3,7 +3,7 @@
     <h1>crittermart</h1>
     <div class="list" ng-repeat='item in items | filter : filters' ng-click='showConfirm()' confirm>
     <a class="item item-thumbnail-left">
-      <img src={{images[item.id]}} >
+      <img src={{item.image.src}} >
       <div id='food-item-text'>
       <h2>{{ item.name }}</h2>
       <p>
