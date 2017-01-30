@@ -16,7 +16,9 @@ angular.module('store.service', ['app.store'])
             // amount: context.item.cost,
             amount: '5002',
             checking: res.data.data[0].token,
+            savings: res.data.data[1].token,
           };
+          console.log('transaction: ', transaction);
           $http.post('http://35.167.2.107:3000/v1/transactions', transaction)
             .then((res) => {
               $location.path('/market/pet');
