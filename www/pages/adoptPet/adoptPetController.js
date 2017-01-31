@@ -20,4 +20,6 @@ angular.module('app.adoptPet', [])
     $scope.adoptMe = () => {
       Adopt.adoptNewPet($scope.newpet);
     };
+
+    $scope.showHelp = () => Adopt.showHelp();
   });

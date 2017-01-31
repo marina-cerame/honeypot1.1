@@ -2,7 +2,7 @@
 /* eslint no-param-reassign: ["error", { "props": false }] */
 
 angular.module('account.service', ['app.account'])
-  .factory('account', function ($location, $http, $rootScope) {
+  .factory('account', function ($location, $http, $rootScope, $ionicPopup) {
     const checkingHandler = Plaid.create({
       selectAccount: true,
       env: 'tartan',
@@ -57,8 +57,14 @@ angular.module('account.service', ['app.account'])
         console.warn('user closed');
       },
     });
+    const showHelp = () => {
+      $ionicPopup.alert({
+        template: '<p>you can edit one or both of your accounts on this by tapping their edit button</p>',
+      });
+    };
     return {
       checkingHandler,
       savingsHandler,
+      showHelp,
     };
   });

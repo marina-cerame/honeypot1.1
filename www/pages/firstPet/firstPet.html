@@ -29,7 +29,7 @@
         <p ng-show="firstPet.goalName.$invalid && !firstPet.goalName.$pristine">a name for your goal is required</p>
         <p ng-show="firstPet.goalAmt.$invalid && !firstPet.goalAmt.$pristine">a goal amount is required</p>
     </div>
-  <button ng-disabled="firstPet.$invalid" class="button button-full button-energized">
+  <button ng-disabled="firstPet.$invalid" class="button button-full" style="background-color: #e3b11a">
     Adopt this pet!
   </button>
   </form>
@@ -71,4 +71,7 @@
   </svg>
 
   </ion-content>
+  <div class="bar bar-footer">
+    <a id="help" class="button pull-right" ng-click="showHelp()">?</a>
+  </div>
 </ion-view>

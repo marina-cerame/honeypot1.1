@@ -7,28 +7,33 @@
         <ion-list>
           <ion-item>
               <!-- <div> checking account: {{ checkingName }} </div> -->
-              <div>
-                <button ng-click="openChecking()" class="button" >
+              <div align="center">
+                <button ng-click="openChecking()" class="button button-outline button-stable" >
                     add a checking account
                 </button>
+                <br /><br />
                 {{ checkingName }}
               </div>
           </ion-item>
           <ion-item>
             <!-- <div> savings account: {{ savingsName }} </div> -->
-            <div>
-              <button ng-click="openSavings()" class="button" >
+            <div align="center">
+              <button ng-click="openSavings()" class="button button-outline button-stable" >
                    add a savings account
               </button>
+              <br /><br />
               {{ savingsName }}
             </div>
           </ion-item>
         </ion-list>
-        <button class="button button-full button-energized" ng-click="goToFirstPet()">
-   Next
-</button>
+        <button style="background-color: #e3b11a" class="button button-full" ng-click="goToFirstPet()">
+           Next
+        </button>
 
     </div>
   </body>
   </ion-content>
+  <div class="bar bar-footer">
+    <a id="help" class="button pull-right" ng-click="showHelp()">?</a>
+  </div>
 </ion-view>

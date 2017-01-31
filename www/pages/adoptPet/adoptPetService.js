@@ -2,7 +2,7 @@ angular.module('adoptPet.service', [
   'app.adoptPet',
 ])
 
-  .factory('Adopt', ($http, $rootScope, $location) => {
+  .factory('Adopt', ($http, $rootScope, $location, $ionicPopup) => {
     const data = {};
     const petTypes = [];
     const petImages = {
@@ -59,9 +59,16 @@ angular.module('adoptPet.service', [
         });
     };
 
+    const showHelp = () => {
+      $ionicPopup.alert({
+        template: '<p>scroll right to see other pets then fill in each field to start saving for a new goal</p>',
+      });
+    };
+
     return {
       getPets,
       adoptNewPet,
       data,
+      showHelp,
     };
   });
