@@ -30,6 +30,11 @@
   font-weight: normal;
   font-style: normal; }
 
+@font-face {
+  font-family: "Fabada";
+  src: url("../fonts/Fabada-regular.tff");
+  }
+
 .ion, .ionicons,
 .ion-alert:before,
 .ion-alert-circled:before,

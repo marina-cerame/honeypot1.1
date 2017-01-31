@@ -1,0 +1,30 @@
+<ion-view>
+  <ion-nav-bar class="bar-stable"></ion-nav-bar>
+  <ion-content>
+    <body>
+    <h1>Link your bank accounts</h1>
+    <div class="container">
+        <ion-list>
+            <ion-item>
+                <div class="item-button-right">checking account: {{ checkingName }}
+                  <button ng-click="openChecking()" class="button" >
+                      Link Account
+                  </button>
+                </div>
+            </ion-item>
+            <ion-item>
+              <div class="item-button-right">savings account: {{ savingsName }}
+                <button ng-click="openSavings()" class="button" >
+                    Link Account
+                </button>
+              </div>
+            </ion-item>
+        </ion-list>
+        <button class="button button-full button-energized" ng-click="goToFirstPet()">
+   Next
+</button>
+
+    </div>
+  </body>
+  </ion-content>
+</ion-view>

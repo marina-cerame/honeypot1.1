@@ -23,10 +23,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/progressbar.js/1.0.1/progressbar.min.js"></script>
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     <meta name="google-signin-client_id" content="788566582556-r99uhr13cospbo65qmnmk72b0p2q6msg.apps.googleusercontent.com">
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/TweenMax.min.js"></script>
-
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
     <link href="css/ionic.app.css" rel="stylesheet">
     -->
@@ -38,25 +39,36 @@
     <script src="cordova.js"></script>
 
     <!-- your app's js -->
-    <script src="js/app.js"></script>
-    <script src="js/controllers/authController.js"></script>
-    <script src="js/controllers.js"></script>
-    <script src="js/controllers/bankAuthController.js"></script>
-    <script src="js/controllers/petController.js"></script>
-    <script src="js/controllers/storeController.js"></script>
-    <script src="js/controllers/firstPetController.js"></script>
-    <script src="js/controllers/accountController.js"></script>
+    <script src="app.js"></script>
+    <script src="pages/editPet/editPetController.js"></script>
+    <script src="pages/editPet/editPetService.js"></script>
+    <script src="pages/userAuth/authController.js"></script>
+    <script src="pages/userAuth/userAuthService.js"></script>
+    <script src="pages/myPets/myPetsController.js"></script>
+    <script src="pages/myPets/myPetsService.js"></script>
+    <script src="pages/menu/menuController.js"></script>
+    <script src="pages/menu/menuService.js"></script>
+    <script src="pages/bankAuth/bankAuthController.js"></script>
+    <script src="pages/bankAuth/bankAuthServices.js"></script>
+    <script src="pages/petPages/petController.js"></script>
+    <script src="pages/petStore/storeController.js"></script>
+    <script src="pages/firstPet/firstPetController.js"></script>
+    <script src="pages/firstPet/firstPetService.js"></script>
+    <script src="pages/accounts/accountController.js"></script>
+    <script src="pages/accounts/accountServices.js"></script>
+    <script src="pages/adoptPet/adoptPetController.js"></script>
+    <script src="pages/adoptPet/adoptPetService.js"></script>
+    <script src="pages/petPages/petServices.js"></script>
 
 
   </head>
 
 
-  <body ng-app="starter">
-
+  <body ng-app="starter" class="platform-ios platform-cordova platform-webview">
     <script src="https://cdn.plaid.com/link/v2/stable/link-initialize.js"></script>
-    <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-stripe/4.2.12/angular-stripe.js"></script>
 
     <ion-nav-view></ion-nav-view>
+    <script src="https://cdn.plaid.com/link/v2/stable/link-initialize.js"></script>
   </body>
 </html>

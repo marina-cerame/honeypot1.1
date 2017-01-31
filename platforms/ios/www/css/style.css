@@ -1,9 +1,55 @@
 /* Empty. Add your own CSS if you like */
 .ground {
+  height: 625px;
   z-index: -1;
-  background-color: #008000;
   position: relative;
+  background-image: url('../img/woods_day.png');
+  background-size: 100%;
+}
 
+.progress-text {
+   font-weight: bold;
+   position: absolute;
+   display: block;
+   width: 100%;
+   font-size: 13px;
+   color: black;
+   /*font-family: 'Helvetica';*/
+   height: 5px;
+   text-align: left;
+   margin-left: 5%;
+}
+.progress {
+  background: rgba(232, 229, 135, 1);
+  width:90%;
+  height:60px;
+  margin:auto;
+  vertical-align: text-top;
+  padding-bottom: 0px;
+  /*margin-left: 30%;*/
+  background: -webkit-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(232, 229, 135, 1) 100%);
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(232, 229, 135, 1) 100%);
+  border: 2px solid rgba(245, 245, 245, 1);
+  border-radius: 25px;
+  height: 23px;
+}
+
+.progress-bar-custom {
+  background: rgba(66, 139, 202, 1);
+}
+
+#adopt-page {
+  margin-top: 50px;
+}
+
+.slider {
+  height:350px;
+}
+.adopt-showcase {
+  text-align: center;
+  margin: auto;
+  padding: 5%;
+  height: 200px;
 }
 
 .food-item {
@@ -27,7 +73,28 @@
   text-align: center;
 }
 
-#goal {
+.food-item {
+  position: relative;
+  top: -95px;
+}
+.food-div {
+  margin-bottom: 0px;
+}
+#food-item-text {
+  text-align: right;
+}
+/*.food-img {
+  position: fixed;
+  right: 10%;
+  top: 10%;
+}*/
+
+#bear-logo {
+  margin: auto;
+  text-align: center;
+}
+
+/*#goal {
   margin: auto;
   width: 100px;
   height: 100px;
@@ -35,16 +102,31 @@
   left: auto;
   right: 10%;
   top: 5%;
-}
+}*/
 
-#healthbar {
+/*#healthbar {
   position: fixed;
-}
+}*/
 h1 {
-  text-align: center;
-  color: #ADD8E6;
+color: #84C0C6;
+padding-bottom: 40px;
+/*color: #111;*/
+font-family: 'Fabada', sans-serif;
+/*font-family: 'Arial black', Arial black;*/
+font-size: 40px;
+font-weight: bold;
+letter-spacing: -2px;
+line-height: 1;
+text-align: center;
+-webkit-font-smoothing: antialiased;
+text-rendering: optimizelegibility;
 }
-
+h2 {
+  font-family: 'Fabada', sans-serif;
+}
+.button {
+  font-family: 'Fabada', sans-serif;
+}
 #food-title {
   /*color: 	#FF4500;*/
   font-size: 25px;
@@ -54,4 +136,10 @@ h1 {
 #starter-pet-text {
   opacity: 0.5;
 
+}
+#pet-text {
+  text-align: right;
+}
+* {
+  font-family: 'Fabada'
 }
