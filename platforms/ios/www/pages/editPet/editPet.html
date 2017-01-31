@@ -1,0 +1,28 @@
+<ion-view cache-view="false">
+  <ion-content>
+    <h1>edit pet</h1>
+    <form name="editPetForm" ng-submit='edit()'>
+      </label>
+      <div class="list">
+        <label class="item item-input">
+          <span class="input-label">Pet Name:</span>
+          <input type="text" ng-model="pet.name">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Saving for:</span>
+          <input type="text" ng-model="pet.goal_name">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Goal Amount:</span>
+          <input type="text" ng-model="pet.goal_amt">
+        </label>
+      </div>
+      <button style="background-color: #e3b11a" class="button button-full">
+        Submit Changes
+      </button>
+    </form>
+    <button class="button button-full button-light" ng-click="delete()">
+      Delete
+    </button>
+  </ion-content>
+</ion-view>

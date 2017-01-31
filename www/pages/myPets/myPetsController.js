@@ -31,7 +31,8 @@ angular.module('myPets', [])
 
   $scope.goToPet = (pet) => {
     $rootScope.pet = pet;
-    $location.path('/market/pet');
+    const type = myPets.pets[pet.pet_type_id];
+    $location.path(`/market/${type}`);
   };
 
   $scope.editPet = (pet) => {
