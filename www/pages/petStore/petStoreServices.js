@@ -17,17 +17,22 @@ angular.module('store.service', ['app.store'])
           }, err => {
             console.warn(err);
           });
-      $http.get(`http://35.167.2.107:3000/v1/bank_tokens/${$rootScope.checking_id}`)
+      $http.get(`http://35.167.2.107:3000/v1/bank_tokens/?user_id__is=${$rootScope.user}`)
         .then((res) => {
+          console.log('res: ', res);
           const transaction = {
             user_id: $rootScope.user,
             pet_id: $rootScope.pet.id,
             item_id: context.item.id,
+            // amount: context.item.cost,
             amount: context.item.cost,
             checking: res.data.data[0].token,
+            savings: res.data.data[1].token,
           };
+          console.log('transaction: ', transaction);
           $http.post('http://35.167.2.107:3000/v1/transactions', transaction)
             .then((res) => {
+              console.log('resfdsfsfs: ', res);
               $location.path('/market/pet');
             }, (error) => {
               console.warn(error);

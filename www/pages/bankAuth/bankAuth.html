@@ -5,20 +5,24 @@
     <h1>Link your bank accounts</h1>
     <div class="container">
         <ion-list>
-            <ion-item>
-                <div class="item-button-right">checking account: {{ checkingName }}
-                  <button ng-click="openChecking()" class="button" >
-                      Link Account
-                  </button>
-                </div>
-            </ion-item>
-            <ion-item>
-              <div class="item-button-right">savings account: {{ savingsName }}
-                <button ng-click="openSavings()" class="button" >
-                    Link Account
+          <ion-item>
+              <!-- <div> checking account: {{ checkingName }} </div> -->
+              <div>
+                <button ng-click="openChecking()" class="button" >
+                    add a checking account
                 </button>
+                {{ checkingName }}
               </div>
-            </ion-item>
+          </ion-item>
+          <ion-item>
+            <!-- <div> savings account: {{ savingsName }} </div> -->
+            <div>
+              <button ng-click="openSavings()" class="button" >
+                   add a savings account
+              </button>
+              {{ savingsName }}
+            </div>
+          </ion-item>
         </ion-list>
         <button class="button button-full button-energized" ng-click="goToFirstPet()">
    Next
