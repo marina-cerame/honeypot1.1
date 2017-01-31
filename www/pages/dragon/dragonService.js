@@ -21,7 +21,7 @@ angular.module('dragon.service', ['app.dragon'])
     };
     factory.showHelp = () => {
       $ionicPopup.alert({
-        template: '<p>we need helpful tips for this popup</p>',
+        template: '<p>bars indicate pet status<br />when levels are low visit the store</p>',
       });
     };
     return factory;

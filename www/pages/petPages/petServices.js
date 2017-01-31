@@ -251,7 +251,7 @@ angular.module('pet.service', ['app.pet'])
 
   factory.showHelp = () => {
     $ionicPopup.alert({
-      template: '<p>we need helpful tips for this popup</p>',
+      template: '<p>bars indicate pet status<br />when levels are low visit the store</p>',
     });
   };
 
