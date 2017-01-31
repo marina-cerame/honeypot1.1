@@ -112,6 +112,7 @@ class V1BankTokensController extends Nodal.Controller {
     //   this.respond(err || model);
     //
     // });
+    console.log('hit////////////////////');
     const public_token = this.params.body.public_token;
     const account_id = this.params.body.account_id;
     const user_id = this.params.body.user_id;
