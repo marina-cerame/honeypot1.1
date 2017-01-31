@@ -4,10 +4,12 @@ angular.module('octo.service', ['app.octo'])
 
     factory.positionOct = () => {
       TweenMax.to('.octo', 0, { x: 90, y: 125 });
-      TweenMax.to('.hat', 0, { x: -105, y: -30, scale: 1.5, rotation: -35, transformOrigin: "0% 100%" });
+      TweenMax.to('.hat', 0, { x: -105, y: -30, scale: 1.5, rotation: -35, transformOrigin: '0% 100%' });
       TweenMax.to('.necklace', 0, { x: -65, y: 15, scale: 1.2 });
-      TweenMax.to('.chain', 0, { scale: 1.4, transformOrigin: "center"});
-    }
+      TweenMax.to('.chain', 0, { scale: 1.4, transformOrigin: 'center' });
+      TweenMax.to('.stringRed', 0, { x: 285, y: -25, scale: 1 });
+      TweenMax.to('.balRed', 0, { x: 65, y: 15, scale: 1.2 });
+    };
     factory.getStats = () => {
       return $http.get(`http://35.167.2.107:3000/v1/pet_stats/?id__is=${$rootScope.pet.id}`)
         .then(res => {
