@@ -1,5 +1,5 @@
 angular.module('dragon.service', ['app.dragon'])
-  .factory('Dragon', function ($rootScope, $http) {
+  .factory('Dragon', function ($rootScope, $http, $ionicPopup) {
     const factory = {};
 
     factory.getStats = () => {
@@ -18,6 +18,11 @@ angular.module('dragon.service', ['app.dragon'])
         }, err => {
           console.warn(err);
         });
+    };
+    factory.showHelp = () => {
+      $ionicPopup.alert({
+        template: '<p>we need helpful tips for this popup</p>',
+      });
     };
     return factory;
   });

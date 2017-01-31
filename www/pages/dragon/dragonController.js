@@ -7,4 +7,5 @@ angular.module('app.dragon', [])
       .then(res => {
         $scope.stats = res;
       });
+    $scope.showHelp = () => Dragon.showHelp();
   });

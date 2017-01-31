@@ -1,5 +1,5 @@
 angular.module('pet.service', ['app.pet'])
-.factory('Pet', function ($rootScope, $http) {
+.factory('Pet', function ($rootScope, $http, $ionicPopup) {
   const factory = {};
   let stats = null;
   let happiness = null;
@@ -247,6 +247,12 @@ angular.module('pet.service', ['app.pet'])
   // /////////////////////////////////////////////////////
   factory.bearGrow = () => {
     TweenMax.to('.bear', 0, { scale: 1.15, y: 130 });
+  };
+
+  factory.showHelp = () => {
+    $ionicPopup.alert({
+      template: '<p>we need helpful tips for this popup</p>',
+    });
   };
 
   return factory;

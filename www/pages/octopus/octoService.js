@@ -1,5 +1,5 @@
 angular.module('octo.service', ['app.octo'])
-  .factory('Octo', function ($rootScope, $http) {
+  .factory('Octo', function ($rootScope, $http, $ionicPopup) {
     const factory = {};
 
     factory.getStats = () => {
@@ -19,5 +19,12 @@ angular.module('octo.service', ['app.octo'])
           console.warn(err);
         });
     };
+
+    factory.showHelp = () => {
+      $ionicPopup.alert({
+        template: '<p>we need helpful tips for this popup</p>',
+      });
+    };
+
     return factory;
   });
