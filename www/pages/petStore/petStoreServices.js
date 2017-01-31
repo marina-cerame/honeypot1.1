@@ -31,8 +31,8 @@ angular.module('store.service', ['app.store'])
           };
           console.log('transaction: ', transaction);
           $http.post('http://35.167.2.107:3000/v1/transactions', transaction)
-            .then((res) => {
-              console.log('resfdsfsfs: ', res);
+            .then((response) => {
+              console.log('resfdsfsfs: ', response);
               const types = {
                 1: 'pet',
                 2: 'octopus',

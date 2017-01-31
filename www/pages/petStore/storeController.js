@@ -6,6 +6,17 @@ angular.module('app.store', [])
   $http.get(`http://35.167.2.107:3000/v1/items/?pet_type_id__is=${$rootScope.pet.pet_type_id}`)
     .then((res) => {
       $scope.items = res.data.data;
+      $scope.items.map(item => {
+        const price = (item.cost / 100)
+        .toLocaleString('en-US',
+          {
+            style: 'currency',
+            currency: 'USD',
+          });
+        item.cost = price;
+        return item;
+      });
+      console.log($scope.items, 'items here');
     }, (err) => {
       console.warn(err);
     });
