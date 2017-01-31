@@ -48,6 +48,7 @@ angular.module('bankAuth.service', ['app.bankAuth'])
         });
         $http.post('http://35.167.2.107:3000/v1/bank_tokens', postFormat)
           .then((res) => {
+            console.log('savings res: ', res);
             $rootScope.savings_id = res.data.data[0].id;
           });
       },
