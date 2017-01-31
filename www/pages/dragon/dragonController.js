@@ -3,5 +3,8 @@
 
 angular.module('app.dragon', [])
   .controller('DragonCtrl', function ($scope, $rootScope, $http, Dragon) {
-    console.log($rootScope.pet, 'dragon root pet')
+    Dragon.getStats()
+      .then(res => {
+        $scope.stats = res;
+      });
   });

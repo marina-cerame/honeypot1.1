@@ -33,7 +33,13 @@ angular.module('store.service', ['app.store'])
           $http.post('http://35.167.2.107:3000/v1/transactions', transaction)
             .then((res) => {
               console.log('resfdsfsfs: ', res);
-              $location.path('/market/pet');
+              const types = {
+                1: 'pet',
+                2: 'octopus',
+                3: 'dragon',
+              };
+              const type = types[$rootScope.pet_type_id];
+              $location.path(`/market/${type}`);
             }, (error) => {
               console.warn(error);
             });
