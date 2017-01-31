@@ -97,7 +97,7 @@ class V1BankTokensController extends Nodal.Controller {
                   name: name,
                   token: account.id
                 }
-                BankToken.update(context.params.route.id, newToken, (err, model) => {
+                BankToken.create(newToken, (err, model) => {
                   context.respond(err || model);
                 });
               }
