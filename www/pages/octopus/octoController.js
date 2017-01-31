@@ -10,4 +10,6 @@ angular.module('app.octo', [])
       });
     $scope.showHelp = () => Octo.showHelp();
     TweenMax.to('.octo', 0, { scale: 0.7, y: -100 });
+    Octo.positionOct();
+    // TweenMax.to('.octo', 0, { scale: 0.7, y: -100 });
   });
