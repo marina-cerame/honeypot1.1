@@ -155,6 +155,16 @@ angular.module('starter', ['ionic',
     controller: 'BankCtrl',
   })
 
+  .state('app.contact', {
+    url: '/contact',
+    views: {
+      'menuContent': {
+        templateUrl: 'pages/contact/contact.html',
+        // controller
+      },
+    },
+  })
+
   .state('signup', {
     url: '/signup',
     templateUrl: 'pages/userAuth/signup.html',
