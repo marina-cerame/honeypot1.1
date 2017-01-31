@@ -9,4 +9,5 @@ angular.module('app.octo', [])
         console.log($scope.stats, 'heres scope stats')
       });
     $scope.showHelp = () => Octo.showHelp();
+    TweenMax.to('.octo', 0, { scale: 0.7, y: -100 });
   });
