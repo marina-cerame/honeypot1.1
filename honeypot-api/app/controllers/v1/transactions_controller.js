@@ -29,9 +29,9 @@ class V1TransactionsController extends Nodal.Controller {
 
     Transaction.query()
       .where(this.params.query)
-      .end((err, petModels) => {
-
-      }
+      .end((err, transactionModels) => {
+        console.log('transactionModels: ', transactionModels);
+      });
 
 
     Transaction.create(context.params.body, (err, model) => {
