@@ -61,7 +61,7 @@ angular.module('adoptPet.service', [
 
     const showHelp = () => {
       $ionicPopup.alert({
-        template: '<p>scroll right to see other pets then fill in each field to start saving for a new goal</p>',
+        template: '<p>swipe right to see other pets then complete the form to start saving for a new goal</p>',
       });
     };
 

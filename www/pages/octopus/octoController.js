@@ -7,4 +7,5 @@ angular.module('app.octo', [])
       .then(res => {
         $scope.stats = res;
       });
+    $scope.showHelp = () => Octo.showHelp();
   });

@@ -173,8 +173,21 @@ h2 {
   font-size: 20px;
 }
 
+#petHelp {
+  font-family: 'Arial';
+  font-weight: bolder;
+  font-size: 16px;
+  color: #e3b11a;
+  background: rgba(255,255,255,0);
+}
+
 .popup-body {
   font-family: 'Fabada', sans-serif;
   font-size: 14px;
   text-align: 'center';
+}
+
+.bar.bar-footer {
+  background: rgba(255,255,255,0);
+  border-bottom-width: 0;
 }

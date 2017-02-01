@@ -59,7 +59,7 @@ angular.module('account.service', ['app.account'])
     });
     const showHelp = () => {
       $ionicPopup.alert({
-        template: '<p>you can edit one or both of your accounts on this by tapping their edit button</p>',
+        template: '<p>view your total saved with honeypot or edit your banking information</p>',
       });
     };
     return {

@@ -18,6 +18,7 @@ angular.module('editPetService', [])
         console.warn(err);
       });
   };
+  // you change pet details on this page
 
   return {
     edit,

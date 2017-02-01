@@ -11,4 +11,5 @@ angular.module('app.pet', [])
       .then(res => {
         $scope.stats = res;
       });
+    $scope.showHelp = () => Pet.showHelp();
   });
