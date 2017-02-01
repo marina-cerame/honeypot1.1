@@ -5,6 +5,12 @@ angular.module('myPets', [])
   myPets.getAll()
     .then((pets) => {
       $scope.pets = pets;
+      $scope.pets.forEach((pet) => {
+        if (pet.goal_progress / pet.goal_amt >= 100) {
+          pet.hunger = 100;
+          pet.happiness = 100;
+        }
+      });
     });
 
   $scope.fontColor = (index) => {

@@ -52,4 +52,6 @@ angular.module('app.store', [])
       }
     });
   };
+
+  $scope.showHelp = () => store.showHelp();
 });
