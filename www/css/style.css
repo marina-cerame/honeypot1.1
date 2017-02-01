@@ -191,3 +191,10 @@ h2 {
   background: rgba(255,255,255,0);
   border-bottom-width: 0;
 }
+
+.storeHelp {
+  position: absolute;
+  right: -12px;
+  bottom: 40px;
+  width: 100%
+}
