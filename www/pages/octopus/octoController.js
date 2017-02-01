@@ -6,6 +6,7 @@ angular.module('app.octo', [])
     Octo.getStats()
       .then(res => {
         $scope.stats = res;
+        console.log($scope.stats, 'heres scope stats')
       });
     $scope.showHelp = () => Octo.showHelp();
   });

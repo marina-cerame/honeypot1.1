@@ -13,7 +13,7 @@ angular.module('app.store', [])
             style: 'currency',
             currency: 'USD',
           });
-        item.cost = price;
+        item.price = price;
         return item;
       });
       console.log($scope.items, 'items here');
