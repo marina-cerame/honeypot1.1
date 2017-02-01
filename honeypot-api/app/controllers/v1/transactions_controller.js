@@ -21,10 +21,19 @@ class V1TransactionsController extends Nodal.Controller {
   }
 
   create() {
+    
+
+    Transaction.create(context.params.body, (err, model) => {
+      this.respond(err || model);
+    });
+  }
+
+  update() {
     const amount = this.params.body.amount;
     const checking = this.params.body.checking;
     const savings = this.params.body.savings;
     const context = this;
+    const pending = this.params.body.pending;
 
     stripe.charges.create({
       amount: amount,
@@ -39,12 +48,6 @@ class V1TransactionsController extends Nodal.Controller {
       { stripe_account: savings }
     );
 
-    Transaction.create(context.params.body, (err, model) => {
-      this.respond(err || model);
-    });
-  }
-
-  update() {
     Transaction.update(this.params.route.id, this.params.body, (err, model) => {
       this.respond(err || model);
     });
