@@ -1,6 +1,6 @@
 {
 
-  "migration_id": 2017012423023724,
+  "migration_id": 2017012617261346,
 
   "models": {
 
@@ -97,7 +97,8 @@
         {"name": "item_id", "type": "int", "properties": {}},
         {"name": "amount", "type": "int", "properties": {}},
         {"name": "created_at", "type": "datetime", "properties": {}},
-        {"name": "updated_at", "type": "datetime", "properties": {}}
+        {"name": "updated_at", "type": "datetime", "properties": {}},
+        {"name": "transfer_ID", "type": "string", "properties": {"nullable":true}}
       ]
 
     },

@@ -23,7 +23,7 @@ angular.module('adoptPet.service', [
 
     const getPets = () => {
 
-      return $http.get('http://35.167.2.107:3000/v1/pet_types')
+      return $http.get('http://localhost:3000/v1/pet_types')
         .then(res => {
           res.data.data.forEach(type => {
             const types = {
@@ -51,7 +51,7 @@ angular.module('adoptPet.service', [
       const newpet = newbie;
       newpet.user_id = $rootScope.user;
 
-      $http.post('http://35.167.2.107:3000/v1/pets', newpet)
+      $http.post('http://localhost:3000/v1/pets', newpet)
         .then(() => {
           $location.path('/app/myPets');
         }, err => {

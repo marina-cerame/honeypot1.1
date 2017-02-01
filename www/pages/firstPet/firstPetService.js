@@ -13,7 +13,7 @@ angular.module('firstPetService', [
       const pet = firsty;
       pet.pet_type_id = 1;
       pet.user_id = $rootScope.user;
-      $http.post('http://35.167.2.107:3000/v1/pets', pet)
+      $http.post('http://localhost:3000/v1/pets', pet)
         .then((res) => {
           $rootScope.pet = res.data.data[0];
           $location.path('/market/pet');

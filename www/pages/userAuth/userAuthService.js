@@ -3,11 +3,11 @@
 angular.module('authService', [])
 .factory('Auth', function ($http, $rootScope, $location, $ionicPopup) {
   const login = (user) => {
-    $http.post('http://35.167.2.107:3000/v1/access_tokens', user)
+    $http.post('http://localhost:3000/v1/access_tokens', user)
       .then((res) => {
         $rootScope.user = res.data.data[0].user_id;
         console.log('user: ', $rootScope.user);
-        $http.get(`http://35.167.2.107:3000/v1/bank_tokens/?user_id__is=${$rootScope.user}`)
+        $http.get(`http://localhost:3000/v1/bank_tokens/?user_id__is=${$rootScope.user}`)
           .then((resp) => {
             console.log('tokens: ', resp);
             resp.data.data.forEach(entry => {
@@ -32,7 +32,7 @@ angular.module('authService', [])
   };
 
   const signup = (user) => {
-    $http.post('http://35.167.2.107:3000/users', user)
+    $http.post('http://localhost:3000/users', user)
       .then((res) => {
         console.log(res, ' resppoonnnsseeê');
         if (typeof res.data.data[0] === 'string') {
@@ -40,7 +40,7 @@ angular.module('authService', [])
             title: res.data.data[0],
           });
         }
-        $http.post('http://35.167.2.107:3000/v1/access_tokens', user)
+        $http.post('http://localhost:3000/v1/access_tokens', user)
           .then((res) => {
             $rootScope.user = res.data.data[0].user_id;
             $location.path('/bankAuth');

@@ -2,7 +2,7 @@
 angular.module('editPetService', [])
 .factory('editPet', function ($http, $location, $rootScope) {
   const edit = (pet) => {
-    $http.put(`http://35.167.2.107:3000/v1/pets/${$rootScope.pet.id}`, pet)
+    $http.put(`http://localhost:3000/v1/pets/${$rootScope.pet.id}`, pet)
       .then(() => {
         $location.path('/app/myPets');
       }, (err) => {
@@ -11,7 +11,7 @@ angular.module('editPetService', [])
   };
 
   const deleter = () => {
-    return $http.delete(`http://35.167.2.107:3000/v1/pets/${$rootScope.pet.id}`)
+    return $http.delete(`http://localhost:3000/v1/pets/${$rootScope.pet.id}`)
       .then(() => {
         $location.path('/app/myPets');
       }, (err) => {
