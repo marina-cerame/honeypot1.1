@@ -19,15 +19,15 @@ angular.module('store.service', ['app.store'])
           });
       $http.get(`http://35.167.2.107:3000/v1/bank_tokens/?user_id__is=${$rootScope.user}`)
         .then((res) => {
-          console.log('res: ', res);
+          console.log(context, 'heres context');
           const transaction = {
             user_id: $rootScope.user,
             pet_id: $rootScope.pet.id,
             item_id: context.item.id,
-            // amount: context.item.cost,
             amount: context.item.cost,
             checking: res.data.data[0].token,
             savings: res.data.data[1].token,
+            pending: true,
           };
           console.log('transaction: ', transaction);
           $http.post('http://35.167.2.107:3000/v1/transactions', transaction)
@@ -38,7 +38,9 @@ angular.module('store.service', ['app.store'])
                 2: 'octopus',
                 3: 'dragon',
               };
-              const type = types[$rootScope.pet_type_id];
+              console.log($rootScope.pet.pet_type_id)
+              const type = types[$rootScope.pet.pet_type_id];
+              console.log(type, 'type')
               $location.path(`/market/${type}`);
             }, (error) => {
               console.warn(error);

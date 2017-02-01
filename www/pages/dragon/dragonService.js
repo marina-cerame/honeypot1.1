@@ -7,7 +7,7 @@ angular.module('dragon.service', ['app.dragon'])
         .then(res => {
           stats = res.data.data[0];
           happiness = stats.happiness;
-          stats.progress = (stats.goal_progress / stats.goal_amt) * 100;
+          stats.progress = (stats.goal_progress / stats.goal_amt);
           // setAccessories();
           // setHappiness();
           // setEvolution();
