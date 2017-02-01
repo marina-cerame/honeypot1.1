@@ -17,7 +17,7 @@ angular.module('store.service', ['app.store'])
           }, err => {
             console.warn(err);
           });
-      $http.get(`http://35.167.2.107:3000/v1/bank_tokens/?user_id__is=${$rootScope.user}`)
+      $http.get(`http://localhost:3000/v1/bank_tokens/?user_id__is=${$rootScope.user}`)
         .then((res) => {
           console.log(context, 'heres context');
           const transaction = {
@@ -30,7 +30,7 @@ angular.module('store.service', ['app.store'])
             pending: true,
           };
           console.log('transaction: ', transaction);
-          $http.post('http://35.167.2.107:3000/v1/transactions', transaction)
+          $http.post('http://localhost:3000/v1/transactions', transaction)
             .then((response) => {
               console.log('resfdsfsfs: ', response);
               const types = {

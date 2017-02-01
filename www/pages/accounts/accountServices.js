@@ -20,7 +20,7 @@ angular.module('account.service', ['app.account'])
           name: $rootScope.checkingName,
         });
         console.log('plaid shit that we send to bank tokens: ', postFormat);
-        $http.put(`http://35.167.2.107:3000/v1/bank_tokens/${$rootScope.checking_id}`, postFormat)
+        $http.put(`http://localhost:3000/v1/bank_tokens/${$rootScope.checking_id}`, postFormat)
           .then(function (res) {
             console.log('bank tokens from put res: ', res);
             $rootScope.checking_id = res.data.data[0].id;
@@ -47,7 +47,7 @@ angular.module('account.service', ['app.account'])
           type: 'savings',
           name: $rootScope.savingsName,
         });
-        $http.put(`http://35.167.2.107:3000/v1/bank_tokens/${$rootScope.savings_id}`, postFormat)
+        $http.put(`http://localhost:3000/v1/bank_tokens/${$rootScope.savings_id}`, postFormat)
           .then(function (res) {
             console.log('savings res: ', res);
             $rootScope.savings_id = res.data.data[0].id;
