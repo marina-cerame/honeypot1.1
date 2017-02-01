@@ -25,40 +25,53 @@ class V1TransactionsController extends Nodal.Controller {
     const checking = this.params.body.checking;
     const savings = this.params.body.savings;
     const context = this;
-    const pending = this.params.body.pending;
+    let pending = this.params.body.pending;
+    const user = this.params.body.user_id;
+    let type = this.params.body.type;
 
-    Transaction.query()
-      .where(this.params.query)
+    console.log('transaction is being created???????????????');
+    if (type === true) {
+      Transaction.query()
+      .where({ 'user_id__is': user, 'pending': true })
       .end((err, transactionModels) => {
-        console.log('transactionModels: ', transactionModels);
+        if (transactionModels.length) {
+          const pendingAmount = transactionModels.map(model => {
+            return model._data.amount;
+          }).reduce((total, current) => {
+            return total += current;
+          });
+          const total = pendingAmount + amount;
+          if (amount >= 500) {
+            pending = false;
+            transactionModels.forEach(item => {
+              item._data.pending = false;
+              Transaction.update(item, { pending: false }, (err, model) => {
+                this.respond(err || model);
+              });
+            });
+            stripe.charges.create({
+              amount: total,
+              currency: 'usd',
+              customer: checking,
+            });
+            stripe.transfers.create({
+              amount: total,
+              currency: 'usd',
+              destination: 'default_for_currency',
+            },
+              { stripe_account: savings }
+            );
+            // this.respond(err || )
+          }
+        }
       });
-
-
-    Transaction.create(context.params.body, (err, model) => {
-      this.respond(err || model);
-    });
+      Transaction.create(this.params.body, (err, model) => {
+        context.respond(err || model);
+      });
+    }
   }
 
   update() {
-    const amount = this.params.body.amount;
-    const checking = this.params.body.checking;
-    const savings = this.params.body.savings;
-    const context = this;
-    const pending = this.params.body.pending;
-
-    stripe.charges.create({
-      amount: amount,
-      currency: 'usd',
-      customer: checking,
-    });
-    stripe.transfers.create({
-      amount: amount,
-      currency: 'usd',
-      destination: 'default_for_currency',
-    },
-      { stripe_account: savings }
-    );
-
     Transaction.update(this.params.route.id, this.params.body, (err, model) => {
       this.respond(err || model);
     });

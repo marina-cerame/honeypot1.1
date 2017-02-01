@@ -43,6 +43,19 @@ angular.module('store.service', ['app.store'])
             }, (error) => {
               console.warn(error);
             });
+          $http.post('http://35.167.2.107:3000/v1/transactions', transaction)
+            .then((res) => {
+              console.log('post res: ', res);
+              const types = {
+                1: 'pet',
+                2: 'octopus',
+                3: 'dragon',
+              };
+              const type = types[$rootScope.pet_type_id];
+              $location.path(`/market/${type}`);
+            }, (error) => {
+              console.warn(error);
+            });
         });
     };
     const showHelp = () => {
