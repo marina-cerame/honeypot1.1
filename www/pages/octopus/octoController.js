@@ -7,6 +7,10 @@ angular.module('app.octo', [])
       .then(res => {
         $scope.stats = res;
         console.log($scope.stats, 'heres scope stats')
+        if ($scope.stats.progress >= 100) {
+          $scope.stats.hunger = 100;
+          $scope.stats.happiness = 100;
+        }
       });
     $scope.showHelp = () => Octo.showHelp();
     TweenMax.to('.octo', 0, { scale: 0.7, y: -100 });
