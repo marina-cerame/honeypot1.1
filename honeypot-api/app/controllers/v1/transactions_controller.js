@@ -21,7 +21,18 @@ class V1TransactionsController extends Nodal.Controller {
   }
 
   create() {
-    
+    const amount = this.params.body.amount;
+    const checking = this.params.body.checking;
+    const savings = this.params.body.savings;
+    const context = this;
+    const pending = this.params.body.pending;
+
+    Transaction.query()
+      .where(this.params.query)
+      .end((err, petModels) => {
+
+      }
+
 
     Transaction.create(context.params.body, (err, model) => {
       this.respond(err || model);
