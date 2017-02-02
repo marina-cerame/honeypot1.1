@@ -10,17 +10,29 @@ angular.module('pet.service', ['app.pet'])
   factory.bearTilt = () => {
     TweenMax.to('.bear', 1, {
       rotation: 2,
-      transformOrigin: '50% 50%',
+      transformOrigin: '65% 80%',
+    });
+    TweenMax.to('.balloons', 1, {
+      rotation: -2,
+      transformOrigin: 'bottom',
     });
     TweenMax.to('.bear', 1, {
       rotation: -2,
-      transformOrigin: '50% 50%',
+      transformOrigin: '65% 80%',
       delay: 1,
       onComplete: factory.bearTilt,
+    });
+    TweenMax.to('.balloons', 1, {
+      rotation: 2,
+      transformOrigin: 'bottom',
+      delay: 1,
     });
   };
 
   const setHappiness = () => {
+    if (happiness > 50) {
+      bearTilt();
+    }
     if (happiness < 51) {
       TweenMax.to('.mouth', 0, { alpha: 0 });
       TweenMax.to('.frown', 0, { alpha: 1 });
@@ -33,17 +45,14 @@ angular.module('pet.service', ['app.pet'])
   // /////////////////////////////////////
   // //////BEAR TOUCH EFFECT//////////////
   // /////////////////////////////////////
+  const bearWave = () => {
+    TweenMax.to('.ears', 0.7, { y: -8 });
+    TweenMax.to('.armLeft', 0.7, { rotation: 65, x: -10, transformOrigin: '80% 50%' });
+    TweenMax.to('.balloons', 0.7, { y: -77, x: 0 });
 
-  const earDown = () => {
-    TweenMax.to('.ears', 0.5, { y: 0 });
-    TweenMax.to('.armLeft', 0.5, { rotation: 0, x: 0, transformOrigin: '80% 50%' });
-    TweenMax.to('.balloons', 0.5, { y: 0, x: 0 });
-  };
-
-  const earUp = () => {
-    TweenMax.to('.ears', 0.5, { y: -8, onComplete: earDown });
-    TweenMax.to('.armLeft', 0.5, { rotation: 65, x: -10, transformOrigin: '80% 50%' });
-    TweenMax.to('.balloons', 0.5, { y: -77, x: 12 });
+    TweenMax.to('.ears', 0.7, { y: 0, delay: 0.7 });
+    TweenMax.to('.armLeft', 0.7, { rotation: 0, x: 0, transformOrigin: '80% 50%', delay: 0.7 });
+    TweenMax.to('.balloons', 0.7, { y: 0, x: 0, delay: 0.7 });
   };
 
   let tear = 1;
@@ -53,7 +62,7 @@ angular.module('pet.service', ['app.pet'])
 
     if (happiness > 25 || stats.progress >= 100) {
       console.log(stats.progress);
-      earUp();
+      bearWave();
       const blood = '.blood' + drip;
       TweenMax.to(blood, 3, { y: 75, ease: 'easeIn' });
       TweenMax.to(blood, 1.5, { alpha: 0, delay: 1.5 });
@@ -73,7 +82,6 @@ angular.module('pet.service', ['app.pet'])
       };
       switch (tear) {
         case 1:
-          console.log('switch 1');
           tearSelect('.tear1');
           break;
         case 2:
@@ -282,7 +290,6 @@ angular.module('pet.service', ['app.pet'])
         stats = res.data.data[0];
         happiness = stats.happiness;
         stats.progress = (stats.goal_progress / stats.goal_amt);
-        console.log(res.data.data[0]);
         setAccessories();
         setHappiness();
         setEvolution();

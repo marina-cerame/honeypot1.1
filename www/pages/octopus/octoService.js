@@ -144,7 +144,7 @@ angular.module('octo.service', ['app.octo'])
     };
 
     factory.deadOcto = () => {
-      TweenMax.to('.octo', 5, { x: 1200, ease: 'easeIn' })
+      TweenMax.to('.octo', 5, { x: 1200, ease: 'easeIn' });
       $ionicPopup.confirm({
         title: 'Your pet has run away in search of food!',
         template: 'click \'ok\' to lure your pet back with tasty bait ($5)',
@@ -166,7 +166,7 @@ angular.module('octo.service', ['app.octo'])
               $http.post('http://35.167.2.107:3000/v1/transactions', transaction)
                 .then((response) => {
                   console.log('dead octo transaction res: ', response);
-                  TweenMax.to('.octo', 5, { x: 0, ease: 'easeIn' })
+                  TweenMax.to('.octo', 5, { x: 0, ease: 'easeIn' });
                 });
             });
         } else {
