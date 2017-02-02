@@ -10,6 +10,13 @@ angular.module('app.dragon', [])
           $scope.stats.hunger = 100;
           $scope.stats.happiness = 100;
         }
+        /*
+         * Function for Dead Dragon
+         * Uncomment when animation etc is ready
+        */
+        // if ($scope.stats.hunger <= 0) {
+        //   Dragon.deadDragon();
+        // }
       });
     $scope.showHelp = () => Dragon.showHelp();
   });
