@@ -11,6 +11,9 @@ angular.module('app.octo', [])
           $scope.stats.hunger = 100;
           $scope.stats.happiness = 100;
         }
+        if ($scope.stats.hunger <= 0) {
+          Octo.deadOcto();
+        }
       });
     $scope.showHelp = () => Octo.showHelp();
     TweenMax.to('.octo', 0, { scale: 0.7, y: -100 });
