@@ -15,6 +15,7 @@ angular.module('app.octo', [])
           Octo.deadOcto();
         }
       });
+    $scope.octoTouch = Octo.octoTouch;
     $scope.showHelp = () => Octo.showHelp();
     TweenMax.to('.octo', 0, { scale: 0.7, y: -100 });
     Octo.positionOct();

@@ -201,7 +201,7 @@ angular.module('pet.service', ['app.pet'])
   factory.evolve = false; //  << this gets set to false initially but may be changed by store
                           //     controller which triggers the evolution animation
   const setEvolution = () => {
-    if (stats.progress > 50 && stats.progress < 100) {
+    if (stats.progress > 50) {
       TweenMax.to('.tusks', 0, { alpha: 1 });
       TweenMax.to('.claws', 0, { alpha: 1 });
     }
@@ -246,7 +246,7 @@ angular.module('pet.service', ['app.pet'])
     const tl = new TimelineMax();
     tl.to('.bear', 3, {
       transformOrigin: '50% 50%',
-      y: -270,
+      y: -250,
       ease: Circ.easeOut,
     }, 'bounce')
 
