@@ -1,5 +1,7 @@
+/* globals angular TweenMax */
+
 angular.module('dragon.service', ['app.dragon'])
-  .factory('Dragon', function ($rootScope, $http, $ionicPopup) {
+  .factory('Dragon', function ($rootScope, $http, $ionicPopup, $location) {
     const factory = {};
     let stats = null;
     let happiness = null;
@@ -354,41 +356,34 @@ angular.module('dragon.service', ['app.dragon'])
       });
     };
 
-/*
- * Function for Dead Dragon
- * Uncomment when animation etc is ready
-*/
-    // factory.deadDragon = () => {
-    //   TweenMax.to('.dragon', 5, { x: 1200, ease: 'easeIn' })
-    //   $ionicPopup.confirm({
-    //     title: 'Your pet has run away in search of food!',
-    //     template: 'click \'ok\' to lure your pet back with tasty bait ($5)',
-    //   }).then(res => {
-    //     if (res) {
-    //       console.log('buy bait');
-    //       $http.get(`http://35.167.2.107:3000/v1/bank_tokens/?user_id__is=${$rootScope.user}`)
-    //         .then((res) => {
-    //           const transaction = {
-    //             user_id: $rootScope.user,
-    //             pet_id: $rootScope.pet.id,
-    //             item_id: 29,
-    //             amount: 500,
-    //             checking: res.data.data[0].token,
-    //             savings: res.data.data[1].token,
-    //             pending: true,
-    //           };
-    //           console.log('transaction: ', transaction);
-    //           $http.post('http://35.167.2.107:3000/v1/transactions', transaction)
-    //             .then((response) => {
-    //               console.log('dead dragon transaction res: ', response);
-    //               TweenMax.to('.dragon', 5, { x: 0, ease: 'easeIn' })
-    //             });
-    //         });
-    //     } else {
-    //       $location.path('/app/myPets');
-    //     }
-    //   });
-    // };
+    factory.deadDragon = () => {
+      TweenMax.to('.all-drag', 5, { x: 1200, ease: 'easeIn' })
+      $ionicPopup.confirm({
+        title: 'Your pet has run away in search of food!',
+        template: 'click \'ok\' to lure your pet back with tasty bait ($5)',
+      }).then(res => {
+        if (res) {
+          $http.get(`http://35.167.2.107:3000/v1/bank_tokens/?user_id__is=${$rootScope.user}`)
+            .then((res) => {
+              const transaction = {
+                user_id: $rootScope.user,
+                pet_id: $rootScope.pet.id,
+                item_id: 28,
+                amount: 500,
+                checking: res.data.data[0].token,
+                savings: res.data.data[1].token,
+                pending: true,
+              };
+              $http.post('http://35.167.2.107:3000/v1/transactions', transaction)
+                .then((response) => {
+                  TweenMax.to('.all-drag', 5, { x: 0, ease: 'easeIn' })
+                });
+            });
+        } else {
+          $location.path('/app/myPets');
+        }
+      });
+    };
 
     return factory;
   });
