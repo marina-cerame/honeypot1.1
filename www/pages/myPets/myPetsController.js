@@ -26,9 +26,9 @@ angular.module('myPets', [])
   };
 
   $scope.petImages = {
-    1: '../img/pets/thumb-bear.png',
-    2: '../img/pets/thumb-octopus.png',
-    3: '../img/pets/thumb-dragon.png',
+    1: './img/pets/thumb-bear.png',
+    2: './img/pets/thumb-octopus.png',
+    3: './img/pets/thumb-dragon.png',
   };
 
   $scope.showHelp = () => { myPets.showHelp(); };

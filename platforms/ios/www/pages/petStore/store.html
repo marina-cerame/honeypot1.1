@@ -1,13 +1,13 @@
-<ion-view>
+<ion-view cache-view="false">
   <ion-content>
     <h1>crittermart</h1>
-    <div class="list" ng-repeat='item in items | filter : filters' ng-click='buyFood()' confirm>
+    <div class="list" ng-repeat='item in items | filter : filters' ng-click='showConfirm()' confirm>
     <a class="item item-thumbnail-left">
-      <img src={{images[item.id]}} >
+      <img src={{item.image.src}} >
       <div id='food-item-text'>
       <h2>{{ item.name }}</h2>
       <p>
-        <div ng-model='grab.cost'><strong>Cost:</strong> {{ item.cost }} </div><br />
+        <div ng-model='grab.cost'><strong>Cost:</strong> {{ item.price }} </div><br />
         <strong>{{effect[item.type]}} increase:</strong> {{ item.effect }}
       </p>
       </div>
@@ -15,6 +15,9 @@
 </div>
   </div>
   </ion-content>
+  <div class="storeHelp">
+    <a id="help" class="button pull-right" ng-click="showHelp()">?</a>
+  </div>
   <div class="tabs-striped">
     <div class="tabs">
       <a ng-click="filters.type = 'food'" class="tab-item active" href="">

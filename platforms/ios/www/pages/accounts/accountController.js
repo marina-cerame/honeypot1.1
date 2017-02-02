@@ -16,4 +16,5 @@ angular.module('app.account', [])
     $scope.goToPet = function goToPet() {
       $location.path('/market/pet');
     };
+    $scope.showHelp = () => { account.showHelp(); };
   });

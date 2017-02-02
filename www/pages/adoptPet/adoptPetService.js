@@ -6,9 +6,9 @@ angular.module('adoptPet.service', [
     const data = {};
     const petTypes = [];
     const petImages = {
-      1: '../img/pets/bear.png',
-      2: '../img/pets/octopus.png',
-      3: '../img/pets/dragon.png',
+      1: './img/pets/bear.png',
+      2: './img/pets/octopus.png',
+      3: './img/pets/dragon.png',
     };
 
     data.sliderOptions = {

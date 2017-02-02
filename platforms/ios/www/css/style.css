@@ -19,6 +19,7 @@
    text-align: left;
    margin-left: 5%;
 }
+
 .progress {
   background: rgba(232, 229, 135, 1);
   width:90%;
@@ -45,6 +46,7 @@
 .slider {
   height:350px;
 }
+
 .adopt-showcase {
   text-align: center;
   margin: auto;
@@ -56,9 +58,11 @@
   position: relative;
   top: -95px;
 }
+
 .food-div {
   margin-bottom: 0px;
 }
+
 #food-item-text {
   text-align: right;
 }
@@ -77,9 +81,11 @@
   position: relative;
   top: -95px;
 }
+
 .food-div {
   margin-bottom: 0px;
 }
+
 #food-item-text {
   text-align: right;
 }
@@ -115,18 +121,20 @@ font-family: 'Fabada', sans-serif;
 /*font-family: 'Arial black', Arial black;*/
 font-size: 40px;
 font-weight: bold;
-letter-spacing: -2px;
 line-height: 1;
 text-align: center;
 -webkit-font-smoothing: antialiased;
 text-rendering: optimizelegibility;
 }
+
 h2 {
   font-family: 'Fabada', sans-serif;
 }
+
 .button {
   font-family: 'Fabada', sans-serif;
 }
+
 #food-title {
   /*color: 	#FF4500;*/
   font-size: 25px;
@@ -137,9 +145,56 @@ h2 {
   opacity: 0.5;
 
 }
+
 #pet-text {
   text-align: right;
 }
+
 * {
   font-family: 'Fabada'
+}
+
+.popup-buttons .button {
+    background-color: #e3b11a;
+    font-size: 20px;
+}
+
+.popup-buttons .button.activated {
+    background-color: #e3b11a;
+}
+
+.popup-title {
+    font-family: 'Fabada', sans-serif;
+}
+
+#help {
+  font-family: 'Arial';
+  font-weight: bolder;
+  font-size: 20px;
+}
+
+#petHelp {
+  font-family: 'Arial';
+  font-weight: bolder;
+  font-size: 16px;
+  color: #e3b11a;
+  background: rgba(255,255,255,0);
+}
+
+.popup-body {
+  font-family: 'Fabada', sans-serif;
+  font-size: 14px;
+  text-align: 'center';
+}
+
+.bar.bar-footer {
+  background: rgba(255,255,255,0);
+  border-bottom-width: 0;
+}
+
+.storeHelp {
+  position: absolute;
+  right: -12px;
+  bottom: 40px;
+  width: 100%
 }

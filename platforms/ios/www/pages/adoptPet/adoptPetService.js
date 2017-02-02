@@ -2,13 +2,13 @@ angular.module('adoptPet.service', [
   'app.adoptPet',
 ])
 
-  .factory('Adopt', ($http, $rootScope, $location) => {
+  .factory('Adopt', ($http, $rootScope, $location, $ionicPopup) => {
     const data = {};
     const petTypes = [];
     const petImages = {
-      1: '../img/pets/bear.png',
-      2: '../img/pets/octopus.png',
-      3: '../img/pets/dragon.png',
+      1: './img/pets/bear.png',
+      2: './img/pets/octopus.png',
+      3: './img/pets/dragon.png',
     };
 
     data.sliderOptions = {
@@ -59,9 +59,16 @@ angular.module('adoptPet.service', [
         });
     };
 
+    const showHelp = () => {
+      $ionicPopup.alert({
+        template: '<p>swipe right to see other pets then complete the form to start saving for a new goal</p>',
+      });
+    };
+
     return {
       getPets,
       adoptNewPet,
       data,
+      showHelp,
     };
   });
