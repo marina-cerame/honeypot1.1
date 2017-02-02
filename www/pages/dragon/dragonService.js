@@ -357,7 +357,7 @@ angular.module('dragon.service', ['app.dragon'])
     };
 
     factory.deadDragon = () => {
-      TweenMax.to('.dragon', 5, { x: 1200, ease: 'easeIn' })
+      TweenMax.to('.all-drag', 5, { x: 1200, ease: 'easeIn' })
       $ionicPopup.confirm({
         title: 'Your pet has run away in search of food!',
         template: 'click \'ok\' to lure your pet back with tasty bait ($5)',
@@ -376,7 +376,7 @@ angular.module('dragon.service', ['app.dragon'])
               };
               $http.post('http://35.167.2.107:3000/v1/transactions', transaction)
                 .then((response) => {
-                  TweenMax.to('.dragon', 5, { x: 0, ease: 'easeIn' })
+                  TweenMax.to('.all-drag', 5, { x: 0, ease: 'easeIn' })
                 });
             });
         } else {

@@ -14,7 +14,7 @@ angular.module('app.dragon', [])
           $scope.stats.hunger = 100;
           $scope.stats.happiness = 100;
         }
-        if ($scope.stats.hunger <= 0) {
+        if ($scope.stats.hunger <= 100) {
           Dragon.deadDragon();
         }
       });
