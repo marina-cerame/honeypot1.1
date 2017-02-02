@@ -35,6 +35,8 @@ angular.module('authService', [])
         if (typeof res.data.data[0] === 'string') {
           $ionicPopup.alert({
             title: res.data.data[0],
+          }).then(() => {
+            $location.path('/signup');
           });
         }
         $http.post('http://35.167.2.107:3000/v1/access_tokens', user)
