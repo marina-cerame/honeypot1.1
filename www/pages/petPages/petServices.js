@@ -7,7 +7,7 @@ angular.module('pet.service', ['app.pet'])
   // ///////////////////////////////
   // //////// Happiness ////////////
   // ///////////////////////////////
-  const bearTilt = () => {
+  factory.bearTilt = () => {
     TweenMax.to('.bear', 1, {
       rotation: 2,
       transformOrigin: '50% 50%',
@@ -16,7 +16,7 @@ angular.module('pet.service', ['app.pet'])
       rotation: -2,
       transformOrigin: '50% 50%',
       delay: 1,
-      onComplete: bearTilt,
+      onComplete: factory.bearTilt,
     });
   };
 
