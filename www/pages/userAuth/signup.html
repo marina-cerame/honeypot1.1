@@ -15,8 +15,12 @@
         <label class="item item-input">
           <input type="password" name="password" ng-model='user.password' ng-minlength="5" placeholder="Password" required>
         </label>
-      </div>
+        <label class="item item-input">
+          <input type="password" name="confirmPassword" ng-model="user.confirmPassword" placeholder="Confirm Password" compareTo="user.password" required />
+        </label>
+
       <div align="center" padding>
+        <p ng-show="compare()">your passwords don't match</p>
         <p ng-show="signupForm.email.$invalid && !signupForm.email.$pristine">valid email address is required</p>
         <p ng-show="signupForm.username.$error.required && !signupForm.username.$pristine">username is required</p>
         <p ng-show="signupForm.password.$error.minlength && !signupForm.password.$pristine">password must be at least 5 characters</p>
@@ -25,8 +29,5 @@
         Submit
       </button>
     </form>
-    <button class="button button-full button-light" ng-click="goToLogin()">
-      Already Have an Account?
-    </button>
   </ion-content>
 </ion-view>
