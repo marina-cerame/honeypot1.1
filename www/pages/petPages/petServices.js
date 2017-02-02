@@ -335,7 +335,7 @@ angular.module('pet.service', ['app.pet'])
             const transaction = {
               user_id: $rootScope.user,
               pet_id: $rootScope.pet.id,
-              item_id: 29,
+              item_id: 28,
               amount: 500,
               checking: res.data.data[0].token,
               savings: res.data.data[1].token,

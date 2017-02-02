@@ -2,7 +2,7 @@
 /* eslint no-param-reassign: ["error", { "props": false }] */
 
 angular.module('app.pet', [])
-  .controller('PetCtrl', function ($scope, $rootScope, $http, Pet, $ionicPopup) {
+  .controller('PetCtrl', function ($scope, $rootScope, $http, Pet) {
     $scope.bearTouch = Pet.bearTouch;
     Pet.bearTilt();
     Pet.bearGrow();
