@@ -35,35 +35,68 @@ angular.module('pet.service', ['app.pet'])
   // /////////////////////////////////////
 
   const earDown = () => {
-    TweenMax.to('.ears', 0.5, { y: 7 });
-    TweenMax.to('.leftArm', 0.5, { rotation: 0, transformOrigin: '80% 50%' });
+    TweenMax.to('.ears', 0.5, { y: 0 });
+    TweenMax.to('.armLeft', 0.5, { rotation: 0, x: 0, transformOrigin: '80% 50%' });
     TweenMax.to('.balloons', 0.5, { y: 0, x: 0 });
   };
 
   const earUp = () => {
-    TweenMax.to('.ears', 0.5, { y: -7, onComplete: earDown });
-    TweenMax.to('.leftArm', 0.5, { rotation: 75, transformOrigin: '80% 50%' });
+    TweenMax.to('.ears', 0.5, { y: -8, onComplete: earDown });
+    TweenMax.to('.armLeft', 0.5, { rotation: 65, x: -10, transformOrigin: '80% 50%' });
     TweenMax.to('.balloons', 0.5, { y: -77, x: 12 });
   };
 
   let tear = 1;
-
+  let drip = 1;
   factory.bearTouch = () => {
     // IF BEAR IS HAPPY
-    if (happiness > 25) {
+
+    if (happiness > 25 || stats.progress >= 100) {
+      console.log(stats.progress);
       earUp();
+      const blood = '.blood' + drip;
+      TweenMax.to(blood, 3, { y: 75, ease: 'easeIn' });
+      TweenMax.to(blood, 1.5, { alpha: 0, delay: 1.5 });
+      TweenMax.to(blood, 0, { y: 0, delay: 3 });
+      TweenMax.to(blood, 2, { alpha: 1, delay: 3 });
+      if (drip === 4) {
+        drip = 0;
+      }
+      drip++;
     } else {
       // IF BEAR IS SAD
-      if (tear % 2 === 1) {
-        TweenMax.to('.tear3', 4, { y: 30, ease: 'easeIn' });
-        TweenMax.to('.tear3', 2, { alpha: 0, delay: 2 });
-        TweenMax.to('.tear3', 0.001, { y: 0, alpha: 1, delay: 4 });
+      const tearSelect = function (tearNum) {
+        TweenMax.to(tearNum, 4, { y: 30, ease: 'easeIn' });
+        TweenMax.to(tearNum, 2, { alpha: 0, delay: 2 });
+        TweenMax.to(tearNum, 0.001, { y: 0, alpha: 1, delay: 4 });
         tear++;
-      } else {
-        TweenMax.to('.tear2', 4, { y: 30, ease: 'easeIn' });
-        TweenMax.to('.tear2', 2, { alpha: 0, delay: 2 });
-        TweenMax.to('.tear2', 0.001, { y: 0, alpha: 1, delay: 4 });
-        tear++;
+      };
+      switch (tear) {
+        case 1:
+          console.log('switch 1');
+          tearSelect('.tear1');
+          break;
+        case 2:
+          tearSelect('.tear2');
+          break;
+        case 3:
+          tearSelect('.tear3');
+          break;
+        case 4:
+          tearSelect('.tear4');
+          break;
+        case 5:
+          tearSelect('.tear5');
+          break;
+        case 6:
+          tearSelect('.tear6');
+          break;
+        case 7:
+          tearSelect('.tear7');
+          break;
+        default:
+          tear = 1;
+          break;
       }
       if (tear % 4 === 1) {
         TweenMax.to('.redBal', 6, { y: -800, ease: 'easeIn', x: -150 });
@@ -123,9 +156,10 @@ angular.module('pet.service', ['app.pet'])
     + ((this.getSeconds() < 10) ? '0' : '') + this.getSeconds();
   };
 
-  const newDate = new Date();
+  const newDate1 = new Date();
   const setClock = () => {
     setInterval(() => {
+      const newDate = new Date();
       const datetime = newDate.timeNow();
       let second = datetime.slice(6, 8) * 360 / 60;
       let minute = datetime.slice(3, 5) * 360 / 60;
@@ -150,7 +184,7 @@ angular.module('pet.service', ['app.pet'])
   // /////////Day & Night////////////
   // ////////////////////////////////
   factory.setBackground = () => {
-    const datetime1 = newDate.timeNow();
+    const datetime1 = newDate1.timeNow();
     const minute1 = datetime1.slice(3, 5) * 360 / 60;
     const hour1 = datetime1.slice(0, 2) * 360 / 12 + (minute1 / 12);
     if (hour1 > 180 && hour1 < 540) {
@@ -163,75 +197,101 @@ angular.module('pet.service', ['app.pet'])
   // //////////////////////////////
   // //////// EVOLUTION ///////////
   // //////////////////////////////
+
+  factory.evolve = false; //  << this gets set to false initially but may be changed by store
+                          //     controller which triggers the evolution animation
   const setEvolution = () => {
-    if (stats.progress > 50) {
+    if (stats.progress > 50 && stats.progress < 100) {
       TweenMax.to('.tusks', 0, { alpha: 1 });
       TweenMax.to('.claws', 0, { alpha: 1 });
     }
+    if (stats.progress >= 100 && !factory.evolve) {
+      TweenMax.to('.claws', 0, { fill: '#830303' });
+      TweenMax.to('.tusks', 0, { fill: '#830303' });
+      TweenMax.to('.body', 0, { fill: '#DAA520' });
+      TweenMax.to('.leftArm', 0, { fill: '#DAA520' });
+      TweenMax.to('.rightArm', 0, { fill: '#DAA520' });
+      TweenMax.to('.head', 0, { fill: '#DAA520' });
+      TweenMax.to('.leftFoot', 0, { fill: '#DAA520' });
+      TweenMax.to('.rightFoot', 0, { fill: '#DAA520' });
+      TweenMax.to('.outerEar', 0, { fill: '#DAA520' });
+      TweenMax.to('.blood', 0, { alpha: 1 });
+    }
+  };
+
+  const evolution1 = () => {
+    TweenMax.fromTo('.tusks', 2.5, { alpha: 1, scale: 0, transformOrigin: 'top' },
+      { scale: 1.2, transformOrigin: 'top', delay: 1 });
+    TweenMax.fromTo('.rightClaw', 3, { alpha: 1, scale: 0, transformOrigin: 'top left' },
+      { scale: 1.4, transformOrigin: 'top left', delay: 1 });
+    TweenMax.fromTo('.leftClaw', 3, { alpha: 1, scale: 0, transformOrigin: 'top right' },
+      { scale: 1.4, transformOrigin: 'top right', delay: 1 });
+  };
+
+  const evolution2 = () => {
+    TweenMax.to('.claws', 4, { fill: '#830303', delay: 2 });
+    TweenMax.to('.tusks', 4, { fill: '#830303', delay: 2 });
+    TweenMax.to('.body', 4, { fill: '#DAA520', delay: 2 });
+    TweenMax.to('.leftArm', 4, { fill: '#DAA520', delay: 2 });
+    TweenMax.to('.rightArm', 4, { fill: '#DAA520', delay: 2 });
+    TweenMax.to('.head', 4, { fill: '#DAA520', delay: 2 });
+    TweenMax.to('.leftFoot', 4, { fill: '#DAA520', delay: 2 });
+    TweenMax.to('.rightFoot', 4, { fill: '#DAA520', delay: 2 });
+    TweenMax.to('.outerEar', 4, { fill: '#DAA520', delay: 2 });
+    TweenMax.to('.blood', 4, { alpha: 1, delay: 2 });
+  };
+
+  const evoAnimation = evolution => {
+    factory.evolve = false;
+    const tl = new TimelineMax();
+    tl.to('.bear', 3, {
+      transformOrigin: '50% 50%',
+      y: -270,
+      ease: Circ.easeOut,
+    }, 'bounce')
+
+    /* bear bounce down */
+    .to('.bear', 0.4, {
+      transformOrigin: '50% 50%',
+      y: 35,
+      ease: Circ.easeIn,
+      delay: 0.6,
+    }, 'bounce2')
+    /* bear squash */
+    .to('.bear', 0.2, {
+      transformOrigin: '50% 100%',
+      scaleX: 1.2,
+      scaleY: 0.8,
+      ease: Power1.easeInOut,
+    }, 'bounce3-=0.04')
+    .to('.bear', 0.2, {
+      transformOrigin: '50% 100%',
+      scaleX: 1.1,
+      scaleY: 1.1,
+      ease: Power1.easeInOut,
+    });
+    evolution();
   };
 
   // ////////////////////
   // /////Get Req////////
   // ////////////////////
-  factory.evolve = false;
   factory.getStats = () => {
     return $http.get(`http://35.167.2.107:3000/v1/pet_stats/?id__is=${$rootScope.pet.id}`)
       .then(res => {
         stats = res.data.data[0];
         happiness = stats.happiness;
         stats.progress = (stats.goal_progress / stats.goal_amt);
+        console.log(res.data.data[0]);
         setAccessories();
         setHappiness();
         setEvolution();
         if (factory.evolve === 1) {
-          factory.evolve = false;
-          const tl = new TimelineMax();
-          // let jitter = 20;
-          // let jitterspeed = 0.9;
-          // while (jitter > 0) {
-          //   tl.fromTo('.bear', jitterspeed, { rotation: -2, transformOrigin: 'center' }, { rotation: 2 });
-          //   jitterspeed /= 1.2;
-          //   jitter--;
-          // }
-
+          evoAnimation(evolution1);
           /* bear bounce up */
-          tl.to('.bear', 3, {
-            transformOrigin: '50% 50%',
-            y: -270,
-            ease: Circ.easeOut,
-          }, 'bounce')
-
-          /* bear bounce down */
-          .to('.bear', 0.4, {
-            transformOrigin: '50% 50%',
-            y: 35,
-            ease: Circ.easeIn,
-            delay: 0.6,
-          }, 'bounce2')
-          /* bear squash */
-          .to('.bear', 0.2, {
-            transformOrigin: '50% 100%',
-            scaleX: 1.2,
-            scaleY: 0.8,
-            ease: Power1.easeInOut,
-          }, 'bounce3-=0.04')
-          .to('.bear', 0.2, {
-            transformOrigin: '50% 100%',
-            scaleX: 1.1,
-            scaleY: 1.1,
-            ease: Power1.easeInOut,
-          });
-
-          TweenMax.fromTo('.tusks', 2.5, { alpha: 1, scale: 0, transformOrigin: 'top' },
-            { scale: 1.2, transformOrigin: 'top', delay: 1 });
-          TweenMax.fromTo('.rightClaw', 3, { alpha: 1, scale: 0, transformOrigin: 'top left' },
-            { scale: 1.4, transformOrigin: 'top left', delay: 1 });
-          TweenMax.fromTo('.leftClaw', 3, { alpha: 1, scale: 0, transformOrigin: 'top right' },
-            { scale: 1.4, transformOrigin: 'top right', delay: 1 });
         }
         if (factory.evolve === 2) {
-          factory.evolve = false;
-          console.log('Evolution 2');
+          evoAnimation(evolution2);
         }
         if (stats.accessories.necklace) {
           setClock();

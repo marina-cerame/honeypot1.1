@@ -6,12 +6,12 @@ angular.module('store.service', ['app.store'])
     const buyFood = function (context) {
       $http.get(`http://35.167.2.107:3000/v1/pet_stats/?id__is=${$rootScope.pet.id}`)
           .then(res => {
-            const perc = res.data.data[0].goal_progress / res.data.data[0].goal_amt;
+            const perc = res.data.data[0].goal_progress / res.data.data[0].goal_amt / 100;
             const prog = res.data.data[0].goal_progress;
             const goal = res.data.data[0].goal_amt;
-            if (perc < 0.5 && context.item.cost + prog >= goal / 2) {
+            if (perc < 0.5 && (context.item.cost / 100) + (prog / 100) >= goal / 2) {
               Pet.evolve = 1;
-            } else if (perc < 1 && context.item.cost + prog >= goal) {
+            } else if (perc < 1 && (context.item.cost / 100) + (prog / 100) >= goal) {
               Pet.evolve = 2;
             }
           }, err => {
