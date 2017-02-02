@@ -4,7 +4,7 @@ angular.module('firstPetService', [
   'app.firstPet',
 ])
 
-  .factory('First', ($location, $http, $rootScope) => {
+  .factory('First', ($location, $http, $rootScope, $ionicPopup) => {
     const bearShrink = () => {
       TweenLite.to('.first-bear', 2, { scale: 0.75, x: '15%', y: '-40%' });
     };
@@ -22,8 +22,15 @@ angular.module('firstPetService', [
         });
     };
 
+    const showHelp = () => {
+      $ionicPopup.alert({
+        template: '<p>complete this form to start saving toward your goal</p>',
+      });
+    };
+
     return {
       bearShrink,
       makeFirstPet,
+      showHelp,
     };
   });

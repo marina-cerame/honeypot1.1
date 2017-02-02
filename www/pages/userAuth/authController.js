@@ -15,4 +15,6 @@ angular.module('auth', [])
   $scope.signup = () => Auth.signup($scope.user);
 
   $scope.goToLogin = () => $location.path('/login');
+
+  $scope.compare = () => Auth.compare($scope.user.password, $scope.user.confirmPassword);
 });

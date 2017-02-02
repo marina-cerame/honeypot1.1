@@ -6,10 +6,14 @@ angular.module('app.bankAuth', [])
   $scope.openChecking = () => {
     bankAuth.checkingHandler.open();
   };
+
   $scope.openSavings = () => {
     bankAuth.savingsHandler.open();
   };
+
   $scope.goToFirstPet = () => {
     $location.path('/firstPet');
   };
+
+  $scope.showHelp = () => { bankAuth.showHelp(); };
 });

@@ -188,9 +188,9 @@ angular.module('pet.service', ['app.pet'])
     const minute1 = datetime1.slice(3, 5) * 360 / 60;
     const hour1 = datetime1.slice(0, 2) * 360 / 12 + (minute1 / 12);
     if (hour1 > 180 && hour1 < 540) {
-      $('.ground').css('background-image', 'url(../img/woods_day.png)');
+      $('.ground').css('background-image', 'url(./img/woods_day.png)');
     } else {
-      $('.ground').css('background-image', 'url(../img/woods_night.png)');
+      $('.ground').css('background-image', 'url(./img/woods_night.png)');
     }
   };
 

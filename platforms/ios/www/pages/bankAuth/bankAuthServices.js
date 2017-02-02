@@ -2,7 +2,7 @@
 /* eslint no-param-reassign: ["error", { "props": false }] */
 
 angular.module('bankAuth.service', ['app.bankAuth'])
-  .factory('bankAuth', function ($location, $http, $rootScope) {
+  .factory('bankAuth', function ($location, $http, $rootScope, $ionicPopup) {
     const checkingHandler = Plaid.create({
       selectAccount: true,
       env: 'tartan',
@@ -19,8 +19,10 @@ angular.module('bankAuth.service', ['app.bankAuth'])
           type: 'checking',
           name: $rootScope.checkingName,
         });
+        console.log('plaid shit that we send to bank tokens: ', postFormat);
         $http.post('http://35.167.2.107:3000/v1/bank_tokens', postFormat)
           .then((res) => {
+            console.log('bank tokens post res: ', res);
             $rootScope.checking_id = res.data.data[0].id;
           });
       },
@@ -53,8 +55,14 @@ angular.module('bankAuth.service', ['app.bankAuth'])
         console.warn('user closed');
       },
     });
+    const showHelp = () => {
+      $ionicPopup.alert({
+        template: '<p>click add account to securely log on to both your checking and savings</p>',
+      });
+    };
     return {
       checkingHandler,
       savingsHandler,
+      showHelp,
     };
   });

@@ -7,9 +7,14 @@ angular.module('starter', ['ionic',
                           'myPets',
                           'myPetsService',
                           'app.pet',
+                          'app.octo',
+                          'octo.service',
+                          'app.dragon',
+                          'dragon.service',
                           'app.bankAuth',
                           'app.firstPet',
                           'app.store',
+                          'store.service',
                           'app.account',
                           'app.adoptPet',
                           'editPet',
@@ -62,11 +67,23 @@ angular.module('starter', ['ionic',
     },
   })
 
-  .state('octopus', {
+  .state('market.octopus', {
     url: '/octopus',
     views: {
-      templateUrl: 'pages/petPages/octopus.html',
-      controller: 'PetCtrl',
+      'menuContent': {
+        templateUrl: 'pages/octopus/octopus.html',
+        controller: 'OctoCtrl',
+      },
+    },
+  })
+
+  .state('market.dragon', {
+    url: '/dragon',
+    views: {
+      'menuContent': {
+        templateUrl: 'pages/dragon/dragon.html',
+        controller: 'DragonCtrl',
+      },
     },
   })
 
@@ -136,6 +153,16 @@ angular.module('starter', ['ionic',
     url: '/bankAuth',
     templateUrl: 'pages/bankAuth/bankAuth.html',
     controller: 'BankCtrl',
+  })
+
+  .state('app.contact', {
+    url: '/contact',
+    views: {
+      'menuContent': {
+        templateUrl: 'pages/contact/contact.html',
+        // controller
+      },
+    },
   })
 
   .state('signup', {

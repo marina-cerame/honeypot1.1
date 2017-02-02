@@ -10,4 +10,6 @@ angular.module('app.firstPet', [])
     $scope.createFirst = () => {
       First.makeFirstPet($scope.pet);
     };
+
+    $scope.showHelp = () => First.showHelp();
   });

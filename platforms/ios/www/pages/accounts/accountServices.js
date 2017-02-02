@@ -2,7 +2,7 @@
 /* eslint no-param-reassign: ["error", { "props": false }] */
 
 angular.module('account.service', ['app.account'])
-  .factory('account', function ($location, $http, $rootScope) {
+  .factory('account', function ($location, $http, $rootScope, $ionicPopup) {
     const checkingHandler = Plaid.create({
       selectAccount: true,
       env: 'tartan',
@@ -19,9 +19,12 @@ angular.module('account.service', ['app.account'])
           type: 'checking',
           name: $rootScope.checkingName,
         });
+        console.log('plaid shit that we send to bank tokens: ', postFormat);
         $http.put(`http://35.167.2.107:3000/v1/bank_tokens/${$rootScope.checking_id}`, postFormat)
           .then(function (res) {
+            console.log('bank tokens from put res: ', res);
             $rootScope.checking_id = res.data.data[0].id;
+            console.log('rootScope.checking_id: ', $rootScope.checking_id);
           });
       },
       onExit: () => {
@@ -46,6 +49,7 @@ angular.module('account.service', ['app.account'])
         });
         $http.put(`http://35.167.2.107:3000/v1/bank_tokens/${$rootScope.savings_id}`, postFormat)
           .then(function (res) {
+            console.log('savings res: ', res);
             $rootScope.savings_id = res.data.data[0].id;
           });
       },
@@ -53,8 +57,14 @@ angular.module('account.service', ['app.account'])
         console.warn('user closed');
       },
     });
+    const showHelp = () => {
+      $ionicPopup.alert({
+        template: '<p>view your total saved with honeypot or edit your banking information</p>',
+      });
+    };
     return {
       checkingHandler,
       savingsHandler,
+      showHelp,
     };
   });
