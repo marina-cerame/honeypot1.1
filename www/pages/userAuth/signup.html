@@ -25,7 +25,7 @@
         <p ng-show="signupForm.username.$error.required && !signupForm.username.$pristine">username is required</p>
         <p ng-show="signupForm.password.$error.minlength && !signupForm.password.$pristine">password must be at least 5 characters</p>
       </div>
-      <button style="background-color: #e3b11a" class="button button-full" ng-disabled="signupForm.$invalid">
+      <button id="honey" class="button button-full" ng-disabled="signupForm.$invalid">
         Submit
       </button>
     </form>
