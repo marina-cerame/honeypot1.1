@@ -6,10 +6,11 @@ angular.module('octo.service', ['app.octo'])
 
     factory.positionOct = () => {
       TweenMax.to('.octo', 0, { x: 90, y: 145, scale: 1.05 });
-      TweenMax.to('.hat', 0, { x: -105, y: -30, scale: 1.5, rotation: -35,
+      TweenMax.to('.hat', 0, { x: -105, y: -30, scale: 0.9, rotation: -35,
         transformOrigin: '0% 100%' });
       TweenMax.to('.necklace', 0, { x: -65, y: 15, scale: 1.2 });
       TweenMax.to('.chain', 0, { scale: 1.4, transformOrigin: 'center' });
+      TweenMax.to('.tears', 0, { x: -46, y: 15 });
     //   TweenMax.to('.stringYellow', 0, { rotation: -5, transformOrigin: 'top' });
     //   TweenMax.to('.stringBlue', 0, { x: -39, y: -40, rotation: 19, transformOrigin: 'top' });
     //   TweenMax.to('.blueBal', 0, { x: -40, y: -40 });
@@ -17,6 +18,7 @@ angular.module('octo.service', ['app.octo'])
 
     let tear = 1;
     const normalTouch = () => {
+      TweenMax.to('.teeth', 5, { rotationX: 180, transformOrigin: 'center' });
       TweenMax.to('.t2', 1, { rotation: 30, transformOrigin: 'top right', delay: 0.5 });
       TweenMax.to('.t2', 1, { rotation: -0, transformOrigin: 'top right', delay: 1.5 });
       TweenMax.to('.t3', 1, { rotation: 30, transformOrigin: 'top right' });
@@ -39,6 +41,7 @@ angular.module('octo.service', ['app.octo'])
       TweenMax.to('.eyebrows', 0.3, { y: 0, transformOrigin: 'center', delay: 0.3 });
       TweenMax.to('.eyebrows', 0.3, { y: -25, transformOrigin: 'center', delay: 0.6 });
       TweenMax.to('.eyebrows', 0.3, { y: 0, transformOrigin: 'center', delay: 0.9 });
+
       TweenMax.to('.blueBal', 1, { x: 20 });
       TweenMax.to('.stringBlue', 1, { x: 20 });
       TweenMax.to('.blueBal', 1, { x: 0, delay: 1 });
@@ -56,16 +59,16 @@ angular.module('octo.service', ['app.octo'])
     };
 
     const sadTouch = () => {
-      TweenMax.to('.mouthBG', 1, { rotationX: 180, transformOrigin: 'center' });
-      TweenMax.to('.teeth', 1, { rotationX: 180, transformOrigin: 'center' });
-      TweenMax.to('.tongue', 1, { scale: 0.7, y: -6, transformOrigin: 'center' });
-      TweenMax.to('.tongueLine', 1, { scale: 0.7, y: -6, transformOrigin: 'center' });
-      TweenMax.to('.tentacles', 1, { scale: 0.75, transformOrigin: 'center' });
-      TweenMax.to('.tentacleBG', 1, { scale: 0.75, transformOrigin: 'center' });
-      TweenMax.to('.suckers', 1, { scale: 0.75, transformOrigin: '50% 20' });
-      TweenMax.to('.body', 1, { scale: 0.9, transformOrigin: 'bottom' });
-      TweenMax.to('.body', 1, { scaleX: 0.8, transformOrigin: 'bottom' });
-      TweenMax.to('.tears', 1, { alpha: 1 });
+      // TweenMax.to('.mouthBG', 1, { rotationX: 180, transformOrigin: 'center' });
+      // TweenMax.to('.teeth', 1, { rotationX: 180, transformOrigin: 'center' });
+      // TweenMax.to('.tongue', 1, { scale: 0.7, y: -6, transformOrigin: 'center' });
+      // TweenMax.to('.tongueLine', 1, { scale: 0.7, y: -6, transformOrigin: 'center' });
+      // TweenMax.to('.tentacles', 1, { scale: 0.75, transformOrigin: 'center' });
+      // TweenMax.to('.tentacleBG', 1, { scale: 0.75, transformOrigin: 'center' });
+      // TweenMax.to('.suckers', 1, { scale: 0.75, transformOrigin: '50% 20' });
+      // TweenMax.to('.body', 1, { scale: 0.9, transformOrigin: 'bottom' });
+      // TweenMax.to('.body', 1, { scaleX: 0.8, transformOrigin: 'bottom' });
+      // TweenMax.to('.tears', 1, { alpha: 1 });
 
       const tearSelect = tearNum => {
         TweenMax.to(tearNum, 4, { y: 30, ease: 'easeIn' });
@@ -103,20 +106,38 @@ angular.module('octo.service', ['app.octo'])
     };
     factory.octoTouch = () => {
       const octo = $('.octo');
-      if (happiness >= 25) {
+      if (happiness > 25) {
         normalTouch();
       } else {
         sadTouch();
       }
-      // TweenMax.to('.tears', 0, { x: -46  , y: 15 });
-      // TweenMax.to('.t1t8', 1, { rotationX: '180_short', transformOrigin: 'center' });
-      // TweenMax.to('.t1t8', 1, { rotationX: '0_short', transformOrigin: 'center', delay: 1 });
-      // TweenMax.to('.t1t8', 1, { y: 100, transformOrigin: 'center' });
-      // TweenMax.to('.t1t8', 1, { x: 238, transformOrigin: 'top' });
-        // TweenMax.to('.body', 1, { scale: 1.1, transformOrigin: 'bottom' });
-        // TweenMax.to('.body', 1, { scale: 1, delay: 1, transformOrigin: 'bottom' })
     };
 
+    const setHappiness = () => {
+      if (happiness <= 25) {
+        TweenMax.to('.tears', 0, { alpha: 1 });
+        TweenMax.to('.mouthBG', 0, { rotation: 180, transformOrigin: '50% 50%' });
+        TweenMax.to('.teeth', 0, { rotation: 180, transformOrigin: '50% 50%' });
+        TweenMax.to('.tongue', 0, { scale: 0.7, y: -6, transformOrigin: 'center' });
+        TweenMax.to('.tongueLine', 0, { scale: 0.7, y: -6, transformOrigin: 'center' });
+      }
+    };
+
+    const setAccessories = () => {
+      const accessories = stats.accessories;
+      const hat = accessories.hat;
+      const necklace = accessories.necklace;
+      const balloons = accessories.balloons;
+      if (hat) {
+        TweenMax.fromTo('.hat', 2, { alpha: 0, y: -150 }, { alpha: 1, y: 0 });
+      }
+      if (necklace) {
+        TweenMax.to('.necklace', 0, { alpha: 1 });
+      }
+      if (balloons) {
+        TweenMax.to('.balloons', 0, { alpha: 1 });
+      }
+    };
 
     factory.getStats = () => {
       return $http.get(`http://35.167.2.107:3000/v1/pet_stats/?id__is=${$rootScope.pet.id}`)
@@ -124,8 +145,8 @@ angular.module('octo.service', ['app.octo'])
           stats = res.data.data[0];
           happiness = stats.happiness;
           stats.progress = (stats.goal_progress / stats.goal_amt);
-          // setAccessories();
-          // setHappiness();
+          setAccessories();
+          setHappiness();
           // setEvolution();
           // if (stats.accessories.necklace) {
           //   setClock();
