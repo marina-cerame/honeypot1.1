@@ -4,7 +4,6 @@
 angular.module('app.pet', [])
   .controller('PetCtrl', function ($scope, $rootScope, $http, Pet, $ionicPopup) {
     $scope.bearTouch = Pet.bearTouch;
-    Pet.bearTilt();
     Pet.bearGrow();
     Pet.setBackground();
     Pet.getStats()
