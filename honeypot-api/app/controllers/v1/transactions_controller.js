@@ -25,9 +25,9 @@ class V1TransactionsController extends Nodal.Controller {
     const checking = this.params.body.checking;
     const savings = this.params.body.savings;
     const context = this;
-    let pending = this.params.body.pending;
+    const pending = this.params.body.pending;
     const user = this.params.body.user_id;
-    let newBody = this.params;
+    const newBody = this.params;
 
     console.log('transaction is being created');
     Transaction.query()
