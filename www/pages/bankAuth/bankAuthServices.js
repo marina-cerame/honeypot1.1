@@ -19,10 +19,8 @@ angular.module('bankAuth.service', ['app.bankAuth'])
           type: 'checking',
           name: $rootScope.checkingName,
         });
-        console.log('plaid shit that we send to bank tokens: ', postFormat);
         $http.post('http://35.167.2.107:3000/v1/bank_tokens', postFormat)
           .then((res) => {
-            console.log('bank tokens post res: ', res);
             $rootScope.checking_id = res.data.data[0].id;
           });
       },
@@ -48,7 +46,6 @@ angular.module('bankAuth.service', ['app.bankAuth'])
         });
         $http.post('http://35.167.2.107:3000/v1/bank_tokens', postFormat)
           .then((res) => {
-            console.log('savings res: ', res);
             $rootScope.savings_id = res.data.data[0].id;
           });
       },
