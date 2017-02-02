@@ -10,8 +10,9 @@ angular.module('octo.service', ['app.octo'])
         transformOrigin: '0% 100%' });
       TweenMax.to('.necklace', 0, { x: -65, y: 15, scale: 1.2 });
       TweenMax.to('.chain', 0, { scale: 1.4, transformOrigin: 'center' });
-      TweenMax.to('.stringRed', 0, { x: 285, y: -25, scale: 1 });
-      TweenMax.to('.balRed', 0, { x: 65, y: 15, scale: 1.2 });
+    //   TweenMax.to('.stringYellow', 0, { rotation: -5, transformOrigin: 'top' });
+    //   TweenMax.to('.stringBlue', 0, { x: -39, y: -40, rotation: 19, transformOrigin: 'top' });
+    //   TweenMax.to('.blueBal', 0, { x: -40, y: -40 });
     };
 
     let tear = 1;
@@ -37,6 +38,21 @@ angular.module('octo.service', ['app.octo'])
       TweenMax.to('.eyebrows', 0.3, { y: -25, transformOrigin: 'center' });
       TweenMax.to('.eyebrows', 0.3, { y: 0, transformOrigin: 'center', delay: 0.3 });
       TweenMax.to('.eyebrows', 0.3, { y: -25, transformOrigin: 'center', delay: 0.6 });
+      TweenMax.to('.eyebrows', 0.3, { y: 0, transformOrigin: 'center', delay: 0.9 });
+      TweenMax.to('.blueBal', 1, { x: 20 });
+      TweenMax.to('.stringBlue', 1, { x: 20 });
+      TweenMax.to('.blueBal', 1, { x: 0, delay: 1 });
+      TweenMax.to('.stringBlue', 1, { x: 0, delay: 1 });
+
+      TweenMax.to('.redBal', 1, { x: -20 });
+      TweenMax.to('.stringRed', 1, { x: -20 });
+      TweenMax.to('.redBal', 1, { x: 0, y: 0, delay: 1 });
+      TweenMax.to('.stringRed', 1, { x: 0, y: 0, delay: 1 });
+
+      TweenMax.to('.yellowBal', 1, { x: 5, y: -95, delay: 0.5 });
+      TweenMax.to('.stringYellow', 1, { x: 5, y: -95, delay: 0.5 });
+      TweenMax.to('.yellowBal', 1, { x: 0, y: 0, delay: 1.5 });
+      TweenMax.to('.stringYellow', 1, { x: 0, y: 0, delay: 1.5 });
     };
 
     const sadTouch = () => {
@@ -128,7 +144,7 @@ angular.module('octo.service', ['app.octo'])
     };
 
     factory.deadOcto = () => {
-      TweenMax.to('.octo', 5, { x: 1200, ease: 'easeIn' })
+      TweenMax.to('.octo', 5, { x: 1200, ease: 'easeIn' });
       $ionicPopup.confirm({
         title: 'Your pet has run away in search of food!',
         template: 'click \'ok\' to lure your pet back with tasty bait ($5)',
@@ -150,7 +166,7 @@ angular.module('octo.service', ['app.octo'])
               $http.post('http://35.167.2.107:3000/v1/transactions', transaction)
                 .then((response) => {
                   console.log('dead octo transaction res: ', response);
-                  TweenMax.to('.octo', 5, { x: 0, ease: 'easeIn' })
+                  TweenMax.to('.octo', 5, { x: 0, ease: 'easeIn' });
                 });
             });
         } else {
