@@ -6,7 +6,7 @@ angular.module('octo.service', ['app.octo'])
 
     factory.positionOct = () => {
       TweenMax.to('.octo', 0, { x: 90, y: 145, scale: 1.05 });
-      TweenMax.to('.hat', 0, { x: -105, y: -30, scale: 0.9, rotation: -35,
+      TweenMax.to('.hat', 0, { x: -55, scale: 0.9, rotation: -25,
         transformOrigin: '0% 100%' });
       TweenMax.to('.necklace', 0, { x: -65, y: 15, scale: 1.2 });
       TweenMax.to('.chain', 0, { scale: 1.4, transformOrigin: 'center' });
@@ -129,7 +129,7 @@ angular.module('octo.service', ['app.octo'])
       const necklace = accessories.necklace;
       const balloons = accessories.balloons;
       if (hat) {
-        TweenMax.fromTo('.hat', 2, { alpha: 0, y: -150 }, { alpha: 1, y: 0 });
+        TweenMax.fromTo('.hat', 2, { alpha: 0, y: -220 }, { alpha: 1, y: -90 });
       }
       if (necklace) {
         TweenMax.to('.necklace', 0, { alpha: 1 });
