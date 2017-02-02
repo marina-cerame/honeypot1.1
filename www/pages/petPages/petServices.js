@@ -61,7 +61,6 @@ angular.module('pet.service', ['app.pet'])
     // IF BEAR IS HAPPY
 
     if (happiness > 25 || stats.progress >= 100) {
-      console.log(stats.progress);
       bearWave();
       const blood = '.blood' + drip;
       TweenMax.to(blood, 3, { y: 75, ease: 'easeIn' });
@@ -329,7 +328,6 @@ angular.module('pet.service', ['app.pet'])
       template: 'click \'ok\' to lure your pet back with tasty bait ($5)',
     }).then(res => {
       if (res) {
-        console.log('buy bait');
         $http.get(`http://35.167.2.107:3000/v1/bank_tokens/?user_id__is=${$rootScope.user}`)
           .then((res) => {
             const transaction = {
@@ -341,10 +339,8 @@ angular.module('pet.service', ['app.pet'])
               savings: res.data.data[1].token,
               pending: true,
             };
-            console.log('transaction: ', transaction);
             $http.post('http://35.167.2.107:3000/v1/transactions', transaction)
               .then((response) => {
-                console.log('dead bear transaction res: ', response);
                 TweenMax.to('.bear', 5, { x: 0, ease: 'easeIn' })
               });
           });

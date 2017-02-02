@@ -6,7 +6,6 @@ angular.module('app.octo', [])
     Octo.getStats()
       .then(res => {
         $scope.stats = res;
-        console.log($scope.stats, 'heres scope stats')
         if ($scope.stats.progress >= 100) {
           $scope.stats.hunger = 100;
           $scope.stats.happiness = 100;
