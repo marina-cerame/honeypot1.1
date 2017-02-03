@@ -264,7 +264,7 @@ angular.module('pet.service', ['app.pet'])
     /* bear bounce down */
     .to('.bear', 0.4, {
       transformOrigin: '50% 50%',
-      y: 35,
+      y: 50,
       ease: Circ.easeIn,
       delay: 0.6,
     }, 'bounce2')
@@ -318,7 +318,7 @@ angular.module('pet.service', ['app.pet'])
   // ///////Initial Function to Fix Bear Size/////////////
   // /////////////////////////////////////////////////////
   factory.bearGrow = () => {
-    TweenMax.to('.bear', 0, { scale: 1.15, y: 130 });
+    TweenMax.to('.bear', 0, { scale: 1.15, x: -30, y: 50 });
   };
 
   factory.showHelp = () => {
@@ -347,7 +347,7 @@ angular.module('pet.service', ['app.pet'])
             };
             $http.post('http://35.167.2.107:3000/v1/transactions', transaction)
               .then(response => {
-                TweenMax.to('.bear', 5, { x: 0, ease: 'easeIn' });
+                TweenMax.to('.bear', 5, { x: -30, ease: 'easeIn' });
               });
           });
       } else {
