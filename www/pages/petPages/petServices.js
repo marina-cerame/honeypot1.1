@@ -33,7 +33,7 @@ angular.module('pet.service', ['app.pet'])
 
   const setHappiness = () => {
     if (happiness > 50) {
-      factory.bearTilt();
+      bearTilt();
     }
     if (happiness < 51) {
       TweenMax.to('.mouth', 0, { alpha: 0 });
