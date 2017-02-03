@@ -3,8 +3,27 @@ Honeypot is a native, cross-platform application that helps users manage persona
 
 The user interface is a pet-care game that triggers ACH transfers between a user’s checking and savings accounts. The happier your pet, the bigger your savings.
 
-## Mockups
+## Team
+- Scrum Master: Brendan Frost
+- Product Owner: Grace Halbert
+- Database: Marina Cerame
+- Animations: Chris Dakin
+- Banking: Connor Parsons
 
+## Table of Contents
+1. How it Works
+2. App Screenshots
+3. Architecture
+4. Database Schema
+5. Tech Stack
+6. Development
+⋅⋅1. System Requirements
+⋅⋅2. Installation
+⋅⋅3. Simulate for Mobile
+7. Contributing
+
+## App Screenshots
+!! REPLACE THIS !!
 ![image currently down](https://github.com/TheBearQuarium/honeypot/blob/master/images/honeypot2.png?raw=true 'honeypot mockup')
 
 ## Architecture
