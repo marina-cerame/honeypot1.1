@@ -375,6 +375,11 @@ angular.module('dragon.service', ['app.dragon'])
       });
     };
 
+    const evoAnimation2 = () => {
+      factory.evolve = false;
+      breatheFire();
+    };
+
     factory.getStats = () => {
       return $http.get(`http://35.167.2.107:3000/v1/pet_stats/?id__is=${$rootScope.pet.id}`)
         .then(res => {
@@ -390,7 +395,7 @@ angular.module('dragon.service', ['app.dragon'])
             evoAnimation1();
           }
           if (factory.evolve === 2) {
-            // evoAnimation2();
+            evoAnimation2();
           }
           if (stats.accessories.necklace) {
             setClock();

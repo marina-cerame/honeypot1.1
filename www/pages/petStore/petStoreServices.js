@@ -21,8 +21,15 @@ angular.module('store.service', ['app.store'])
                 Dragon.evolve = 1;
               }
             } else if (perc < 1 && (context.item.cost / 100) + (prog / 100) >= goal) {
-              Pet.evolve = 2;
-              Dragon.evolve = 2;
+              if (type === 1) {
+                Pet.evolve = 2;
+              }
+              if (type === 2) {
+                // Octo.evolve = 1;
+              }
+              if (type === 3) {
+                Dragon.evolve = 2;
+              }
             }
           }, err => {
             console.warn(err);
