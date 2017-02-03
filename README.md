@@ -28,11 +28,15 @@ The user interface is a pet-care game that triggers ACH transfers between a user
 
 ## Architecture
 
-![image currently down](https://github.com/TheBearQuarium/honeypot/blob/master/images/honeypotarchitecture.png?raw=true 'honeypot architecture')
+![image currently down](http://res.cloudinary.com/bearquarium/image/upload/v1486145871/honeypotarchitecture_nbot2c.png)
+
+## Database Schema
+
+![image currently down](http://res.cloudinary.com/bearquarium/image/upload/v1486073724/Screen_Shot_2017-02-02_at_3.18.53_PM_hnhxey.png)
 
 ## Tech Stack
 
-![image currently down](https://github.com/TheBearQuarium/honeypot/blob/master/images/TechStack.png?raw=true 'Angular 2, Ionic 2, Node js, Nodal, PostgreSQL, Plaid, Stripe, Amazon Web Services, Passport, Apache Cordova')
+![image currently down](http://res.cloudinary.com/bearquarium/image/upload/v1486068635/tech_stack_mobxob.png)
 
 ## Development
 
