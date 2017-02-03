@@ -14,7 +14,7 @@ angular.module('app.account', [])
       account.savingsHandler.open();
     };
     $scope.goToPet = function goToPet() {
-      $location.path('/market/pet');
+      $location.path('/app/myPets');
     };
     $scope.showHelp = () => { account.showHelp(); };
   });
