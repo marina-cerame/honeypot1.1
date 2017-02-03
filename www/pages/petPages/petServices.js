@@ -1,4 +1,4 @@
-/* globals TweenMax TimelineMax angular */
+/* globals TweenMax, TimelineMax, angular, Circ, Power1 */
 
 angular.module('pet.service', ['app.pet'])
 .factory('Pet', function ($rootScope, $http, $ionicPopup, $location) {
@@ -64,7 +64,7 @@ angular.module('pet.service', ['app.pet'])
 
     if (happiness > 25 || stats.progress >= 100) {
       bearWave();
-      const blood = '.blood' + drip;
+      const blood = `.blood${drip}`;
       TweenMax.to(blood, 3, { y: 75, ease: 'easeIn' });
       TweenMax.to(blood, 1.5, { alpha: 0, delay: 1.5 });
       TweenMax.to(blood, 0, { y: 0, delay: 3 });
@@ -75,7 +75,7 @@ angular.module('pet.service', ['app.pet'])
       drip++;
     } else {
       // IF BEAR IS SAD
-      const tearSelect = function (tearNum) {
+      const tearSelect = tearNum => {
         TweenMax.to(tearNum, 4, { y: 30, ease: 'easeIn' });
         TweenMax.to(tearNum, 2, { alpha: 0, delay: 2 });
         TweenMax.to(tearNum, 0.001, { y: 0, alpha: 1, delay: 4 });
@@ -158,6 +158,7 @@ angular.module('pet.service', ['app.pet'])
   // ////////////////////////////
   // ///// CLOCK FUNCTIONS///////
   // ////////////////////////////
+  // TODO: wtf is this???
   Date.prototype.timeNow = function () {
     // WTF is this???
     return ((this.getHours() < 10) ? '0' : '') + this.getHours() + ':'
@@ -197,6 +198,7 @@ angular.module('pet.service', ['app.pet'])
     const minute1 = datetime1.slice(3, 5) * 360 / 60;
     const hour1 = datetime1.slice(0, 2) * 360 / 12 + (minute1 / 12);
     if (hour1 > 180 && hour1 < 540) {
+      // TODO: try without jquery
       $('.ground').css('background-image', 'url(./img/woods_day.png)');
     } else {
       $('.ground').css('background-image', 'url(./img/woods_night.png)');
@@ -206,7 +208,7 @@ angular.module('pet.service', ['app.pet'])
   // //////////////////////////////
   // //////// EVOLUTION ///////////
   // //////////////////////////////
-
+  // TODO: Check on pet moving?
   factory.evolve = false; //  << this gets set to false initially but may be changed by store
                           //     controller which triggers the evolution animation
   const setEvolution = () => {
@@ -306,7 +308,9 @@ angular.module('pet.service', ['app.pet'])
         }
         return stats;
       }, err => {
-        console.warn(err);
+        $ionicPopup.alert({
+          title: err,
+        });
       });
   };
 
@@ -319,7 +323,7 @@ angular.module('pet.service', ['app.pet'])
 
   factory.showHelp = () => {
     $ionicPopup.alert({
-      template: '<p>bars indicate pet status<br />when levels are low visit the store</p>',
+      template: '<p>Bars indicate pet status.<br />When levels are low visit the store.</p>',
     });
   };
 
@@ -331,7 +335,7 @@ angular.module('pet.service', ['app.pet'])
     }).then(res => {
       if (res) {
         $http.get(`http://35.167.2.107:3000/v1/bank_tokens/?user_id__is=${$rootScope.user}`)
-          .then((res) => {
+          .then(res => {
             const transaction = {
               user_id: $rootScope.user,
               pet_id: $rootScope.pet.id,
@@ -342,7 +346,7 @@ angular.module('pet.service', ['app.pet'])
               pending: true,
             };
             $http.post('http://35.167.2.107:3000/v1/transactions', transaction)
-              .then((response) => {
+              .then(response => {
                 TweenMax.to('.bear', 5, { x: 0, ease: 'easeIn' });
               });
           });

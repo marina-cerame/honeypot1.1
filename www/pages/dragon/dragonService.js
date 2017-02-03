@@ -286,6 +286,7 @@ angular.module('dragon.service', ['app.dragon'])
       }
     };
 
+    // TODO: fix this.
     Date.prototype.timeNow = function () {
       // WTF is this???
       return ((this.getHours() < 10) ? '0' : '') + this.getHours() + ':'
@@ -311,9 +312,18 @@ angular.module('dragon.service', ['app.dragon'])
           second = 0;
         }
 
-        TweenMax.to('.dragon-hourhand', 1, { rotation: `${hour}_short`, transformOrigin: 'bottom' });
-        TweenMax.to('.dragon-minutehand', 1, { rotation: `${minute}_short`, transformOrigin: 'bottom' });
-        TweenMax.to('.dragon-secondhand', 1, { rotation: `${second}_short`, transformOrigin: 'bottom' });
+        TweenMax.to('.dragon-hourhand', 1, {
+          rotation: `${hour}_short`,
+          transformOrigin: 'bottom',
+        });
+        TweenMax.to('.dragon-minutehand', 1, {
+          rotation: `${minute}_short`,
+          transformOrigin: 'bottom',
+        });
+        TweenMax.to('.dragon-secondhand', 1, {
+          rotation: `${second}_short`,
+          transformOrigin: 'bottom',
+        });
       }, 1000);
     };
 
@@ -336,7 +346,7 @@ angular.module('dragon.service', ['app.dragon'])
       /* dragon bounce down */
       .to('.all-drag', 0.4, {
         transformOrigin: '50% 50%',
-        y: 35,
+        y: 80,
         ease: Circ.easeIn,
         delay: 0.6,
       }, 'bounce2')
@@ -349,8 +359,8 @@ angular.module('dragon.service', ['app.dragon'])
       }, 'bounce3-=0.04')
       .to('.all-drag', 0.2, {
         transformOrigin: '50% 100%',
-        scaleX: 1.1,
-        scaleY: 1.1,
+        scaleX: 1,
+        scaleY: 1,
         ease: Power1.easeInOut,
       });
       TweenMax.fromTo('.left-wing-whole', 4, {
@@ -402,7 +412,9 @@ angular.module('dragon.service', ['app.dragon'])
           }
           return stats;
         }, err => {
-          console.warn(err);
+          $ionicPopup.alert({
+            title: err,
+          });
         });
     };
 
@@ -418,31 +430,31 @@ angular.module('dragon.service', ['app.dragon'])
     };
     factory.showHelp = () => {
       $ionicPopup.alert({
-        template: '<p>bars indicate pet status<br />when levels are low visit the store</p>',
+        template: '<p>Bars indicate pet status.<br />When levels are low visit the store.</p>',
       });
     };
 
     factory.deadDragon = () => {
-      TweenMax.to('.all-drag', 5, { x: 1200, ease: 'easeIn' })
+      TweenMax.to('.all-drag', 5, { x: 1200, ease: 'easeIn' });
       $ionicPopup.confirm({
         title: 'Your pet has run away in search of food!',
         template: 'click \'ok\' to lure your pet back with tasty bait ($5)',
       }).then(res => {
         if (res) {
           $http.get(`http://35.167.2.107:3000/v1/bank_tokens/?user_id__is=${$rootScope.user}`)
-            .then((res) => {
+            .then(response => {
               const transaction = {
                 user_id: $rootScope.user,
                 pet_id: $rootScope.pet.id,
                 item_id: 28,
                 amount: 500,
-                checking: res.data.data[0].token,
-                savings: res.data.data[1].token,
+                checking: response.data.data[0].token,
+                savings: response.data.data[1].token,
                 pending: true,
               };
               $http.post('http://35.167.2.107:3000/v1/transactions', transaction)
-                .then((response) => {
-                  TweenMax.to('.all-drag', 5, { x: 0, ease: 'easeIn' })
+                .then(() => {
+                  TweenMax.to('.all-drag', 5, { x: 0, ease: 'easeIn' });
                 });
             });
         } else {

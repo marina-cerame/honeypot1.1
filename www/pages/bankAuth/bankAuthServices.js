@@ -20,13 +20,11 @@ angular.module('bankAuth.service', ['app.bankAuth'])
           name: $rootScope.checkingName,
         });
         $http.post('http://35.167.2.107:3000/v1/bank_tokens', postFormat)
-          .then((res) => {
+          .then(res => {
             $rootScope.checking_id = res.data.data[0].id;
           });
       },
-      onExit: () => {
-        console.warn('user closed');
-      },
+      onExit: () => {},
     });
     const savingsHandler = Plaid.create({
       selectAccount: true,
@@ -49,13 +47,11 @@ angular.module('bankAuth.service', ['app.bankAuth'])
             $rootScope.savings_id = res.data.data[0].id;
           });
       },
-      onExit: () => {
-        console.warn('user closed');
-      },
+      onExit: () => {},
     });
     const showHelp = () => {
       $ionicPopup.alert({
-        template: '<p>click add account to securely log on to both your checking and savings</p>',
+        template: '<p>Click add account to securely log on to both your checking and savings.</p>',
       });
     };
     return {

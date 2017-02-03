@@ -20,13 +20,11 @@ angular.module('account.service', ['app.account'])
           name: $rootScope.checkingName,
         });
         $http.put(`http://35.167.2.107:3000/v1/bank_tokens/${$rootScope.checking_id}`, postFormat)
-          .then(function (res) {
+          .then(res => {
             $rootScope.checking_id = res.data.data[0].id;
           });
       },
-      onExit: () => {
-        console.warn('user closed');
-      },
+      onExit: () => {},
     });
     const savingsHandler = Plaid.create({
       selectAccount: true,
@@ -45,17 +43,15 @@ angular.module('account.service', ['app.account'])
           name: $rootScope.savingsName,
         });
         $http.put(`http://35.167.2.107:3000/v1/bank_tokens/${$rootScope.savings_id}`, postFormat)
-          .then(function (res) {
+          .then(res => {
             $rootScope.savings_id = res.data.data[0].id;
           });
       },
-      onExit: () => {
-        console.warn('user closed');
-      },
+      onExit: () => {},
     });
     const showHelp = () => {
       $ionicPopup.alert({
-        template: '<p>view your total saved with honeypot or edit your banking information</p>',
+        template: '<p>View your total saved with honeypot or edit your banking information.</p>',
       });
     };
     return {

@@ -2,7 +2,7 @@
 /* eslint no-param-reassign: ["error", { "props": false }] */
 
 angular.module('store.service', ['app.store'])
-  .factory('store', function ($location, $http, $rootScope, $ionicPopup, Pet, Dragon) {
+  .factory('store', function ($location, $http, $rootScope, $ionicPopup, Pet, Dragon, Octo) {
     const buyFood = function (context) {
       $http.get(`http://35.167.2.107:3000/v1/pet_stats/?id__is=${$rootScope.pet.id}`)
           .then(res => {
@@ -15,7 +15,7 @@ angular.module('store.service', ['app.store'])
                 Pet.evolve = 1;
               }
               if (type === 2) {
-                // Octo.evolve = 1;
+                Octo.evolve = 1;
               }
               if (type === 3) {
                 Dragon.evolve = 1;
@@ -25,18 +25,19 @@ angular.module('store.service', ['app.store'])
                 Pet.evolve = 2;
               }
               if (type === 2) {
-                // Octo.evolve = 1;
+                Octo.evolve = 2;
               }
               if (type === 3) {
                 Dragon.evolve = 2;
               }
             }
           }, err => {
-            console.warn(err);
+            $ionicPopup.alert({
+              title: err,
+            });
           });
       $http.get(`http://35.167.2.107:3000/v1/bank_tokens/?user_id__is=${$rootScope.user}`)
-        .then((res) => {
-          console.log(context, 'heres context');
+        .then(res => {
           const transaction = {
             user_id: $rootScope.user,
             pet_id: $rootScope.pet.id,
@@ -46,10 +47,8 @@ angular.module('store.service', ['app.store'])
             savings: res.data.data[1].token,
             pending: true,
           };
-          console.log('transaction: ', transaction);
           $http.post('http://35.167.2.107:3000/v1/transactions', transaction)
-            .then((response) => {
-              console.log('resfdsfsfs: ', response);
+            .then(response => {
               const types = {
                 1: 'pet',
                 2: 'octopus',
@@ -57,14 +56,16 @@ angular.module('store.service', ['app.store'])
               };
               const type = types[$rootScope.pet.pet_type_id];
               $location.path(`/market/${type}`);
-            }, (error) => {
-              console.warn(error);
+            }, error => {
+              $ionicPopup.alert({
+                title: error,
+              });
             });
         });
     };
     const showHelp = () => {
       $ionicPopup.alert({
-        template: '<p>purchase items to increase your pet&rsquo;s health & happiness<br /><br />when your transactions reach $5, the money will transfer from your checking to savings account</p>',
+        template: '<p>Purchase items to increase your pet&rsquo;s health & happiness.<br /><br />When your transactions reach $5, the money will transfer from your checking to savings account.</p>',
       });
     };
     return {

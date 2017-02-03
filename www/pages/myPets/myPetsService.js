@@ -11,13 +11,15 @@ angular.module('myPetsService', [])
       .then((res) => {
         return res.data.data;
       }, (err) => {
-        console.warn(err);
+        $ionicPopup.alert({
+          title: err,
+        });
       });
   };
 
   const showHelp = () => {
     $ionicPopup.alert({
-      template: '<p>tap a pet to visit their page <br /> <br />press and hold to edit details</p>',
+      template: '<p>Tap a pet to visit their page.<br /> <br />Press and hold to edit details.</p>',
     });
   };
 
