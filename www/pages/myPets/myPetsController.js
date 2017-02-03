@@ -26,7 +26,7 @@ angular.module('myPets', [])
   $scope.petImages = {
     1: 'https://res.cloudinary.com/bearquarium/image/upload/v1486141525/teddyBearexport_tllo24.png',
     2: 'https://res.cloudinary.com/bearquarium/image/upload/v1486141431/octypoo_ileib2.png',
-    3: 'https://res.cloudinary.com/bearquarium/image/upload/v1486141439/draggykinsforexport_sxljdp.png',
+    3: 'https://res.cloudinary.com/bearquarium/image/upload/v1486141903/draggykinsforexport_fnny7f.png',
   };
 
   $scope.showHelp = () => { myPets.showHelp(); };
