@@ -17,9 +17,9 @@ The user interface is a pet-care game that triggers ACH transfers between a user
 4. Database Schema
 5. Tech Stack
 6. Development
-⋅⋅1. System Requirements
-⋅⋅2. Installation
-⋅⋅3. Simulate for Mobile
+  1. System Requirements
+  2. Installation
+  3. Simulate for Mobile
 7. Contributing
 
 ## App Screenshots
@@ -44,11 +44,3 @@ Before choosing this project idea, we spent a considerable amount of time resear
 
 **Authentication** -
 Users will log into honeypot using Passport authentication to track in-app savings and pet statistics. They will also need to authenticate their bank account ownership through Stripe. We need to investigate whether there is a secure method for storing tokens from Stripe in our database to prevent users from having multiple log-in requirements each time they use our app.
-
-
-## Ownership
-
-- **Server** - Marina
-- **Database** - Brendan
-- **Bank API** - Connor
-- **Client** - Chris & Grace
