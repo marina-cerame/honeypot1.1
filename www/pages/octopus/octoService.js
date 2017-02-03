@@ -13,9 +13,6 @@ angular.module('octo.service', ['app.octo'])
       TweenMax.to('.necklace', 0, { x: -65, y: 15, scale: 1.2 });
       TweenMax.to('.chain', 0, { scale: 1.4, transformOrigin: 'center' });
       TweenMax.to('.tears', 0, { x: -46, y: 15 });
-    //   TweenMax.to('.stringYellow', 0, { rotation: -5, transformOrigin: 'top' });
-    //   TweenMax.to('.stringBlue', 0, { x: -39, y: -40, rotation: 19, transformOrigin: 'top' });
-    //   TweenMax.to('.blueBal', 0, { x: -40, y: -40 });
     };
 
     let tear = 1;
@@ -107,7 +104,6 @@ angular.module('octo.service', ['app.octo'])
       }
     };
     factory.octoTouch = () => {
-      const octo = $('.octo');
       if (happiness > 25) {
         normalTouch();
       } else {
@@ -155,7 +151,9 @@ angular.module('octo.service', ['app.octo'])
           // }
           return stats;
         }, err => {
-          console.warn(err);
+          $ionicPopup.alert({
+            title: err,
+          });
         });
     };
 
@@ -173,7 +171,7 @@ angular.module('octo.service', ['app.octo'])
       }).then(res => {
         if (res) {
           $http.get(`http://35.167.2.107:3000/v1/bank_tokens/?user_id__is=${$rootScope.user}`)
-            .then((res) => {
+            .then(res => {
               const transaction = {
                 user_id: $rootScope.user,
                 pet_id: $rootScope.pet.id,
@@ -184,7 +182,7 @@ angular.module('octo.service', ['app.octo'])
                 pending: true,
               };
               $http.post('http://35.167.2.107:3000/v1/transactions', transaction)
-                .then((response) => {
+                .then(response => {
                   TweenMax.to('.octo', 5, { x: 0, ease: 'easeIn' });
                 });
             });
@@ -241,7 +239,5 @@ angular.module('octo.service', ['app.octo'])
         template: '<p>bars indicate pet status<br />when levels are low visit the store</p>',
       });
     };
-
-
     return factory;
   });

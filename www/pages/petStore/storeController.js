@@ -1,8 +1,11 @@
+/* global angular */
 /* eslint no-param-reassign: ["error", { "props": false }] */
+
 angular.module('app.store', [])
 .controller('StoreCtrl', function ($scope, $rootScope, $http, $location, $ionicPopup, store) {
   $scope.filters = { type: 'food' };
 
+  // TODO: move to service
   $http.get(`http://35.167.2.107:3000/v1/items/?pet_type_id__is=${$rootScope.pet.pet_type_id}`)
     .then((res) => {
       $scope.items = res.data.data;
@@ -16,9 +19,10 @@ angular.module('app.store', [])
         item.price = price;
         return item;
       });
-      console.log($scope.items, 'items here');
     }, (err) => {
-      console.warn(err);
+      $ionicPopup.alert({
+        title: err,
+      });
     });
 
   if ($rootScope.checking_id === undefined) {
