@@ -21,8 +21,7 @@ The user interface is a pet-care game that triggers ACH transfers between a user
   3. Simulate for Mobile
 6. [Contributing](https://github.com/TheBearQuarium/honeypot1.1#contributing)
 
-## App Screenshots
-!! REPLACE THIS !!
+## Wireframes
 ![image currently down](https://github.com/TheBearQuarium/honeypot/blob/master/images/honeypot2.png?raw=true 'honeypot mockup')
 
 ## Architecture
