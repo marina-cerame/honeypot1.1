@@ -51,7 +51,7 @@ angular.module('bankAuth.service', ['app.bankAuth'])
     });
     const showHelp = () => {
       $ionicPopup.alert({
-        template: '<p>click add account to securely log on to both your checking and savings</p>',
+        template: '<p>Click add account to securely log on to both your checking and savings.</p>',
       });
     };
     return {

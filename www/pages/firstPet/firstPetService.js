@@ -23,7 +23,7 @@ angular.module('firstPetService', ['app.firstPet'])
 
     const showHelp = () => {
       $ionicPopup.alert({
-        template: '<p>complete this form to start saving toward your goal</p>',
+        template: '<p>Complete this form to start saving toward your goal!</p>',
       });
     };
 

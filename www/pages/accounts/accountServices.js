@@ -51,7 +51,7 @@ angular.module('account.service', ['app.account'])
     });
     const showHelp = () => {
       $ionicPopup.alert({
-        template: '<p>view your total saved with honeypot or edit your banking information</p>',
+        template: '<p>View your total saved with honeypot or edit your banking information.</p>',
       });
     };
     return {

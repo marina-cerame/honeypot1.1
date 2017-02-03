@@ -159,7 +159,7 @@ angular.module('octo.service', ['app.octo'])
 
     factory.showHelp = () => {
       $ionicPopup.alert({
-        template: '<p>bars indicate pet status<br />when levels are low visit the store</p>',
+        template: '<p>Bars indicate pet status.<br />When levels are low visit the store.</p>',
       });
     };
 

@@ -65,7 +65,7 @@ angular.module('store.service', ['app.store'])
     };
     const showHelp = () => {
       $ionicPopup.alert({
-        template: '<p>purchase items to increase your pet&rsquo;s health & happiness<br /><br />when your transactions reach $5, the money will transfer from your checking to savings account</p>',
+        template: '<p>Purchase items to increase your pet&rsquo;s health & happiness.<br /><br />When your transactions reach $5, the money will transfer from your checking to savings account.</p>',
       });
     };
     return {

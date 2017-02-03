@@ -19,7 +19,7 @@ angular.module('myPetsService', [])
 
   const showHelp = () => {
     $ionicPopup.alert({
-      template: '<p>tap a pet to visit their page <br /> <br />press and hold to edit details</p>',
+      template: '<p>Tap a pet to visit their page.<br /> <br />Press and hold to edit details.</p>',
     });
   };
 

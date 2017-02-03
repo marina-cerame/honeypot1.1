@@ -10,4 +10,6 @@ angular.module('editPet', [])
   $scope.edit = () => editPet.edit(pet);
 
   $scope.delete = () => editPet.deleter();
+
+  $scope.showHelp = () => editPet.showHelp();
 });
