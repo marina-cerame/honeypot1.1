@@ -38,10 +38,10 @@ The user interface is a pet-care game that triggers ACH transfers between a user
 
 ### System Requirements
 
--Globally installed node >= 4.0
--Globally installed npm >= 3.0
--Globally installed Ionic >= 1.3
--Globally installed Cordova >= 6.0
+- Globally installed node >= 4.0
+- Globally installed npm >= 3.0
+- Globally installed Ionic >= 1.3
+- Globally installed Cordova >= 6.0
 
 ### Installation
 
