@@ -8,9 +8,9 @@ angular.module('octo.service', ['app.octo'])
 
     factory.positionOct = () => {
       TweenMax.to('.octo', 0, { x: 90, y: 145, scale: 1.05 });
-      TweenMax.to('.hat', 0, { x: -55, scale: 0.9, rotation: -25,
+      TweenMax.to('.octo-hat', 0, { x: -55, scale: 0.9, rotation: -25,
         transformOrigin: '0% 100%' });
-      TweenMax.to('.necklace', 0, { x: -65, y: 15, scale: 1.2 });
+      TweenMax.to('.octo-necklace', 0, { x: -65, y: 15, scale: 1.2 });
       TweenMax.to('.chain', 0, { scale: 1.4, transformOrigin: 'center' });
       TweenMax.to('.tears', 0, { x: -46, y: 15 });
     };
@@ -58,16 +58,6 @@ angular.module('octo.service', ['app.octo'])
     };
 
     const sadTouch = () => {
-      // TweenMax.to('.mouthBG', 1, { rotationX: 180, transformOrigin: 'center' });
-      // TweenMax.to('.teeth', 1, { rotationX: 180, transformOrigin: 'center' });
-      // TweenMax.to('.tongue', 1, { scale: 0.7, y: -6, transformOrigin: 'center' });
-      // TweenMax.to('.tongueLine', 1, { scale: 0.7, y: -6, transformOrigin: 'center' });
-      // TweenMax.to('.tentacles', 1, { scale: 0.75, transformOrigin: 'center' });
-      // TweenMax.to('.tentacleBG', 1, { scale: 0.75, transformOrigin: 'center' });
-      // TweenMax.to('.suckers', 1, { scale: 0.75, transformOrigin: '50% 20' });
-      // TweenMax.to('.body', 1, { scale: 0.9, transformOrigin: 'bottom' });
-      // TweenMax.to('.body', 1, { scaleX: 0.8, transformOrigin: 'bottom' });
-      // TweenMax.to('.tears', 1, { alpha: 1 });
 
       const tearSelect = tearNum => {
         TweenMax.to(tearNum, 4, { y: 30, ease: 'easeIn' });
@@ -146,12 +136,11 @@ angular.module('octo.service', ['app.octo'])
           second = 0;
         }
 
-        TweenMax.to('.hourHand', 1, { rotation: `${hour}_short`, transformOrigin: 'bottom' });
-        TweenMax.to('.minuteHand', 1, { rotation: `${minute}_short`, transformOrigin: 'bottom' });
-        TweenMax.to('.secondHand', 1, { rotation: `${second}_short`, transformOrigin: 'bottom' });
+        TweenMax.to('.octo-hourHand', 1, { rotation: `${hour}_short`, transformOrigin: 'bottom' });
+        TweenMax.to('.octo-minuteHand', 1, { rotation: `${minute}_short`, transformOrigin: 'bottom' });
+        TweenMax.to('.octo-secondHand', 1, { rotation: `${second}_short`, transformOrigin: 'bottom' });
       }, 1000);
     };
-
     // ////////////////////////////////
     // /////////Day & Night////////////
     // ////////////////////////////////
@@ -160,9 +149,9 @@ angular.module('octo.service', ['app.octo'])
       const minute1 = datetime1.slice(3, 5) * 360 / 60;
       const hour1 = datetime1.slice(0, 2) * 360 / 12 + (minute1 / 12);
       if (hour1 > 180 && hour1 < 540) {
-        $('.ground').css('background-image', 'url(./img/woods_day.png)');
+        $('.octo-ground').css('background-image', 'url(https://res.cloudinary.com/bearquarium/image/upload/v1485818261/water_day_btsnlg.png)');
       } else {
-        $('.ground').css('background-image', 'url(./img/woods_night.png)');
+        $('.octo-ground').css('background-image', 'url(https://res.cloudinary.com/bearquarium/image/upload/v1485818265/water_night_rdhfhl.png)');
       }
     };
 
@@ -172,14 +161,14 @@ angular.module('octo.service', ['app.octo'])
       const necklace = accessories.necklace;
       const balloons = accessories.balloons;
       if (hat) {
-        TweenMax.fromTo('.hat', 2, { alpha: 0, y: -220 }, { alpha: 1, y: -90 });
+        TweenMax.fromTo('.octo-hat', 2, { alpha: 0, y: -220 }, { alpha: 1, y: -90 });
       }
       if (necklace) {
-        TweenMax.to('.necklace', 0, { alpha: 1 });
+        setClock();
+        TweenMax.to('.octo-necklace', 0, { alpha: 1 });
       }
       if (balloons) {
-        setClock();
-        TweenMax.to('.balloons', 0, { alpha: 1 });
+        TweenMax.to('.octo-balloons', 0, { alpha: 1 });
       }
     };
 
@@ -187,12 +176,12 @@ angular.module('octo.service', ['app.octo'])
                             //     controller which triggers the evolution animation
     const setEvolution = () => {
       if (stats.progress > 50) {
-        TweenMax.to('.t2', 0, { alpha: 1 });
-        TweenMax.to('.t7', 0, { alpha: 1 });
-      }
-      if (stats.progress >= 100 && !factory.evolve) {
         TweenMax.to('.t4', 0, { alpha: 1 });
         TweenMax.to('.t5', 0, { alpha: 1 });
+      }
+      if (stats.progress >= 100 && !factory.evolve) {
+        TweenMax.to('.t2', 0, { alpha: 1 });
+        TweenMax.to('.t7', 0, { alpha: 1 });
       }
     };
 
@@ -260,7 +249,7 @@ angular.module('octo.service', ['app.octo'])
       const tl = new TimelineMax();
       tl.to('.octo', 3, {
         transformOrigin: '50% 50%',
-        y: -190,
+        y: -100,
         ease: Circ.easeOut,
       }, 'bounce')
 
@@ -346,47 +335,6 @@ angular.module('octo.service', ['app.octo'])
       });
     };
 
-    Date.prototype.timeNow = function () {
-      // WTF is this???
-      return ((this.getHours() < 10) ? '0' : '') + this.getHours() + ':'
-      + ((this.getMinutes() < 10) ? '0' : '') + this.getMinutes() + ':'
-      + ((this.getSeconds() < 10) ? '0' : '') + this.getSeconds();
-    };
-
-    const newDate1 = new Date();
-    const setClock = () => {
-      setInterval(() => {
-        const newDate = new Date();
-        const datetime = newDate.timeNow();
-        let second = datetime.slice(6, 8) * 360 / 60;
-        let minute = datetime.slice(3, 5) * 360 / 60;
-        let hour = datetime.slice(0, 2) * 360 / 12 + (minute / 12);
-        if (hour === 360) {
-          hour = 0;
-        }
-        if (minute === 360) {
-          minute = 0;
-        }
-        if (second === 360) {
-          second = 0;
-        }
-
-        TweenMax.to('.dragon-hourhand', 1, { rotation: `${hour}_short`, transformOrigin: 'bottom' });
-        TweenMax.to('.dragon-minutehand', 1, { rotation: `${minute}_short`, transformOrigin: 'bottom' });
-        TweenMax.to('.dragon-secondhand', 1, { rotation: `${second}_short`, transformOrigin: 'bottom' });
-      }, 1000);
-    };
-
-    factory.setBackground = () => {
-      const datetime1 = newDate1.timeNow();
-      const minute1 = datetime1.slice(3, 5) * 360 / 60;
-      const hour1 = datetime1.slice(0, 2) * 360 / 12 + (minute1 / 12);
-      if (hour1 > 180 && hour1 < 540) {
-        $('.octo-ground').css('background-image', 'url(https://res.cloudinary.com/bearquarium/image/upload/v1485818261/water_day_btsnlg.png)');
-      } else {
-        $('.octo-ground').css('background-image', 'url(https://res.cloudinary.com/bearquarium/image/upload/v1485818265/water_night_rdhfhl.png)');
-      }
-    };
 
     factory.showHelp = () => {
       $ionicPopup.alert({
