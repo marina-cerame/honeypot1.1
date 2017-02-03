@@ -1,3 +1,5 @@
+/* globals TweenMax angular */
+
 angular.module('octo.service', ['app.octo'])
   .factory('Octo', function ($rootScope, $http, $ionicPopup, $location) {
     const factory = {};

@@ -1,3 +1,4 @@
+/* globals angular */
 angular.module('adoptPet.service', [
   'app.adoptPet',
 ])
@@ -31,7 +32,6 @@ angular.module('adoptPet.service', [
               octopus: 'sly octopus',
               dragon: 'fiery dragon',
             };
-
             petTypes.push(type);
             for (let i = 0; i < petTypes.length; i++) {
               petTypes[i].img = petImages[petTypes[i].id];
@@ -41,7 +41,7 @@ angular.module('adoptPet.service', [
               pet.displayType = types[pet.name];
             });
           });
-          return petTypes;
+          return petTypes.splice(0, 3);
         }, err => {
           console.warn(err);
         });

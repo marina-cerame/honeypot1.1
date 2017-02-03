@@ -1,5 +1,4 @@
-/* globals angular TweenMax */
-
+/* globals angular TweenMax TimelineMax $ Circ Power1 */
 angular.module('dragon.service', ['app.dragon'])
   .factory('Dragon', function ($rootScope, $http, $ionicPopup, $location) {
     const factory = {};
@@ -20,10 +19,10 @@ angular.module('dragon.service', ['app.dragon'])
     };
 
     const setTears = () => {
-      TweenMax.to('.dragon-tear1', 0, { x: -55, y: -105 });
-      TweenMax.to('.dragon-tear2', 0, { x: -55, y: -105, alpha: 1 });
-      TweenMax.to('.dragon-tear3', 0, { x: -5, y: -100, alpha: 1 });
-      TweenMax.to('.dragon-tear4', 0, { x: -5, y: -100 });
+      TweenMax.to('.dragon-tear1', 0, { x: -70, y: -68 });
+      TweenMax.to('.dragon-tear2', 0, { x: -70, y: -68, alpha: 1 });
+      TweenMax.to('.dragon-tear3', 0, { x: -5, y: -65, alpha: 1 });
+      TweenMax.to('.dragon-tear4', 0, { x: -5, y: -65 });
     };
 
     const browsDown = () => {
@@ -44,7 +43,7 @@ angular.module('dragon.service', ['app.dragon'])
         browsDown();
         mouthSad();
         if (happiness < 26) {
-          TweenMax.to('.dragon-tears', 2, { alpha: 0.7 });
+          TweenMax.to('.dragon-tears', 0, { alpha: 0.6, scale: 1.5 });
         }
       }
     };
@@ -318,6 +317,64 @@ angular.module('dragon.service', ['app.dragon'])
       }, 1000);
     };
 
+    factory.evolve = false;
+
+    const setEvolution = () => {
+      if (stats.progress >= 50) {
+        showWings();
+      }
+    };
+
+    const evoAnimation1 = () => {
+      factory.evolve = false;
+      const tl = new TimelineMax();
+      tl.to('.all-drag', 3, {
+        transformOrigin: '50% 50%',
+        y: -150,
+        ease: Circ.easeOut,
+      }, 'bounce')
+      /* dragon bounce down */
+      .to('.all-drag', 0.4, {
+        transformOrigin: '50% 50%',
+        y: 35,
+        ease: Circ.easeIn,
+        delay: 0.6,
+      }, 'bounce2')
+      /* all-drag squash */
+      .to('.all-drag', 0.2, {
+        transformOrigin: '50% 100%',
+        scaleX: 1.2,
+        scaleY: 0.8,
+        ease: Power1.easeInOut,
+      }, 'bounce3-=0.04')
+      .to('.all-drag', 0.2, {
+        transformOrigin: '50% 100%',
+        scaleX: 1.1,
+        scaleY: 1.1,
+        ease: Power1.easeInOut,
+      });
+      TweenMax.fromTo('.left-wing-whole', 4, {
+        delay: 1.5,
+        alpha: 1,
+        scale: 0,
+        transformOrigin: '100% 80%',
+      }, {
+        alpha: 1,
+        scale: 1,
+        transformOrigin: '100% 80%',
+      });
+      TweenMax.fromTo('.right-wing-whole', 4, {
+        delay: 1.5,
+        alpha: 1,
+        scale: 0,
+        transformOrigin: '0% 80%',
+      }, {
+        alpha: 1,
+        scale: 1,
+        transformOrigin: '0% 80%',
+      });
+    };
+
     factory.getStats = () => {
       return $http.get(`http://35.167.2.107:3000/v1/pet_stats/?id__is=${$rootScope.pet.id}`)
         .then(res => {
@@ -325,11 +382,15 @@ angular.module('dragon.service', ['app.dragon'])
           happiness = stats.happiness;
           stats.progress = (stats.goal_progress / stats.goal_amt);
           setAccessories();
-          TweenMax.to('.all-drag', 0, { y: 50, x: 65, transformOrigin: 'center' });
+          TweenMax.to('.all-drag', 0, { y: 80, x: 25, transformOrigin: 'center' });
           setHappiness();
           setTears();
-          if (stats.progress > 50) {
-            showWings();
+          setEvolution();
+          if (factory.evolve === 1) {
+            evoAnimation1();
+          }
+          if (factory.evolve === 2) {
+            // evoAnimation2();
           }
           if (stats.accessories.necklace) {
             setClock();
