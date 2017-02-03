@@ -8,9 +8,9 @@ angular.module('adoptPet.service', [
     const petTypes = [];
     const petImages = {
       // TODO: Get actual images
-      1: './img/pets/bear.png',
-      2: './img/pets/octopus.png',
-      3: './img/pets/dragon.png',
+      1: 'https://res.cloudinary.com/bearquarium/image/upload/v1486141525/teddyBearexport_tllo24.png',
+      2: 'https://res.cloudinary.com/bearquarium/image/upload/v1486141431/octypoo_ileib2.png',
+      3: 'https://res.cloudinary.com/bearquarium/image/upload/v1486141439/draggykinsforexport_sxljdp.png',
     };
 
     data.sliderOptions = {
@@ -63,7 +63,7 @@ angular.module('adoptPet.service', [
 
     const showHelp = () => {
       $ionicPopup.alert({
-        template: '<p>swipe right to see other pets then complete the form to start saving for a new goal</p>',
+        template: '<p>Swipe right to see other pets then complete the form to start saving for a new goal!</p>',
       });
     };
 

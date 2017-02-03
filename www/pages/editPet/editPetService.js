@@ -30,8 +30,15 @@ angular.module('editPetService', [])
       });
   };
 
+  const showHelp = () => {
+    $ionicPopup.alert({
+      template: '<p>Change any field to update your pet or goal.</p>',
+    });
+  };
+
   return {
     edit,
     deleter,
+    showHelp,
   };
 });
