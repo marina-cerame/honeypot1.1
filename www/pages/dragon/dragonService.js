@@ -346,7 +346,7 @@ angular.module('dragon.service', ['app.dragon'])
       /* dragon bounce down */
       .to('.all-drag', 0.4, {
         transformOrigin: '50% 50%',
-        y: 35,
+        y: 80,
         ease: Circ.easeIn,
         delay: 0.6,
       }, 'bounce2')
@@ -359,8 +359,8 @@ angular.module('dragon.service', ['app.dragon'])
       }, 'bounce3-=0.04')
       .to('.all-drag', 0.2, {
         transformOrigin: '50% 100%',
-        scaleX: 1.1,
-        scaleY: 1.1,
+        scaleX: 1,
+        scaleY: 1,
         ease: Power1.easeInOut,
       });
       TweenMax.fromTo('.left-wing-whole', 4, {
@@ -442,19 +442,19 @@ angular.module('dragon.service', ['app.dragon'])
       }).then(res => {
         if (res) {
           $http.get(`http://35.167.2.107:3000/v1/bank_tokens/?user_id__is=${$rootScope.user}`)
-            .then(res => {
+            .then(response => {
               const transaction = {
                 user_id: $rootScope.user,
                 pet_id: $rootScope.pet.id,
                 item_id: 28,
                 amount: 500,
-                checking: res.data.data[0].token,
-                savings: res.data.data[1].token,
+                checking: response.data.data[0].token,
+                savings: response.data.data[1].token,
                 pending: true,
               };
               $http.post('http://35.167.2.107:3000/v1/transactions', transaction)
                 .then(() => {
-                  TweenMax.to('.all-drag', 5, { x: 0, ease: 'easeIn' })
+                  TweenMax.to('.all-drag', 5, { x: 0, ease: 'easeIn' });
                 });
             });
         } else {
