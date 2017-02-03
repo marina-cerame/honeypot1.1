@@ -24,10 +24,9 @@ angular.module('myPets', [])
   };
 
   $scope.petImages = {
-    // TODO: Replace with actual images
-    1: './img/pets/thumb-bear.png',
-    2: './img/pets/thumb-octopus.png',
-    3: './img/pets/thumb-dragon.png',
+    1: 'https://res.cloudinary.com/bearquarium/image/upload/v1486141525/teddyBearexport_tllo24.png',
+    2: 'https://res.cloudinary.com/bearquarium/image/upload/v1486141431/octypoo_ileib2.png',
+    3: 'https://res.cloudinary.com/bearquarium/image/upload/v1486141439/draggykinsforexport_sxljdp.png',
   };
 
   $scope.showHelp = () => { myPets.showHelp(); };
