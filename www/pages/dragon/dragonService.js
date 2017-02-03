@@ -43,7 +43,7 @@ angular.module('dragon.service', ['app.dragon'])
         browsDown();
         mouthSad();
         if (happiness < 26) {
-          TweenMax.to('.dragon-tears', 0, { alpha: 0.6, scale: 1.5 });
+          TweenMax.to('.dragon-tears', 0, { alpha: 0.7, scale: 1.2 });
         }
       }
     };
