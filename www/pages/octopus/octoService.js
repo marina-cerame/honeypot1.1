@@ -194,6 +194,54 @@ angular.module('octo.service', ['app.octo'])
       });
     };
 
+    Date.prototype.timeNow = function () {
+      // WTF is this???
+      return ((this.getHours() < 10) ? '0' : '') + this.getHours() + ':'
+      + ((this.getMinutes() < 10) ? '0' : '') + this.getMinutes() + ':'
+      + ((this.getSeconds() < 10) ? '0' : '') + this.getSeconds();
+    };
+
+    const newDate1 = new Date();
+    const setClock = () => {
+      setInterval(() => {
+        const newDate = new Date();
+        const datetime = newDate.timeNow();
+        let second = datetime.slice(6, 8) * 360 / 60;
+        let minute = datetime.slice(3, 5) * 360 / 60;
+        let hour = datetime.slice(0, 2) * 360 / 12 + (minute / 12);
+        if (hour === 360) {
+          hour = 0;
+        }
+        if (minute === 360) {
+          minute = 0;
+        }
+        if (second === 360) {
+          second = 0;
+        }
+
+        TweenMax.to('.dragon-hourhand', 1, { rotation: `${hour}_short`, transformOrigin: 'bottom' });
+        TweenMax.to('.dragon-minutehand', 1, { rotation: `${minute}_short`, transformOrigin: 'bottom' });
+        TweenMax.to('.dragon-secondhand', 1, { rotation: `${second}_short`, transformOrigin: 'bottom' });
+      }, 1000);
+    };
+
+    factory.setBackground = () => {
+      const datetime1 = newDate1.timeNow();
+      const minute1 = datetime1.slice(3, 5) * 360 / 60;
+      const hour1 = datetime1.slice(0, 2) * 360 / 12 + (minute1 / 12);
+      if (hour1 > 180 && hour1 < 540) {
+        $('.octo-ground').css('background-image', 'url(https://res.cloudinary.com/bearquarium/image/upload/v1485818261/water_day_btsnlg.png)');
+      } else {
+        $('.octo-ground').css('background-image', 'url(https://res.cloudinary.com/bearquarium/image/upload/v1485818265/water_night_rdhfhl.png)');
+      }
+    };
+
+    factory.showHelp = () => {
+      $ionicPopup.alert({
+        template: '<p>bars indicate pet status<br />when levels are low visit the store</p>',
+      });
+    };
+
 
     return factory;
   });
