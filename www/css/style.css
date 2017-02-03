@@ -3,6 +3,12 @@
   height: 625px;
   z-index: -1;
   position: relative;
+  background-size: 100%;
+}
+.octo-ground {
+  height: 625px;
+  z-index: -1;
+  position: relative;
   background-image: url('../img/woods_day.png');
   background-size: 100%;
 }

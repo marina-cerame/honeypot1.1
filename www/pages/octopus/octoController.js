@@ -3,6 +3,7 @@
 
 angular.module('app.octo', [])
   .controller('OctoCtrl', function ($scope, $rootScope, $http, Octo) {
+    Octo.setBackground();
     Octo.getStats()
       .then(res => {
         $scope.stats = res;
