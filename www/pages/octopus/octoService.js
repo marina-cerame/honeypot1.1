@@ -326,7 +326,7 @@ angular.module('octo.service', ['app.octo'])
               };
               $http.post('http://35.167.2.107:3000/v1/transactions', transaction)
                 .then(response => {
-                  TweenMax.to('.octo', 5, { x: 0, ease: 'easeIn' });
+                  TweenMax.to('.octo', 5, { x: 90, ease: 'easeIn' });
                 });
             });
         } else {
