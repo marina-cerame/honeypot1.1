@@ -18,13 +18,15 @@ angular.module('authService', [])
               }
             });
           }, (err) => {
-            console.warn(err);
+            $ionicPopup.alert({
+              title: err,
+            });
           });
         $location.path('/app/myPets');
       }, (err) => {
-        console.warn(err);
         $ionicPopup.alert({
           title: 'wrong username or password',
+          template: err,
         });
       });
   };
@@ -44,12 +46,14 @@ angular.module('authService', [])
             $rootScope.user = res.data.data[0].user_id;
             $location.path('/bankAuth');
           }, (err) => {
-            console.warn(err);
+            $ionicPopup.alert({
+              title: err,
+            });
           });
       }, (err) => {
-        console.warn(err);
         $ionicPopup.alert({
           title: 'this email is in use',
+          template: err,
         });
       });
   };
@@ -57,9 +61,8 @@ angular.module('authService', [])
   const compare = (password, confirmPassword) => {
     if (password !== confirmPassword) {
       return true;
-    } else {
-      return false;
     }
+    return false;
   };
 
   return {

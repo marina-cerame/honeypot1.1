@@ -286,6 +286,7 @@ angular.module('dragon.service', ['app.dragon'])
       }
     };
 
+    // TODO: fix this.
     Date.prototype.timeNow = function () {
       // WTF is this???
       return ((this.getHours() < 10) ? '0' : '') + this.getHours() + ':'
@@ -311,9 +312,18 @@ angular.module('dragon.service', ['app.dragon'])
           second = 0;
         }
 
-        TweenMax.to('.dragon-hourhand', 1, { rotation: `${hour}_short`, transformOrigin: 'bottom' });
-        TweenMax.to('.dragon-minutehand', 1, { rotation: `${minute}_short`, transformOrigin: 'bottom' });
-        TweenMax.to('.dragon-secondhand', 1, { rotation: `${second}_short`, transformOrigin: 'bottom' });
+        TweenMax.to('.dragon-hourhand', 1, {
+          rotation: `${hour}_short`,
+          transformOrigin: 'bottom',
+        });
+        TweenMax.to('.dragon-minutehand', 1, {
+          rotation: `${minute}_short`,
+          transformOrigin: 'bottom',
+        });
+        TweenMax.to('.dragon-secondhand', 1, {
+          rotation: `${second}_short`,
+          transformOrigin: 'bottom',
+        });
       }, 1000);
     };
 
@@ -402,7 +412,9 @@ angular.module('dragon.service', ['app.dragon'])
           }
           return stats;
         }, err => {
-          console.warn(err);
+          $ionicPopup.alert({
+            title: err,
+          });
         });
     };
 
@@ -423,14 +435,14 @@ angular.module('dragon.service', ['app.dragon'])
     };
 
     factory.deadDragon = () => {
-      TweenMax.to('.all-drag', 5, { x: 1200, ease: 'easeIn' })
+      TweenMax.to('.all-drag', 5, { x: 1200, ease: 'easeIn' });
       $ionicPopup.confirm({
         title: 'Your pet has run away in search of food!',
         template: 'click \'ok\' to lure your pet back with tasty bait ($5)',
       }).then(res => {
         if (res) {
           $http.get(`http://35.167.2.107:3000/v1/bank_tokens/?user_id__is=${$rootScope.user}`)
-            .then((res) => {
+            .then(res => {
               const transaction = {
                 user_id: $rootScope.user,
                 pet_id: $rootScope.pet.id,
@@ -441,7 +453,7 @@ angular.module('dragon.service', ['app.dragon'])
                 pending: true,
               };
               $http.post('http://35.167.2.107:3000/v1/transactions', transaction)
-                .then((response) => {
+                .then(() => {
                   TweenMax.to('.all-drag', 5, { x: 0, ease: 'easeIn' })
                 });
             });

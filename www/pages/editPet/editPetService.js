@@ -1,12 +1,14 @@
 /* global angular */
 angular.module('editPetService', [])
 .factory('editPet', function ($http, $location, $rootScope, $ionicPopup) {
-  const edit = (pet) => {
+  const edit = pet => {
     $http.put(`http://35.167.2.107:3000/v1/pets/${$rootScope.pet.id}`, pet)
       .then(() => {
         $location.path('/app/myPets');
-      }, (err) => {
-        console.warn(err);
+      }, err => {
+        $ionicPopup.alert({
+          title: err,
+        });
       });
   };
 
@@ -19,13 +21,14 @@ angular.module('editPetService', [])
           return $http.delete(`http://35.167.2.107:3000/v1/pets/${$rootScope.pet.id}`)
             .then(() => {
               $location.path('/app/myPets');
-            }, (err) => {
-              console.warn(err);
+            }, err => {
+              $ionicPopup.alert({
+                title: err,
+              });
             });
         }
       });
   };
-  // you change pet details on this page
 
   return {
     edit,

@@ -7,6 +7,7 @@ angular.module('adoptPet.service', [
     const data = {};
     const petTypes = [];
     const petImages = {
+      // TODO: Get actual images
       1: './img/pets/bear.png',
       2: './img/pets/octopus.png',
       3: './img/pets/dragon.png',
@@ -18,12 +19,9 @@ angular.module('adoptPet.service', [
       speed: 300, // 0.3s transition
       height: 150,
     };
-
-    // create delegate reference to link with slider
     data.sliderDelegate = null;
 
     const getPets = () => {
-
       return $http.get('http://35.167.2.107:3000/v1/pet_types')
         .then(res => {
           res.data.data.forEach(type => {
@@ -43,11 +41,13 @@ angular.module('adoptPet.service', [
           });
           return petTypes.splice(0, 3);
         }, err => {
-          console.warn(err);
+          $ionicPopup.alert({
+            title: err,
+          });
         });
     };
 
-    const adoptNewPet = (newbie) => {
+    const adoptNewPet = newbie => {
       const newpet = newbie;
       newpet.user_id = $rootScope.user;
 
@@ -55,7 +55,9 @@ angular.module('adoptPet.service', [
         .then(() => {
           $location.path('/app/myPets');
         }, err => {
-          console.warn(err);
+          $ionicPopup.alert({
+            title: err,
+          });
         });
     };
 

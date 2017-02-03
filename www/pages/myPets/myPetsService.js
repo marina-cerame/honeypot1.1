@@ -11,7 +11,9 @@ angular.module('myPetsService', [])
       .then((res) => {
         return res.data.data;
       }, (err) => {
-        console.warn(err);
+        $ionicPopup.alert({
+          title: err,
+        });
       });
   };
 
