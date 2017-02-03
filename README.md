@@ -12,15 +12,15 @@ The user interface is a pet-care game that triggers ACH transfers between a user
 
 ## Table of Contents
 1. How it Works
-2. App Screenshots
-3. Architecture
-4. Database Schema
-5. Tech Stack
-6. Development
+2. [App Screenshots][https://github.com/TheBearQuarium/honeypot1.1#app-screenshots]
+3. [Architecture][https://github.com/TheBearQuarium/honeypot1.1#architecture]
+4. [Database Schema][https://github.com/TheBearQuarium/honeypot1.1#database-schema]
+5. [Tech Stack][https://github.com/TheBearQuarium/honeypot1.1#tech-stack]
+6. [Development][https://github.com/TheBearQuarium/honeypot1.1#development]
   1. System Requirements
   2. Installation
   3. Simulate for Mobile
-7. Contributing
+7. [Contributing][https://github.com/TheBearQuarium/honeypot1.1#contributing]
 
 ## App Screenshots
 !! REPLACE THIS !!
