@@ -1,3 +1,5 @@
+/* globals TweenMax TimelineMax angular */
+
 angular.module('pet.service', ['app.pet'])
 .factory('Pet', function ($rootScope, $http, $ionicPopup, $location) {
   const factory = {};
@@ -31,7 +33,7 @@ angular.module('pet.service', ['app.pet'])
 
   const setHappiness = () => {
     if (happiness > 50) {
-      bearTilt();
+      factory.bearTilt();
     }
     if (happiness < 51) {
       TweenMax.to('.mouth', 0, { alpha: 0 });
