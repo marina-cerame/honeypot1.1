@@ -12,15 +12,15 @@ The user interface is a pet-care game that triggers ACH transfers between a user
 
 ## Table of Contents
 1. How it Works
-2. App Screenshots
-3. Architecture
-4. Database Schema
-5. Tech Stack
-6. Development
+2. [App Screenshots](https://github.com/TheBearQuarium/honeypot1.1#app-screenshots)
+3. [Architecture](https://github.com/TheBearQuarium/honeypot1.1#architecture)
+4. [Database Schema](https://github.com/TheBearQuarium/honeypot1.1#database-schema)
+5. [Tech Stack](https://github.com/TheBearQuarium/honeypot1.1#tech-stack)
+6. [Development](https://github.com/TheBearQuarium/honeypot1.1#development)
   1. System Requirements
   2. Installation
   3. Simulate for Mobile
-7. Contributing
+7. [Contributing](https://github.com/TheBearQuarium/honeypot1.1#contributing)
 
 ## App Screenshots
 !! REPLACE THIS !!
@@ -28,11 +28,15 @@ The user interface is a pet-care game that triggers ACH transfers between a user
 
 ## Architecture
 
-![image currently down](https://github.com/TheBearQuarium/honeypot/blob/master/images/honeypotarchitecture.png?raw=true 'honeypot architecture')
+![image currently down](http://res.cloudinary.com/bearquarium/image/upload/v1486145871/honeypotarchitecture_nbot2c.png)
+
+## Database Schema
+
+![image currently down](http://res.cloudinary.com/bearquarium/image/upload/v1486073724/Screen_Shot_2017-02-02_at_3.18.53_PM_hnhxey.png)
 
 ## Tech Stack
 
-![image currently down](https://github.com/TheBearQuarium/honeypot/blob/master/images/TechStack.png?raw=true 'Angular 2, Ionic 2, Node js, Nodal, PostgreSQL, Plaid, Stripe, Amazon Web Services, Passport, Apache Cordova')
+![image currently down](http://res.cloudinary.com/bearquarium/image/upload/v1486068635/tech_stack_mobxob.png)
 
 ## Development
 
