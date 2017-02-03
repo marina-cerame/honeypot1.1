@@ -2,8 +2,8 @@
 /* eslint no-param-reassign: ["error", { "props": false }] */
 
 angular.module('store.service', ['app.store'])
-  .factory('store', function ($location, $http, $rootScope, $ionicPopup, Pet, Dragon) {
-    const buyFood = context => {
+  .factory('store', function ($location, $http, $rootScope, $ionicPopup, Pet, Dragon, Octo) {
+    const buyFood = function (context) {
       $http.get(`http://35.167.2.107:3000/v1/pet_stats/?id__is=${$rootScope.pet.id}`)
           .then(res => {
             const perc = res.data.data[0].goal_progress / res.data.data[0].goal_amt / 100;
@@ -15,7 +15,7 @@ angular.module('store.service', ['app.store'])
                 Pet.evolve = 1;
               }
               if (type === 2) {
-                // Octo.evolve = 1;
+                Octo.evolve = 1;
               }
               if (type === 3) {
                 Dragon.evolve = 1;
@@ -25,7 +25,7 @@ angular.module('store.service', ['app.store'])
                 Pet.evolve = 2;
               }
               if (type === 2) {
-                // Octo.evolve = 1;
+                Octo.evolve = 2;
               }
               if (type === 3) {
                 Dragon.evolve = 2;
