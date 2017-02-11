@@ -291,6 +291,7 @@ angular.module('pet.service', ['app.pet'])
   // ////////////////////
   // /////Get Req////////
   // ////////////////////
+  // get request for pet happiness, health, accessories, & evolution
   factory.getStats = () => {
     return $http.get(`http://35.167.2.107:3000/v1/pet_stats/?id__is=${$rootScope.pet.id}`)
       .then(res => {
