@@ -1,4 +1,4 @@
-/* globals TweenMax, TimelineMax, angular, Circ, Power1 */
+/* globals TweenMax, TimelineMax, angular, Circ, Power1, $ */
 
 angular.module('pet.service', ['app.pet'])
 .factory('Pet', function ($rootScope, $http, $ionicPopup, $location) {
@@ -9,6 +9,7 @@ angular.module('pet.service', ['app.pet'])
   // ///////////////////////////////
   // //////// Happiness ////////////
   // ///////////////////////////////
+  // if the bear is happy, this gets called by setHappiness
   const bearTilt = () => {
     TweenMax.to('.bear', 1, {
       rotation: 2,
@@ -47,6 +48,7 @@ angular.module('pet.service', ['app.pet'])
   // /////////////////////////////////////
   // //////BEAR TOUCH EFFECT//////////////
   // /////////////////////////////////////
+  // called when bear is touched
   const bearWave = () => {
     TweenMax.to('.ears', 0.7, { y: -8 });
     TweenMax.to('.armLeft', 0.7, { rotation: 65, x: -10, transformOrigin: '80% 50%' });
@@ -61,7 +63,6 @@ angular.module('pet.service', ['app.pet'])
   let drip = 1;
   factory.bearTouch = () => {
     // IF BEAR IS HAPPY
-
     if (happiness > 25 || stats.progress >= 100) {
       bearWave();
       const blood = `.blood${drip}`;
@@ -81,6 +82,9 @@ angular.module('pet.service', ['app.pet'])
         TweenMax.to(tearNum, 0.001, { y: 0, alpha: 1, delay: 4 });
         tear++;
       };
+
+      // this just selects which tear to drop so the bear doesn't run out of tears
+      // after repeated taps
       switch (tear) {
         case 1:
           tearSelect('.tear1');
@@ -139,6 +143,9 @@ angular.module('pet.service', ['app.pet'])
   // ////////////////////////////
   // ////// ACCESSORIES /////////
   // ////////////////////////////
+
+  // Checks for accessories which get set in the getStats function, makes them
+  // visible if they're true
   const setAccessories = () => {
     const accessories = stats.accessories;
     const hat = accessories.hat;
@@ -158,22 +165,14 @@ angular.module('pet.service', ['app.pet'])
   // ////////////////////////////
   // ///// CLOCK FUNCTIONS///////
   // ////////////////////////////
-  // TODO: wtf is this???
-  Date.prototype.timeNow = function () {
-    // WTF is this???
-    return ((this.getHours() < 10) ? '0' : '') + this.getHours() + ':'
-    + ((this.getMinutes() < 10) ? '0' : '') + this.getMinutes() + ':'
-    + ((this.getSeconds() < 10) ? '0' : '') + this.getSeconds();
-  };
 
-  const newDate1 = new Date();
+  // Function sets the clock accessory, constantly incrementing the time
   const setClock = () => {
     setInterval(() => {
-      const newDate = new Date();
-      const datetime = newDate.timeNow();
-      let second = datetime.slice(6, 8) * 360 / 60;
-      let minute = datetime.slice(3, 5) * 360 / 60;
-      let hour = datetime.slice(0, 2) * 360 / 12 + (minute / 12);
+      const day = new Date();
+      let second = day.getSeconds() * 6;
+      let minute = day.getMinutes() * 6;
+      let hour = day.getHours() * 30 + (minute / 12);
       if (hour === 360) {
         hour = 0;
       }
@@ -193,12 +192,14 @@ angular.module('pet.service', ['app.pet'])
   // ////////////////////////////////
   // /////////Day & Night////////////
   // ////////////////////////////////
+
+  // Function checks time and sets the background to night if it's after 6 pm and
+  // before 5pm
   factory.setBackground = () => {
-    const datetime1 = newDate1.timeNow();
-    const minute1 = datetime1.slice(3, 5) * 360 / 60;
-    const hour1 = datetime1.slice(0, 2) * 360 / 12 + (minute1 / 12);
+    const day = new Date();
+    const minute1 = day.getMinutes() * 6;
+    const hour1 = day.getHours() * 30 + (minute1 / 12);
     if (hour1 > 180 && hour1 < 540) {
-      // TODO: try without jquery
       $('.ground').css('background-image', 'url(./img/woods_day.png)');
     } else {
       $('.ground').css('background-image', 'url(./img/woods_night.png)');
@@ -208,7 +209,7 @@ angular.module('pet.service', ['app.pet'])
   // //////////////////////////////
   // //////// EVOLUTION ///////////
   // //////////////////////////////
-  // TODO: Check on pet moving?
+
   factory.evolve = false; //  << this gets set to false initially but may be changed by store
                           //     controller which triggers the evolution animation
   const setEvolution = () => {
@@ -230,6 +231,7 @@ angular.module('pet.service', ['app.pet'])
     }
   };
 
+  // gets passed to evoAnimation function by factory.getStats
   const evolution1 = () => {
     TweenMax.fromTo('.tusks', 2.5, { alpha: 1, scale: 0, transformOrigin: 'top' },
       { scale: 1.2, transformOrigin: 'top', delay: 1 });
@@ -238,7 +240,7 @@ angular.module('pet.service', ['app.pet'])
     TweenMax.fromTo('.leftClaw', 3, { alpha: 1, scale: 0, transformOrigin: 'top right' },
       { scale: 1.4, transformOrigin: 'top right', delay: 1 });
   };
-
+  // gets passed to evoAnimation function by factory.getStats
   const evolution2 = () => {
     TweenMax.to('.claws', 4, { fill: '#830303', delay: 2 });
     TweenMax.to('.tusks', 4, { fill: '#830303', delay: 2 });
@@ -252,8 +254,9 @@ angular.module('pet.service', ['app.pet'])
     TweenMax.to('.blood', 4, { alpha: 1, delay: 2 });
   };
 
+  // either evolution1 or evolution2 gets passed in to trigger specific evolution
   const evoAnimation = evolution => {
-    factory.evolve = false;
+    factory.evolve = false; // set to false to ensure evolution animation only triggers once
     const tl = new TimelineMax();
     tl.to('.bear', 3, {
       transformOrigin: '50% 50%',
@@ -261,20 +264,21 @@ angular.module('pet.service', ['app.pet'])
       ease: Circ.easeOut,
     }, 'bounce')
 
-    /* bear bounce down */
+    // bear bounce down
     .to('.bear', 0.4, {
       transformOrigin: '50% 50%',
       y: 50,
       ease: Circ.easeIn,
       delay: 0.6,
     }, 'bounce2')
-    /* bear squash */
+    // bear squash
     .to('.bear', 0.2, {
       transformOrigin: '50% 100%',
       scaleX: 1.2,
       scaleY: 0.8,
       ease: Power1.easeInOut,
     }, 'bounce3-=0.04')
+    // bear pop back up
     .to('.bear', 0.2, {
       transformOrigin: '50% 100%',
       scaleX: 1.1,
@@ -327,6 +331,7 @@ angular.module('pet.service', ['app.pet'])
     });
   };
 
+  // Function triggers when bear falls to 0 health
   factory.deadBear = () => {
     TweenMax.to('.bear', 5, { x: 1200, ease: 'easeIn' });
     $ionicPopup.confirm({
