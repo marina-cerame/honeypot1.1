@@ -6,6 +6,7 @@ angular.module('octo.service', ['app.octo'])
     let stats = null;
     let happiness = null;
 
+    // Sets initial position of octopus
     factory.positionOct = () => {
       TweenMax.to('.octo', 0, { x: 90, y: 145, scale: 1.05 });
       TweenMax.to('.octo-hat', 0, { x: -55, scale: 0.9, rotation: -25,
@@ -15,7 +16,8 @@ angular.module('octo.service', ['app.octo'])
       TweenMax.to('.tears', 0, { x: -46, y: 15 });
     };
 
-    let tear = 1;
+    let tear = 1; // this counter adjusts which tear to drop if octo is sad
+    // touch function for octopus
     const normalTouch = () => {
       TweenMax.to('.teeth', 5, { rotationX: 180, transformOrigin: 'center' });
       TweenMax.to('.t2', 1, { rotation: 30, transformOrigin: 'top right', delay: 0.5 });
@@ -56,9 +58,8 @@ angular.module('octo.service', ['app.octo'])
       TweenMax.to('.yellowBal', 1, { x: 0, y: 0, delay: 1.5 });
       TweenMax.to('.stringYellow', 1, { x: 0, y: 0, delay: 1.5 });
     };
-
+    // called by octoTouch function if octopus is sad
     const sadTouch = () => {
-
       const tearSelect = tearNum => {
         TweenMax.to(tearNum, 4, { y: 30, ease: 'easeIn' });
         TweenMax.to(tearNum, 2, { alpha: 0, delay: 2 });
@@ -93,6 +94,7 @@ angular.module('octo.service', ['app.octo'])
           break;
       }
     };
+    // calls appropriate touch function for octopus
     factory.octoTouch = () => {
       if (happiness > 25) {
         normalTouch();
@@ -100,7 +102,7 @@ angular.module('octo.service', ['app.octo'])
         sadTouch();
       }
     };
-
+    // sets octopus happiness after get request
     const setHappiness = () => {
       if (happiness <= 25) {
         TweenMax.to('.tears', 0, { alpha: 1 });
@@ -111,21 +113,13 @@ angular.module('octo.service', ['app.octo'])
       }
     };
 
-    Date.prototype.timeNow = function () {
-      // WTF is this???
-      return ((this.getHours() < 10) ? '0' : '') + this.getHours() + ':'
-      + ((this.getMinutes() < 10) ? '0' : '') + this.getMinutes() + ':'
-      + ((this.getSeconds() < 10) ? '0' : '') + this.getSeconds();
-    };
-
-    const newDate1 = new Date();
+    // Function sets the clock accessory, constantly incrementing the time
     const setClock = () => {
       setInterval(() => {
-        const newDate = new Date();
-        const datetime = newDate.timeNow();
-        let second = datetime.slice(6, 8) * 360 / 60;
-        let minute = datetime.slice(3, 5) * 360 / 60;
-        let hour = datetime.slice(0, 2) * 360 / 12 + (minute / 12);
+        const day = new Date();
+        let second = day.getSeconds() * 6;
+        let minute = day.getMinutes() * 6;
+        let hour = day.getHours() * 30 + (minute / 12);
         if (hour === 360) {
           hour = 0;
         }
@@ -144,17 +138,21 @@ angular.module('octo.service', ['app.octo'])
     // ////////////////////////////////
     // /////////Day & Night////////////
     // ////////////////////////////////
+
+    // Function checks time and sets the background to night if it's after 6 pm and
+    // before 5pm
     factory.setBackground = () => {
-      const datetime1 = newDate1.timeNow();
-      const minute1 = datetime1.slice(3, 5) * 360 / 60;
-      const hour1 = datetime1.slice(0, 2) * 360 / 12 + (minute1 / 12);
+      const day = new Date();
+      const minute1 = day.getMinutes() * 6;
+      const hour1 = day.getHours() * 30 + (minute1 / 12);
       if (hour1 > 180 && hour1 < 540) {
         $('.octo-ground').css('background-image', 'url(https://res.cloudinary.com/bearquarium/image/upload/v1485818261/water_day_btsnlg.png)');
       } else {
         $('.octo-ground').css('background-image', 'url(https://res.cloudinary.com/bearquarium/image/upload/v1485818265/water_night_rdhfhl.png)');
       }
     };
-
+    // Checks for accessories which get set in the getStats function, makes them
+    // visible if they're true
     const setAccessories = () => {
       const accessories = stats.accessories;
       const hat = accessories.hat;
@@ -184,7 +182,7 @@ angular.module('octo.service', ['app.octo'])
         TweenMax.to('.t7', 0, { alpha: 1 });
       }
     };
-
+    // gets passed to evoAnimation function by factory.getStats
     const evolution1 = () => {
       TweenMax.fromTo('.t4', 3, {
         x: 25,
@@ -213,7 +211,7 @@ angular.module('octo.service', ['app.octo'])
           transformOrigin: 'bottom left',
         });
     };
-
+    // gets passed to evoAnimation function by factory.getStats
     const evolution2 = () => {
       TweenMax.fromTo('.t2', 3, {
         x: 25,
@@ -244,8 +242,9 @@ angular.module('octo.service', ['app.octo'])
         });
     };
 
+    // either evolution1 or evolution2 gets passed in to trigger specific evolution
     const evoAnimation = evolution => {
-      factory.evolve = false;
+      factory.evolve = false; // set to false to ensure evolution animation only triggers once
       const tl = new TimelineMax();
       tl.to('.octo', 3, {
         transformOrigin: '50% 50%',
@@ -275,7 +274,7 @@ angular.module('octo.service', ['app.octo'])
       });
       evolution();
     };
-
+    // get request for pet happiness, health, accessories, & evolution
     factory.getStats = () => {
       return $http.get(`http://35.167.2.107:3000/v1/pet_stats/?id__is=${$rootScope.pet.id}`)
         .then(res => {
@@ -284,7 +283,6 @@ angular.module('octo.service', ['app.octo'])
           stats.progress = (stats.goal_progress / stats.goal_amt);
           if (factory.evolve === 1) {
             evoAnimation(evolution1);
-            /* bear bounce up */
           }
           if (factory.evolve === 2) {
             evoAnimation(evolution2);
@@ -300,12 +298,7 @@ angular.module('octo.service', ['app.octo'])
         });
     };
 
-    factory.showHelp = () => {
-      $ionicPopup.alert({
-        template: '<p>bars indicate pet status<br />when levels are low visit the store</p>',
-      });
-    };
-
+    // Function triggers when octo falls to 0 health
     factory.deadOcto = () => {
       TweenMax.to('.octo', 5, { x: 1200, ease: 'easeIn' });
       $ionicPopup.confirm({
@@ -334,12 +327,12 @@ angular.module('octo.service', ['app.octo'])
         }
       });
     };
-
-
+    // function for help button
     factory.showHelp = () => {
       $ionicPopup.alert({
         template: '<p>bars indicate pet status<br />when levels are low visit the store</p>',
       });
     };
+
     return factory;
   });

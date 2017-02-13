@@ -4,7 +4,7 @@ angular.module('dragon.service', ['app.dragon'])
     const factory = {};
     let stats = null;
     let happiness = null;
-
+    // makes dragon tilt back and forth
     factory.dragTilt = () => {
       TweenMax.to('.all-drag', 1, {
         rotation: 2,
@@ -17,27 +17,28 @@ angular.module('dragon.service', ['app.dragon'])
         onComplete: factory.dragTilt,
       });
     };
-
+    // initial function to set correct positioning of tears
     const setTears = () => {
       TweenMax.to('.dragon-tear1', 0, { x: -70, y: -68 });
       TweenMax.to('.dragon-tear2', 0, { x: -70, y: -68, alpha: 1 });
       TweenMax.to('.dragon-tear3', 0, { x: -5, y: -65, alpha: 1 });
       TweenMax.to('.dragon-tear4', 0, { x: -5, y: -65 });
     };
-
+    // drops eyebrows if happiness is below 26
     const browsDown = () => {
       TweenMax.to('.eyebrows', 1, {
         y: 4,
         scale: 1.1,
       });
     };
+    // makes dragon sad if happiness is below 26
     const mouthSad = () => {
       TweenMax.to('.upper-mouth', 1, {
         y: 6,
         scale: 1.1,
       });
     };
-
+    // sets happiness, gets called in get request
     const setHappiness = () => {
       if (happiness < 51) {
         browsDown();
@@ -47,7 +48,7 @@ angular.module('dragon.service', ['app.dragon'])
         }
       }
     };
-
+    // sets accessions, gets called in get request
     const setAccessories = () => {
       const accessories = stats.accessories;
       const hat = accessories.hat;
@@ -63,7 +64,7 @@ angular.module('dragon.service', ['app.dragon'])
         TweenMax.to('.dragon-necklace', 2, { alpha: 1 });
       }
     };
-
+    // part of on touch effect
     const mouthOpen = () => {
       TweenMax.to('.tongue', 0, {
         transformOrigin: 'bottom',
@@ -81,7 +82,7 @@ angular.module('dragon.service', ['app.dragon'])
         scaleY: 1,
       });
     };
-
+    // sets wings, gets called by set evolution
     const showWings = () => {
       TweenMax.to('.left-wing-whole', 0, {
         opacity: 1,
@@ -91,6 +92,7 @@ angular.module('dragon.service', ['app.dragon'])
       });
     };
 
+    // fire breathing on touch animation
     const breatheFire = () => {
       const tl = new TimelineMax();
       const tl2 = new TimelineMax();
@@ -122,7 +124,7 @@ angular.module('dragon.service', ['app.dragon'])
         .to('.far-flame', 0.4, { opacity: 1 }, '-=0.25');
     };
 
-
+    // part of on touch effect
     const tailSwing = () => {
       TweenMax.to('.whole-tail', 2, {
         rotationX: 180,
@@ -146,7 +148,7 @@ angular.module('dragon.service', ['app.dragon'])
         onComplete: tailSwing,
       });
     };
-
+    // part of on touch effect
     factory.flapWings = () => {
       const flapRight = () => {
         TweenMax.to('.left-wing-whole', 0.75, {
@@ -162,7 +164,7 @@ angular.module('dragon.service', ['app.dragon'])
           onComplete: flapRight,
         });
       };
-
+      // part of on touch effect
       const flapLeft = () => {
         TweenMax.to('.right-wing-whole', 0.75, {
           rotationX: 180,
@@ -180,7 +182,7 @@ angular.module('dragon.service', ['app.dragon'])
       flapRight();
       flapLeft();
     };
-
+    // part of on touch effect
     let i = 0;
     const flapCheck = () => {
       if (i < 10) {
@@ -189,7 +191,7 @@ angular.module('dragon.service', ['app.dragon'])
         i = 0;
       }
     };
-
+    // part of on touch effect
     const flapEars = () => {
       TweenMax.to('.left-ear', 0.09, {
         rotationX: 180,
@@ -216,7 +218,7 @@ angular.module('dragon.service', ['app.dragon'])
       });
       i++;
     };
-
+    // part of on touch effect
     const browRaise = () => {
       TweenMax.to('.eyebrows', 1, {
         y: -8,
@@ -230,7 +232,7 @@ angular.module('dragon.service', ['app.dragon'])
     };
 
     let tear = 1;
-
+    // if happiness is less than 26 this is called on touch
     const dragonCry = () => {
       if (tear % 2 === 1) {
         TweenMax.to('.dragon-tear3', 4, { y: 30, ease: 'easeIn' });
@@ -271,7 +273,7 @@ angular.module('dragon.service', ['app.dragon'])
       }
       setTears();
     };
-
+    // determines which touch effect to use
     factory.dragonClick = () => {
       if (happiness < 26) {
         dragonCry();
@@ -286,22 +288,12 @@ angular.module('dragon.service', ['app.dragon'])
       }
     };
 
-    // TODO: fix this.
-    Date.prototype.timeNow = function () {
-      // WTF is this???
-      return ((this.getHours() < 10) ? '0' : '') + this.getHours() + ':'
-      + ((this.getMinutes() < 10) ? '0' : '') + this.getMinutes() + ':'
-      + ((this.getSeconds() < 10) ? '0' : '') + this.getSeconds();
-    };
-
-    const newDate1 = new Date();
     const setClock = () => {
       setInterval(() => {
-        const newDate = new Date();
-        const datetime = newDate.timeNow();
-        let second = datetime.slice(6, 8) * 360 / 60;
-        let minute = datetime.slice(3, 5) * 360 / 60;
-        let hour = datetime.slice(0, 2) * 360 / 12 + (minute / 12);
+        const day = new Date();
+        let second = day.getSeconds() * 6;
+        let minute = day.getMinutes() * 6;
+        let hour = day.getHours() * 30 + (minute / 12);
         if (hour === 360) {
           hour = 0;
         }
@@ -326,17 +318,18 @@ angular.module('dragon.service', ['app.dragon'])
         });
       }, 1000);
     };
-
-    factory.evolve = false;
-
+    //
+    factory.evolve = false; //  << this gets set to false initially but may be changed by store
+                            //     controller which triggers the evolution animation
     const setEvolution = () => {
       if (stats.progress >= 50) {
         showWings();
       }
     };
 
+    // triggered by getStats function if factory.evolve is 1
     const evoAnimation1 = () => {
-      factory.evolve = false;
+      factory.evolve = false; // set to false to ensure evolution animation only triggers once
       const tl = new TimelineMax();
       tl.to('.all-drag', 3, {
         transformOrigin: '50% 50%',
@@ -385,11 +378,13 @@ angular.module('dragon.service', ['app.dragon'])
       });
     };
 
+    // triggered by getStats function if factory.evolve is 2
     const evoAnimation2 = () => {
-      factory.evolve = false;
+      factory.evolve = false; // set to false to ensure evolution animation only triggers once
       breatheFire();
     };
 
+    // get request for pet happiness, health, accessories, & evolution
     factory.getStats = () => {
       return $http.get(`http://35.167.2.107:3000/v1/pet_stats/?id__is=${$rootScope.pet.id}`)
         .then(res => {
@@ -418,22 +413,27 @@ angular.module('dragon.service', ['app.dragon'])
         });
     };
 
+    // Function checks time and sets the background to night if it's after 6 pm and
+    // before 5pm
     factory.setBackground = () => {
-      const datetime1 = newDate1.timeNow();
-      const minute1 = datetime1.slice(3, 5) * 360 / 60;
-      const hour1 = datetime1.slice(0, 2) * 360 / 12 + (minute1 / 12);
+      const day = new Date();
+      const minute1 = day.getMinutes() * 6;
+      const hour1 = day.getHours() * 30 + (minute1 / 12);
       if (hour1 > 180 && hour1 < 540) {
         $('.ground').css('background-image', 'url(../img/woods_day.png)');
       } else {
         $('.ground').css('background-image', 'url(../img/woods_night.png)');
       }
     };
+
+    // help popup function
     factory.showHelp = () => {
       $ionicPopup.alert({
         template: '<p>Bars indicate pet status.<br />When levels are low visit the store.</p>',
       });
     };
 
+    // Function triggers when dragon falls to 0 health
     factory.deadDragon = () => {
       TweenMax.to('.all-drag', 5, { x: 1200, ease: 'easeIn' });
       $ionicPopup.confirm({
